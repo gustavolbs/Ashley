@@ -23,7 +23,7 @@ Role inside Ashley:
 Install through its own CLI so its datasets/scripts remain intact and updateable.
 
 ## Taste
-https://github.com/jeettrench/taste-skill
+https://github.com/tasteskill/tasteskill
 
 Role inside Ashley:
 **creative pressure / anti-generic frontend taste**.

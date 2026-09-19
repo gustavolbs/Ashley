@@ -133,8 +133,11 @@ docs/design/
 ├── PRODUCT.md
 ├── RESEARCH.md
 ├── BRAND.md
+├── MESSAGING.md
 ├── UX.md
 ├── DESIGN_SYSTEM.md
+├── ASSETS.md
+├── HANDOFF.md
 ├── DECISIONS.md
 └── LEARNINGS.md
 ```
