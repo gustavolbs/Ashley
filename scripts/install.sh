@@ -3,7 +3,7 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 echo "Installing Ashley globally for Codex..."
-npx skills add "$ROOT" -g -a codex -y --copy
+npx skills add "$ROOT" --skill ashley -g -a codex -y --copy
 
 mkdir -p "$HOME/.ashley"
 
