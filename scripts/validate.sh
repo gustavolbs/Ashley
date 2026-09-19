@@ -12,7 +12,9 @@ done
 required=(
   product-business.md research.md ux-architecture.md interaction.md
   creative-engine.md visual-design.md brand.md logo.md
-  design-systems.md accessibility.md critique.md specialists.md penpot.md memory.md
+  design-systems.md accessibility.md data-dense-saas.md typography-color-layout.md
+  content-design.md mobile-responsive.md experimentation.md
+  critique.md specialists.md penpot.md memory.md
 )
 
 for f in "${required[@]}"; do
