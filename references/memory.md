@@ -96,3 +96,13 @@ Ashley may:
 Ashley must not silently edit the installed `SKILL.md` as "learning".
 
 Core process improvements should be made in the Ashley Git repository, reviewed, and regression-tested with `evals/`.
+
+## Missing global memory files
+
+The direct `npx skills add` installation may not create `~/.ashley/`.
+
+If Ashley needs to persist a global preference and those files do not exist:
+- if local filesystem/shell access is permitted, create `~/.ashley/PREFERENCES.md` and `HEURISTICS.md` lazily;
+- otherwise continue without blocking and tell the user only if the missing persistence matters.
+
+Do not require global memory for normal design work.
