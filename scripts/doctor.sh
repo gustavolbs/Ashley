@@ -12,6 +12,7 @@ done
 
 [[ -d "docs/design" ]] && ok "Current project has design memory" || warn "Current project has no docs/design"
 command -v codex >/dev/null 2>&1 && ok "Codex CLI found" || warn "Codex CLI not in PATH (Desktop may still exist)"
+command -v pen >/dev/null 2>&1 && ok "pen.dev CLI found" || warn "pen.dev CLI not found (optional but recommended)"
 
 echo
 echo "Inside Codex verify /skills and /mcp."

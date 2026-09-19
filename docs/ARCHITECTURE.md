@@ -20,9 +20,11 @@ Codex
   │    ├── UI/UX Pro Max
   │    ├── Taste
   │    └── Impeccable
-  └── Penpot MCP
-         ↓
-      Penpot canvas
+  └── design canvas capability
+       ├── pen.dev / Pencil MCP + .pen files (preferred)
+       ├── pen CLI headless resilience path
+       ├── Penpot MCP (supported fallback)
+       └── code/browser sandbox (last-resort UI fallback)
 ```
 
 The model may be provided by OpenAI or by a custom provider such as RouteMux. Ashley is instructions + knowledge + tools, not a model.
@@ -60,7 +62,9 @@ Detailed knowledge lives in `references/` so Codex can load only what is relevan
 - accessibility;
 - creative exploration;
 - critique;
-- Penpot;
+- design-canvas abstraction;
+- pen.dev/Pencil;
+- Penpot fallback;
 - memory.
 
 This keeps the always-on instruction footprint small enough for normal engineering sessions.
@@ -116,15 +120,20 @@ Specialists are tools:
 
 Ashley may take a recommendation, adapt it, or reject it.
 
-## Penpot
+## Design canvas
 
-Penpot is the principal design action surface:
-- Ashley reads the actual file/page;
-- edits it;
-- re-reads it;
-- compares variants there.
+Ashley does not depend on one vendor-specific canvas.
 
-The MCP does not replace visual judgment. Every consequential write should be followed by inspection.
+### Preferred: pen.dev / Pencil
+Repo-owned `.pen` files provide a durable, versionable design artifact. Ashley can use the local `pencil` MCP when the desktop/IDE host is available, and the `pen` CLI as a headless resilience/export path.
+
+### Supported fallback: Penpot
+Penpot remains supported for existing projects and stable MCP sessions.
+
+### Last-resort UI fallback
+If no writable design canvas is available, Ashley may use an isolated code/browser visual sandbox for UI exploration and visual QA, while clearly marking that the result is not an editable vector design source.
+
+Every consequential visual write is followed by rendered inspection regardless of canvas.
 
 ## Evals
 
@@ -149,7 +158,7 @@ Ashley owns more than product UI. The same reasoning/memory/creative loop applie
 - editorial/blog/email graphics;
 - branded diagrams and collateral.
 
-Penpot remains the default layout/vector production surface. If the host exposes image-generation/editing tools, Ashley can use them as source-asset tools under her art direction.
+The selected editable design canvas remains the default layout/vector production surface. If the host exposes image-generation/editing tools, Ashley can use them as source-asset tools under her art direction.
 
 ## Existing projects
 
@@ -174,7 +183,7 @@ creative strategy / message
         ↓
 taste prior + creative divergence
         ↓
-Penpot production
+editable canvas production
         ↓
 render/export visual QA
         ↓

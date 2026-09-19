@@ -10,7 +10,7 @@ Here is the business model, scope and users.
 
 Do not code it yet. Understand the business, identify assumptions, define the
 product/UX architecture, then explore three materially different product and
-visual directions in Penpot.
+visual directions in the active design canvas.
 ```
 
 ## Brand from zero
@@ -24,7 +24,7 @@ Include logo concepts, type, color and shape language.
 ## Critique
 
 ```text
-Ashley, inspect the current Penpot page. It feels generic.
+Ashley, inspect the current design canvas/document. It feels generic.
 Critique product structure first, then visual craft. Tell me what is generic
 because of product structure versus what is only styling, then improve it.
 ```
@@ -48,7 +48,7 @@ information we can expose without losing hierarchy.
 ## Transition to code
 
 ```text
-Ashley, the product direction and Penpot screens are approved.
+Ashley, the product direction and design-canvas screens are approved.
 Finalize DESIGN_SYSTEM.md, document responsive/state behavior and prepare the
 design handoff. After that, implementation can begin.
 ```
@@ -70,7 +70,7 @@ than looking like a generic new project.
 Ashley, create a launch campaign for this product.
 Understand the approved brand and launch message first.
 Explore three creative routes, then build the selected route into a reusable
-social system with feed, story, LinkedIn and thumbnail variants in Penpot.
+social system with feed, story, LinkedIn and thumbnail variants in the active design canvas.
 Verify current channel dimensions before final export.
 ```
 
@@ -100,7 +100,7 @@ appropriate, and use them in future work without overgeneralizing.
 ## Taste calibration
 
 ```text
-Ashley, calibrate my visual taste. Create a compact Penpot board with
+Ashley, calibrate my visual taste. Create a compact design-canvas board with
 meaningfully different choices for typography, density, geometry, color
 intensity, composition, brand expressiveness, illustration and motion.
 I will react to it; extract the reasons and update TASTE_PROFILE.md.
@@ -119,13 +119,13 @@ issues and inspect again. Do not pass QA from layer structure alone.
 ```text
 Ashley, create a campaign for this launch. Establish audience, insight,
 promise, reason-to-believe, primary message and desired action first.
-Then explore creative routes and build the selected system in Penpot.
+Then explore creative routes and build the selected system in the active design canvas.
 ```
 
 ## Design ↔ code sync
 
 ```text
-Ashley, inspect both the current codebase and Penpot. Determine the source of
+Ashley, inspect both the current codebase and design canvas. Determine the source of
 truth for tokens, components, states and assets; document the mapping and
 resolve drift before creating new product UI.
 ```

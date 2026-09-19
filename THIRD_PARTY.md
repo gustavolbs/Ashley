@@ -49,3 +49,15 @@ Ashley uses established design principles as constraints/reasoning tools, not as
 - mature design-system practices and platform conventions
 
 When a current standard/version materially matters, research the latest source rather than relying on a frozen note in this repository.
+
+
+## pen.dev / Pencil
+https://pen.dev
+https://docs.pencil.dev/
+
+Role inside Ashley:
+**preferred editable design canvas and repo-local design artifact format**.
+
+Ashley prefers project-owned `.pen` files when the workflow benefits from versioned design artifacts. The desktop/IDE MCP is used for live canvas work; the CLI provides headless editing, screenshots/exports and resilience when a GUI host is unavailable.
+
+Ashley does not edit `.pen` JSON manually; it uses pen.dev tooling.

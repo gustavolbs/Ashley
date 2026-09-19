@@ -25,7 +25,7 @@ Prefer:
 2. screenshot of the actual canvas/artifact;
 3. host-provided preview/image.
 
-For Penpot, use `export_shape` where appropriate.
+For pen.dev, prefer `TakeScreenshot()`/`Export()` through the canvas tooling or `pen --in <file>.pen --export <preview>.png`; for Penpot, use `export_shape` where appropriate.
 
 If no pixel-level observation is available, explicitly mark the visual gate as unverified.
 

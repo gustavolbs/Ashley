@@ -1,6 +1,6 @@
 # Design ↔ Code Sync
 
-Ashley should prevent Penpot and the product codebase from becoming independent realities.
+Ashley should prevent the editable design source and the product codebase from becoming independent realities.
 
 ## First decision: source of truth
 
@@ -8,7 +8,7 @@ Choose authority **per layer**, not necessarily one source for everything.
 
 Example:
 - semantic tokens: code authoritative;
-- exploratory visual direction: Penpot authoritative;
+- exploratory visual direction: design canvas authoritative;
 - component names/contracts: shared mapping;
 - brand source SVG: brand assets folder authoritative;
 - product behavior: code/product spec authoritative.
@@ -30,7 +30,7 @@ Inspect:
 - state behavior;
 - accessibility implementation.
 
-Then inspect Penpot:
+Then inspect the selected design canvas:
 - tokens/styles;
 - components;
 - variants;
@@ -53,7 +53,7 @@ Do not "fix" intentional divergence automatically.
 For important primitives/components record:
 
 ```text
-Penpot: Button / Primary / MD
+Design: Button / Primary / MD
 Code:   packages/ui/Button variant=primary size=md
 Tokens: action-primary-*
 States: default hover focus pressed disabled loading
@@ -64,7 +64,7 @@ States: default hover focus pressed disabled loading
 ### Code → design
 Use when implementation is current truth:
 - extract tokens/styles;
-- update Penpot foundations;
+- update design-canvas foundations;
 - align component names/states;
 - document exceptions.
 
@@ -78,7 +78,7 @@ Use after approved design:
 ## Avoid destructive "sync"
 
 Sync is not:
-- mass-renaming code to match Penpot taste;
+- mass-renaming code to match design-canvas naming/taste;
 - replacing accessible components with visual replicas;
 - introducing new token families unnecessarily;
 - treating screenshot similarity as sufficient behavior parity.

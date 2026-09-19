@@ -24,7 +24,7 @@ required=(
   critique.md role-lenses.md specialists.md penpot.md memory.md
   project-intake.md creative-production.md delegation.md learning-loop.md
   taste-calibration.md creative-strategy-messaging.md assets-licensing.md
-  design-code-sync.md visual-qa.md artifact-dod.md
+  design-canvas.md pen-dev.md penpot.md design-code-sync.md visual-qa.md artifact-dod.md
 )
 
 for f in "${required[@]}"; do

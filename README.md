@@ -8,7 +8,7 @@ The goal is simple: Ashley should be the person you call for **anything visual o
 Ashley, I want to build a SaaS for property managers.
 Here is the scope and business model.
 Understand the product, create the visual identity and logo, then start
-designing the main flows in Penpot. Do not write production code yet.
+designing the main flows in the project design canvas. Do not write production code yet.
 ```
 
 Ashley is one Codex **Agent Skill**. There is no Ashley server, daemon, database service, or second agent runtime.
@@ -25,7 +25,7 @@ Her capability comes from:
 - design systems and accessibility;
 - structured creative divergence (A/B/C directions);
 - visual critique and finish gates;
-- Penpot MCP as the design canvas;
+- a canvas abstraction with pen.dev preferred, Penpot supported, and browser/code fallback;
 - proactive learning from approvals, rejections and corrections;
 - durable project + global design memory;
 - optional Codex subagent delegation for repository exploration, research and independent critique;
@@ -73,6 +73,36 @@ Ashley 1.0 adds six production-grade layers:
 6. **Artifact DoD** — logos, product screens, social assets, campaigns, systems and other artifacts have explicit finish gates.
 
 These layers still run inside the same single Codex skill.
+
+## Recommended design canvas
+
+Ashley is no longer tied to Penpot.
+
+The preferred workflow is now **pen.dev/Pencil + repo-owned `.pen` files**:
+
+```text
+project/
+├── src/
+├── docs/design/
+└── design/
+    ├── product.pen
+    ├── brand.pen
+    └── campaigns.pen
+```
+
+Why this is the preferred path:
+- `.pen` files are version-control friendly;
+- Codex can connect through the local `pencil` MCP;
+- the `pen` CLI can work headlessly;
+- screenshots/exports can be generated for Visual QA;
+- design stays physically associated with the product repo.
+
+Penpot remains fully supported as a fallback for projects already using it.
+
+See:
+- `docs/PEN_DEV_SETUP.md`
+- `docs/PENPOT_SETUP.md`
+- `references/design-canvas.md`
 
 ## Install Ashley
 
