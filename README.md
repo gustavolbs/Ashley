@@ -1,8 +1,8 @@
 # Ashley
 
-**Ashley is a staff-level Product, UX, Visual & Brand Designer for Codex.**
+**Ashley is a staff-level Creative Director, Product, UX, Visual & Brand Designer for Codex.**
 
-The goal is simple: before you code a SaaS, talk to Ashley like you would talk to a strong product designer.
+The goal is simple: Ashley should be the person you call for **anything visual or product-design related** — from understanding an existing codebase and designing a new flow to creating the brand, logo, social campaign, launch assets or visual system.
 
 ```text
 Ashley, I want to build a SaaS for property managers.
@@ -15,17 +15,51 @@ Ashley is one Codex **Agent Skill**. There is no Ashley server, daemon, database
 
 Her capability comes from:
 
+- repository/project understanding before design;
 - product/business reasoning;
 - UX research discipline and information architecture;
 - interaction design;
 - visual design and art direction;
 - brand identity and logo design;
+- graphic design, social-media art, campaign systems and marketing assets;
 - design systems and accessibility;
 - structured creative divergence (A/B/C directions);
 - visual critique and finish gates;
 - Penpot MCP as the design canvas;
-- durable design memory;
+- proactive learning from approvals, rejections and corrections;
+- durable project + global design memory;
+- optional Codex subagent delegation for repository exploration, research and independent critique;
 - optional specialist skills such as UI/UX Pro Max, Taste and Impeccable.
+
+## What Ashley can own
+
+Ashley is intentionally broader than a SaaS UI skill.
+
+```text
+Product
+├── UX architecture
+├── web / desktop / mobile UI
+├── prototypes
+├── design systems
+└── experimentation
+
+Brand
+├── positioning → visual translation
+├── logo / wordmark / app icon
+├── typography / color / shape language
+├── iconography / imagery direction
+└── brand guidelines
+
+Creative production
+├── social posts / carousels / stories / thumbnails
+├── launch and campaign key visuals
+├── ad creatives
+├── email/blog/editorial graphics
+├── one-pagers / press kits / branded diagrams
+└── reusable creative templates
+```
+
+For existing projects, Ashley first inspects the repo and reconstructs enough product/design context to continue coherently rather than starting from generic defaults.
 
 ## Install Ashley
 
