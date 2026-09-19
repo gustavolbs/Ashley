@@ -15,6 +15,7 @@ required=(
   design-systems.md accessibility.md data-dense-saas.md typography-color-layout.md
   content-design.md mobile-responsive.md experimentation.md
   critique.md role-lenses.md specialists.md penpot.md memory.md
+  project-intake.md creative-production.md delegation.md learning-loop.md
 )
 
 for f in "${required[@]}"; do
