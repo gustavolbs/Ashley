@@ -12,8 +12,10 @@ User
 Codex
   ├── Ashley SKILL.md
   ├── Ashley references/ (loaded on demand)
+  ├── repository/project intake
   ├── project design memory (docs/design)
   ├── global preference memory (~/.ashley)
+  ├── optional Codex subagents (ephemeral delegation)
   ├── optional specialist skills
   │    ├── UI/UX Pro Max
   │    ├── Taste
@@ -37,19 +39,23 @@ A separate service/multi-agent runtime would add:
 
 None is required for the intended founder/design workflow.
 
-The primary intelligence bottleneck is design reasoning and visual evaluation, not orchestration infrastructure.
+The primary intelligence bottleneck is design reasoning, project comprehension, creative exploration and visual evaluation — not orchestration infrastructure.
+
+Codex subagents are used only as ephemeral helpers for independent tasks such as repository mapping, reference research or critique. They do not turn Ashley into a separate multi-agent runtime. Ashley remains the final synthesizer and creative authority.
 
 ## Progressive disclosure
 
 `SKILL.md` contains the operating system and routing logic.
 
 Detailed knowledge lives in `references/` so Codex can load only what is relevant:
+- project/repository intake;
 - business/product;
 - research;
 - architecture;
 - interaction;
 - visual craft;
 - brand/logo;
+- creative production and campaign/social design;
 - systems;
 - accessibility;
 - creative exploration;
@@ -95,7 +101,9 @@ Local to the user:
 `~/.ashley/PREFERENCES.md`
 `~/.ashley/HEURISTICS.md`.
 
-The distinction prevents a decision for one fintech product from becoming an accidental rule for every future product.
+Ashley evaluates learning proactively after approvals, rejections, corrections and observed design failures. The distinction between project and global memory prevents a decision for one product from becoming an accidental rule for every future product.
+
+There is no background learner. "Automatic learning" means Ashley updates the appropriate durable memory during normal design sessions without requiring an explicit "remember this" command.
 
 ## Specialist model
 
@@ -128,3 +136,28 @@ After changing Ashley's core process:
 - reject changes that improve one aesthetic style while degrading mode generality.
 
 The evals are intentionally cross-domain to prevent Ashley becoming "the SaaS dashboard skill".
+
+
+## Full creative scope
+
+Ashley owns more than product UI. The same reasoning/memory/creative loop applies to:
+- identities and logo systems;
+- social-media creative;
+- campaigns and ad concepts;
+- launch/marketing graphics;
+- icon and vector systems;
+- editorial/blog/email graphics;
+- branded diagrams and collateral.
+
+Penpot remains the default layout/vector production surface. If the host exposes image-generation/editing tools, Ashley can use them as source-asset tools under her art direction.
+
+## Existing projects
+
+Before designing into an existing repository, Ashley runs a proportional Project Intake:
+- product/docs;
+- domain models and routes;
+- existing UI/components/tokens;
+- brand assets;
+- current design memory.
+
+Large repo exploration can be delegated read-only to Codex's built-in explorer subagent. Ashley then synthesizes the findings and designs from the actual product context rather than a generic SaaS prior.
