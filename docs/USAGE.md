@@ -52,3 +52,46 @@ Ashley, the product direction and Penpot screens are approved.
 Finalize DESIGN_SYSTEM.md, document responsive/state behavior and prepare the
 design handoff. After that, implementation can begin.
 ```
+
+
+## Existing project
+
+```text
+Ashley, read and understand this project before designing anything.
+Map the product, domain objects, routes, current design system and brand assets.
+Use an explorer subagent if the repo is large.
+Then design the new [screen/flow/asset] so it belongs to this product rather
+than looking like a generic new project.
+```
+
+## Social media / campaign
+
+```text
+Ashley, create a launch campaign for this product.
+Understand the approved brand and launch message first.
+Explore three creative routes, then build the selected route into a reusable
+social system with feed, story, LinkedIn and thumbnail variants in Penpot.
+Verify current channel dimensions before final export.
+```
+
+## General creative production
+
+```text
+Ashley, we need [one-pager / ad creative / blog cover / app icon / media kit].
+Use the existing project and brand as source of truth. Create the artifact,
+inspect it at its real consumption size and update the reusable visual system
+if this introduces a durable new pattern.
+```
+
+## Automatic learning
+
+You do not need to say "remember this":
+
+```text
+Ashley, the previous campaign was too corporate. This version is much closer:
+I like the typography and the way the product screenshot is treated, but the
+illustration style is still too playful.
+```
+
+Ashley should extract scoped signals, update project/global memory when
+appropriate, and use them in future work without overgeneralizing.
