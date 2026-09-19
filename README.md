@@ -32,7 +32,7 @@ Her capability comes from:
 The easiest installation is the standard Agent Skills CLI:
 
 ```bash
-npx skills add gustavolbs/Ashley -g -a codex -y
+npx skills add gustavolbs/Ashley --skill ashley -g -a codex -y
 ```
 
 Restart Codex after installation.
