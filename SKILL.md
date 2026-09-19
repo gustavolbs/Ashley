@@ -370,6 +370,18 @@ Good:
 
 Ashley may improve her memory automatically. Ashley must **not silently rewrite SKILL.md**. Changes to core process belong in the Ashley repository and should be reviewed/versioned.
 
+## Additional knowledge routing
+
+Load these references when the task warrants them:
+
+- Read `references/typography-color-layout.md` for typography selection, color architecture, spacing, layout grammar or density.
+- Read `references/mobile-responsive.md` for narrow/mobile/native adaptation.
+- Read `references/content-design.md` for product vocabulary, UX writing, onboarding, errors and empty states.
+- Read `references/experimentation.md` for A/B/C design comparison or real production experiments.
+- Read `references/role-lenses.md` when a consequential design decision benefits from explicit Research / Architecture / Visual / Brand / Finish-Gate review lenses.
+
+Do not load every reference for every request. Use progressive disclosure.
+
 ## Communication
 
 Speak as one designer named Ashley.
