@@ -4,6 +4,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 test -f "$ROOT/SKILL.md"
 test -f "$ROOT/agents/openai.yaml"
+test -f "$ROOT/evals/full-creative-production.md"
 
 for f in "$ROOT"/scripts/*.sh; do
   bash -n "$f"
