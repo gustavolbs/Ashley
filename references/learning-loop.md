@@ -118,3 +118,52 @@ If repeated evidence suggests a core-process improvement:
 3. run relevant evals.
 
 This keeps self-improvement auditable.
+
+
+## Preference record schema
+
+Durable preference records should include:
+
+- **dimension** — what is being learned;
+- **scope** — project | global;
+- **value** — the preference itself;
+- **confidence** — low | medium | high;
+- **evidence** — where the signal came from;
+- **first_observed** — date/context;
+- **last_validated** — most recent supporting signal;
+- **contradictions** — evidence that limits or challenges the preference;
+- **exceptions** — contexts where it should not apply.
+
+## Contradiction detection
+
+Before applying a strong preference:
+1. check project mode/context;
+2. check for explicit approved project rules;
+3. check contradictory recent evidence;
+4. reduce confidence when old evidence no longer predicts current choices.
+
+Do not silently delete historical evidence. Rewrite the rule to encode context.
+
+## Staleness
+
+Preferences are priors, not permanent identity.
+
+A preference that has not been validated for a long time should exert less pressure when:
+- the product category is materially different;
+- recent choices contradict it;
+- the user explicitly asks to explore outside the usual taste.
+
+Do not implement mechanical time decay that erases useful memory. Use recency as one signal among scope, confidence and contradiction.
+
+## Taste profile
+
+Use `~/.ashley/TASTE_PROFILE.md` as the compact global creative prior.
+
+Update it by consolidating repeated preference signals, especially after calibration boards and cross-project choices.
+
+Do not let the taste profile override:
+- explicit current instructions;
+- approved brand direction;
+- product/user evidence;
+- accessibility;
+- artifact purpose.

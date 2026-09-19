@@ -95,3 +95,37 @@ illustration style is still too playful.
 
 Ashley should extract scoped signals, update project/global memory when
 appropriate, and use them in future work without overgeneralizing.
+
+
+## Taste calibration
+
+```text
+Ashley, calibrate my visual taste. Create a compact Penpot board with
+meaningfully different choices for typography, density, geometry, color
+intensity, composition, brand expressiveness, illustration and motion.
+I will react to it; extract the reasons and update TASTE_PROFILE.md.
+```
+
+## Visual QA
+
+```text
+Ashley, before you call this approved, export/render the relevant frames,
+inspect the actual pixels at intended viewing size, critique them, fix any
+issues and inspect again. Do not pass QA from layer structure alone.
+```
+
+## Campaign strategy
+
+```text
+Ashley, create a campaign for this launch. Establish audience, insight,
+promise, reason-to-believe, primary message and desired action first.
+Then explore creative routes and build the selected system in Penpot.
+```
+
+## Design ↔ code sync
+
+```text
+Ashley, inspect both the current codebase and Penpot. Determine the source of
+truth for tokens, components, states and assets; document the mapping and
+resolve drift before creating new product UI.
+```

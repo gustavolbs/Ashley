@@ -113,3 +113,43 @@ Before implementation:
 Penpot + `docs/design/` together are the design source of truth:
 - Penpot = visual artifact;
 - docs = rationale/contracts.
+
+
+## Rendered visual QA
+
+For high-fidelity work, layer/structure inspection is necessary but not sufficient.
+
+Use the best available visual path:
+1. `export_shape` for the relevant frame/artifact when available;
+2. screenshot/preview from the connected environment when available;
+3. another host-provided image observation path.
+
+Then inspect:
+- hierarchy at intended viewing size;
+- clipping/overflow;
+- optical alignment;
+- text wrapping/truncation;
+- contrast;
+- density;
+- visual noise;
+- brand coherence;
+- thumbnail/feed legibility where relevant.
+
+After fixes, inspect again.
+
+Remote MCP exposes `export_shape`, but remote mode may not write directly to arbitrary local file paths. Work with the representation/path the client exposes.
+
+If pixels cannot be observed, mark visual QA as **not verified** rather than claiming completion.
+
+## Design ↔ code sync
+
+Penpot MCP can inspect tokens/styles, export assets and map design components to code concepts.
+
+When syncing:
+- inspect implemented tokens/components first;
+- identify authoritative source per layer;
+- align semantic names/identifiers;
+- document intentional differences;
+- do not overwrite production conventions merely to make Penpot tidy.
+
+Read `references/design-code-sync.md`.

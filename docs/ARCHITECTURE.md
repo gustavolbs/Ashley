@@ -161,3 +161,44 @@ Before designing into an existing repository, Ashley runs a proportional Project
 - current design memory.
 
 Large repo exploration can be delegated read-only to Codex's built-in explorer subagent. Ashley then synthesizes the findings and designs from the actual product context rather than a generic SaaS prior.
+
+
+## Ashley 1.0 production architecture
+
+The runtime remains one skill, but the quality loop now contains six explicit production concerns:
+
+```text
+project + business understanding
+        ↓
+creative strategy / message
+        ↓
+taste prior + creative divergence
+        ↓
+Penpot production
+        ↓
+render/export visual QA
+        ↓
+artifact-specific finish gate
+        ↓
+design↔code / asset handoff
+        ↓
+learning + contradiction-aware memory
+```
+
+### Taste
+`~/.ashley/TASTE_PROFILE.md` stores a soft preference prior. It never overrides the brief, product evidence or approved project identity.
+
+### Visual observation
+For high-fidelity work, structure inspection is insufficient. Ashley should export/render a representative artifact and inspect the pixels with a vision-capable model. A successful MCP write is not a visual pass.
+
+### Messaging
+Campaign and growth creative receives a communication brief before visual execution.
+
+### Provenance
+Asset use records whether rights/source are owned, licensed, generated, verified or unresolved.
+
+### Design ↔ code
+Existing implementations are evidence. Ashley identifies whether design or code is authoritative for each system layer and records the mapping instead of silently creating divergence.
+
+### Definition of done
+Completion is artifact-specific and evidence-based.

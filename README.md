@@ -61,6 +61,19 @@ Creative production
 
 For existing projects, Ashley first inspects the repo and reconstructs enough product/design context to continue coherently rather than starting from generic defaults.
 
+## Ashley 1.0 quality loop
+
+Ashley 1.0 adds six production-grade layers:
+
+1. **Visual QA** — high-fidelity work must be exported/rendered and visually inspected, not merely validated from layers.
+2. **Taste Calibration** — a global but non-rigid taste profile accelerates learning of the user's preferences.
+3. **Creative Strategy & Messaging** — campaigns start from audience/message/idea, not decoration.
+4. **Asset Provenance & Licensing** — fonts, icons, stock, generated imagery and third-party assets carry explicit provenance status.
+5. **Design ↔ Code Sync** — Ashley chooses and documents source-of-truth rules instead of creating parallel design systems.
+6. **Artifact DoD** — logos, product screens, social assets, campaigns, systems and other artifacts have explicit finish gates.
+
+These layers still run inside the same single Codex skill.
+
 ## Install Ashley
 
 The easiest installation is the standard Agent Skills CLI:
@@ -133,7 +146,8 @@ Ashley also uses global preferences under:
 ```text
 ~/.ashley/
 ├── PREFERENCES.md
-└── HEURISTICS.md
+├── HEURISTICS.md
+└── TASTE_PROFILE.md
 ```
 
 The installer creates them if missing.

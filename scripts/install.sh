@@ -17,6 +17,52 @@ Do not turn one rejected design into a universal law.
 EOF
 fi
 
+if [[ ! -f "$HOME/.ashley/TASTE_PROFILE.md" ]]; then
+cat > "$HOME/.ashley/TASTE_PROFILE.md" <<'EOF'
+# Ashley — Taste Profile
+
+This is a soft creative prior, not a fixed style preset.
+
+## Calibration status
+Uncalibrated
+
+## Preference dimensions
+
+### Typography character
+Unknown
+
+### Density
+Unknown
+
+### Geometry
+Unknown
+
+### Color intensity
+Unknown
+
+### Brand expressiveness
+Unknown
+
+### Editorial ↔ utilitarian
+Unknown
+
+### Motion intensity
+Unknown
+
+### Illustration / imagery character
+Unknown
+
+### Experimentation tolerance
+Unknown
+
+## Evidence log
+Record dated preference signals with project/context and confidence.
+
+## Contradictions / exceptions
+Record contexts where the preference changes.
+EOF
+fi
+
 if [[ ! -f "$HOME/.ashley/HEURISTICS.md" ]]; then
 cat > "$HOME/.ashley/HEURISTICS.md" <<'EOF'
 # Ashley — Learned Design Heuristics

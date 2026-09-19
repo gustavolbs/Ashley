@@ -6,7 +6,7 @@ TEMPLATE="$SKILL_ROOT/templates/project/docs/design"
 DEST="$PROJECT_ROOT/docs/design"
 
 mkdir -p "$DEST"
-for f in PRODUCT.md RESEARCH.md BRAND.md UX.md DESIGN_SYSTEM.md DECISIONS.md LEARNINGS.md; do
+for f in PRODUCT.md RESEARCH.md BRAND.md MESSAGING.md UX.md DESIGN_SYSTEM.md ASSETS.md HANDOFF.md DECISIONS.md LEARNINGS.md; do
   if [[ -e "$DEST/$f" ]]; then
     echo "keep   docs/design/$f"
   else
