@@ -1,44 +1,51 @@
 # Ashley
 
-Ashley is a **Principal Product & Brand Designer for Codex**.
+**Ashley is a staff-level Product, UX, Visual & Brand Designer for Codex.**
 
-She is designed for a specific workflow:
+The goal is simple: before you code a SaaS, talk to Ashley like you would talk to a strong product designer.
 
 ```text
-idea / product scope
-        ↓
-product + UX reasoning
-        ↓
-brand / identity / logo
-        ↓
-design system
-        ↓
-Penpot prototype
-        ↓
-critique + iteration
-        ↓
-approved design
-        ↓
-implementation
+Ashley, I want to build a SaaS for property managers.
+Here is the scope and business model.
+Understand the product, create the visual identity and logo, then start
+designing the main flows in Penpot. Do not write production code yet.
 ```
 
-Ashley is not meant to be another "make this UI beautiful" prompt. The skill is organized as a design operating system: product reasoning, research discipline, information architecture, interaction design, visual design, brand identity, logo construction, design systems, accessibility, critique, Penpot operation, and durable learning.
+Ashley is one Codex **Agent Skill**. There is no Ashley server, daemon, database service, or second agent runtime.
 
-## Design stack
+Her capability comes from:
 
-Ashley has her own design knowledge and can orchestrate optional specialist skills:
+- product/business reasoning;
+- UX research discipline and information architecture;
+- interaction design;
+- visual design and art direction;
+- brand identity and logo design;
+- design systems and accessibility;
+- structured creative divergence (A/B/C directions);
+- visual critique and finish gates;
+- Penpot MCP as the design canvas;
+- durable design memory;
+- optional specialist skills such as UI/UX Pro Max, Taste and Impeccable.
 
-- **Agency Agents** — role/process inspiration: UI Designer, UX Architect, UX Researcher, Brand Guardian, UI Finish-Gate Reviewer.
-- **Taste Skill** — visual taste and anti-generic creative direction.
-- **UI/UX Pro Max** — searchable product/style/color/typography/UX pattern intelligence.
-- **Impeccable** — design critique, anti-pattern detection, refinement and visual QA.
-- **Awesome Design Skills / TypeUI** — optional style references chosen per project; never bulk-applied as a default aesthetic.
+## Install Ashley
 
-Ashley treats these as specialists, not as substitutes for product judgment.
+The easiest installation is the standard Agent Skills CLI:
 
-## Install
+```bash
+npx skills add gustavolbs/Ashley -g -a codex -y
+```
 
-Clone the repo and install Ashley globally:
+Restart Codex after installation.
+
+Verify:
+
+```text
+/skills
+```
+
+You should see **ashley**.
+
+Alternatively, clone the repository and run:
 
 ```bash
 git clone https://github.com/gustavolbs/Ashley.git
@@ -46,31 +53,33 @@ cd Ashley
 bash scripts/install.sh
 ```
 
-To also install/update recommended specialist skills:
+## Recommended specialist skills
+
+Ashley works by herself, but three optional skills materially expand her repertoire:
 
 ```bash
-bash scripts/install.sh --with-specialists
+bash scripts/install-specialists.sh
 ```
 
-Then restart Codex.
+This installs:
 
-Ashley installs to:
+- **UI/UX Pro Max** — searchable style/product/color/type/UX intelligence.
+- **Taste** — visual differentiation and anti-generic exploration.
+- **Impeccable** — critique, polish and deterministic UI anti-pattern detection.
 
-```text
-~/.agents/skills/ashley/
-```
+They remain independent upstream skills so they can be updated normally.
 
-The specialist installer intentionally keeps third-party skills as separate skills so they can be updated from their original projects.
+Ashley is the design director. Specialist instructions never override the active product brief, accessibility constraints, approved brand decisions, or Ashley's mode-specific rules.
 
-## Initialize a product repo
+## Initialize a product repository
 
-Inside the SaaS/product repository:
+Inside the SaaS/product repo:
 
 ```bash
 ~/.agents/skills/ashley/scripts/init-project.sh
 ```
 
-This creates a project design memory under:
+This creates:
 
 ```text
 docs/design/
@@ -83,87 +92,122 @@ docs/design/
 └── LEARNINGS.md
 ```
 
-Commit these files with the product.
+Commit these files. They become the durable design memory for the product.
+
+Ashley also uses global preferences under:
+
+```text
+~/.ashley/
+├── PREFERENCES.md
+└── HEURISTICS.md
+```
+
+The installer creates them if missing.
 
 ## Penpot
 
-Ashley is designed to use **Penpot Cloud through the Penpot MCP server**. Penpot itself does not need to live in the SaaS repo.
+Ashley is designed to use Penpot Cloud via the official Penpot MCP server.
+
+You do not install Penpot into the SaaS repo.
 
 1. Open Penpot Cloud.
-2. Enable its MCP integration and generate the MCP URL/token.
-3. Add that MCP server to Codex.
-4. Open the design file/page in Penpot and connect the active file to MCP.
-5. Ask Ashley to inspect or edit the active page.
+2. In your Penpot account, enable the MCP integration and generate its MCP URL/token.
+3. Add the remote MCP server to Codex as `penpot`.
+4. Open the desired Penpot file/page.
+5. In Penpot, connect the active file/page to MCP.
+6. Ask Ashley to inspect or edit the current canvas.
 
-See `references/penpot.md`.
+See [references/penpot.md](references/penpot.md).
 
-## Usage
+## RouteMux
 
-Natural language is the intended interface:
+Ashley is model-provider agnostic. RouteMux can provide the model as long as the selected model is strong at:
 
-```text
-Ashley, I want to make a SaaS for property managers.
-Here is the scope and the main jobs users need to complete.
-Before we code anything, define the product design direction, create the
-brand identity, explore the logo, establish the design system and start
-drawing the main flows in Penpot.
-```
+- tool/function calling;
+- vision;
+- long instruction following;
+- spatial/visual reasoning;
+- multi-step reasoning.
 
-Then iterate normally:
+The main failure mode is a model that describes an MCP action instead of calling the MCP tool correctly.
 
-```text
-Ashley, this dashboard could belong to any SaaS. It is too card-heavy,
-too spacious for an operational product, and the hierarchy is weak.
-Critique it and redesign it without discarding the approved brand.
-```
+For consequential product/brand work, prefer your strongest reliable vision + tool-calling reasoning model. Use cheaper models for repetitive token/component work.
 
-## Principles
+## How Ashley creates rather than merely follows rules
 
-Ashley should:
-
-- understand the job before choosing a visual pattern;
-- separate evidence, assumption, exploration, and decision;
-- explore before converging;
-- treat typography, spatial rhythm and information density as primary tools;
-- use components because behavior repeats, not because every design needs a card library;
-- make brand decisions from positioning, not fashionable effects;
-- test logos as marks, not illustrations;
-- inspect the actual canvas after editing it;
-- explicitly model loading, empty, error, success, destructive and permission states;
-- use accessibility as a construction constraint;
-- learn from corrections without silently rewriting her core instructions;
-- record durable project decisions with rationale.
-
-## Repository structure
+Ashley uses a structured creative loop:
 
 ```text
-SKILL.md
-agents/openai.yaml
-references/
-  design-operating-system.md
-  product-strategy.md
-  ux-research.md
-  ux-architecture.md
-  interaction-design.md
-  visual-design.md
-  typography-color-layout.md
-  brand-identity.md
-  logo-design.md
-  design-systems.md
-  accessibility.md
-  data-dense-saas.md
-  critique-quality-gates.md
-  specialist-routing.md
-  penpot.md
-  memory-learning.md
-scripts/
-  install.sh
-  install-specialists.sh
-  init-project.sh
-templates/project/docs/design/
-THIRD_PARTY.md
+understand the job
+      ↓
+map constraints
+      ↓
+search/retrieve repertoire
+      ↓
+diverge into genuinely different concepts
+      ↓
+materialize A/B/C
+      ↓
+critique against product + craft
+      ↓
+compare tradeoffs
+      ↓
+human preference signal
+      ↓
+converge
+      ↓
+record what was learned
 ```
 
-## Third-party skills
+A/B/C means different **design hypotheses**, not the same layout with three colors.
 
-This repository does not vendor the source of Taste, UI/UX Pro Max, Impeccable, Agency Agents, or Awesome Design Skills. Their original repositories remain the source of truth. See `THIRD_PARTY.md`.
+Ashley can vary:
+
+- interaction model;
+- hierarchy;
+- information density;
+- navigation;
+- typography;
+- shape language;
+- composition;
+- brand expression;
+- imagery/iconography;
+- motion.
+
+## Example workflow
+
+```text
+Ashley, we're building an accounts-receivable SaaS for small property managers.
+The landlord is the buyer, but property managers operate it every day.
+Here is the business model and scope.
+
+First understand the business and users. Then give me three distinct product +
+brand directions. Materialize the strongest alternatives in Penpot so I can compare.
+```
+
+Then:
+
+```text
+Ashley, A has the best product structure. B has a better personality.
+C feels too experimental. Create A2 preserving A's architecture but exploring
+a warmer visual language without becoming playful. Learn from this feedback.
+```
+
+Then:
+
+```text
+Ashley, direction A2 is approved. Establish the design system and design the
+highest-frequency operational flow, including loading, empty, error and
+permission states.
+```
+
+## Repository
+
+- `SKILL.md` — Ashley's orchestration brain.
+- `references/` — knowledge packs loaded on demand.
+- `templates/` — project design-memory templates.
+- `scripts/` — installer and project initializer.
+- `evals/` — regression briefs for testing Ashley after changes.
+- `docs/ARCHITECTURE.md` — architecture and design rationale.
+
+Ashley deliberately stays a **skill**, not a new framework.

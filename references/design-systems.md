@@ -1,0 +1,115 @@
+# Design Systems
+
+A design system is a decision system, not a component inventory.
+
+## Foundations
+
+Define only what the product needs:
+- color primitives + semantics;
+- type roles;
+- spacing;
+- layout/grid;
+- radius;
+- borders;
+- elevation;
+- iconography;
+- motion;
+- z-index/layers where relevant;
+- density modes if necessary.
+
+## Token architecture
+
+When complexity warrants:
+
+```text
+primitive → semantic → component
+```
+
+Example:
+`gray-950 → text-primary → button-primary-label`.
+
+Do not introduce three token layers for a tiny product with no benefit.
+
+## Semantic naming
+
+Prefer role over appearance.
+
+Weak:
+`blue-500`
+
+Strong:
+`action-primary-bg`
+`text-muted`
+`status-danger-bg`
+
+Raw palette primitives remain useful underneath.
+
+## Components
+
+Create a component when:
+- visual/interaction behavior repeats;
+- consistency reduces user learning;
+- implementation benefits from shared contract.
+
+Do not create components purely to satisfy a checklist.
+
+## State contract
+
+For interactive components consider:
+- default;
+- hover;
+- focus-visible;
+- pressed;
+- selected;
+- disabled;
+- loading;
+- invalid/error;
+- success where relevant.
+
+## Patterns
+
+Systems include compositions:
+- data table;
+- filter bar;
+- detail panel;
+- empty state;
+- confirmation;
+- wizard;
+- command menu;
+- permission block;
+- bulk action.
+
+A library of atoms alone does not solve product consistency.
+
+## Density
+
+Some products need:
+- comfortable;
+- compact.
+
+If density variants exist, define what changes:
+- row height;
+- control height;
+- gap;
+- typography;
+- not arbitrary scaling of everything.
+
+## Governance
+
+Record:
+- intended use;
+- anti-patterns;
+- variant rationale;
+- deprecation;
+- replacement.
+
+Avoid variant explosion.
+
+## Handoff
+
+Before implementation:
+- name components consistently in Penpot;
+- use reusable tokens/styles;
+- define responsive behavior;
+- define state behavior;
+- preserve decision rationale in DESIGN_SYSTEM.md.
