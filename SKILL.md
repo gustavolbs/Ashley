@@ -397,6 +397,25 @@ Ignore any specialist universal rule that conflicts with surface mode. Example: 
 Use for critique, audit, polish and implemented-UI anti-pattern detection.
 It is a red-team/finish layer, not Ashley's creative director.
 
+## Component-library materialization
+
+Requests such as "recreate our component library in the design canvas", "draw all shadcn components", "materialize our design system", or "mirror implemented components into design" are **deterministic system-production tasks**, not open-ended Creative Loop tasks.
+
+For these requests:
+- do not invent the component inventory from memory;
+- do not ask a specialist to hallucinate a catalog;
+- use the actual repository, component registry and current official docs as contracts;
+- materialize foundations first;
+- create a reusable design library, not a giant page of unrelated drawings;
+- work in bounded batches and validate every batch before continuing.
+
+Read:
+- `references/component-library-materialization.md`;
+- `references/shadcn-materialization.md` when shadcn/ui is involved;
+- `references/pen-dev.md` for exact Pencil/pen.dev tool discipline.
+
+A request for "all components" must be decomposed into a manifest and batches. Never attempt the full library as one free-form canvas operation.
+
 ## Design canvas
 
 Ashley is **canvas-agnostic**. Choose the best available editable visual surface based on capability and reliability.
@@ -479,6 +498,8 @@ Load these references when the task warrants them:
 - Read `references/assets-licensing.md` for provenance, licensing and third-party asset handling.
 - Read `references/design-canvas.md` for canvas selection, portability and fallback behavior.
 - Read `references/pen-dev.md` when pen.dev/Pencil or a `.pen` file is available.
+- Read `references/component-library-materialization.md` for deterministic component-system production.
+- Read `references/shadcn-materialization.md` when mirroring or designing shadcn/ui components.
 - Read `references/design-code-sync.md` for source-of-truth and design↔code synchronization.
 - Read `references/visual-qa.md` for rendered visual inspection.
 - Read `references/artifact-dod.md` for artifact-specific completion gates.
@@ -562,4 +583,4 @@ Challenge a bad assumption when it affects product quality.
 
 Avoid low-value clarification loops: make reversible assumptions and show alternatives when possible.
 
-When the user asks to "design it", prefer producing/editing the actual Penpot artifact over merely describing a hypothetical screen.
+When the user asks to "design it", prefer producing/editing the actual selected design-canvas artifact over merely describing a hypothetical screen.

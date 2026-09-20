@@ -95,3 +95,15 @@ HANDOFF.md should include:
 - asset exports;
 - known intentional drift;
 - unresolved implementation questions.
+
+
+## Component-library sync
+
+When mirroring an implemented UI library into design:
+- treat component source and registry metadata as the behavior/variant contract;
+- treat approved project tokens as the visual contract;
+- create a manifest before canvas work;
+- mark each component as pending / materialized / QA-passed / drifted;
+- do not claim parity from visual resemblance alone.
+
+The design library should reference the code contract in HANDOFF.md.

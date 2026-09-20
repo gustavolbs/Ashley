@@ -113,3 +113,26 @@ Before implementation:
 - define responsive behavior;
 - define state behavior;
 - preserve decision rationale in DESIGN_SYSTEM.md.
+
+
+## Materializing an implemented component library
+
+When an existing codebase already contains a component system, the inventory is evidence, not a brainstorming prompt.
+
+Use `references/component-library-materialization.md`.
+
+For each component, capture:
+- source file / registry item;
+- public variants;
+- sizes;
+- interaction states;
+- composition/subcomponents;
+- token dependencies;
+- icons;
+- content slots;
+- responsive behavior if relevant;
+- accessibility semantics that affect design.
+
+Do not create visual variants that the implementation does not support unless they are explicitly proposed as design-ahead changes.
+
+For large systems, build a reusable design library and a specimen/catalog page separately.

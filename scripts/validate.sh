@@ -8,6 +8,7 @@ test -f "$ROOT/evals/full-creative-production.md"
 test -f "$ROOT/evals/visual-qa.md"
 test -f "$ROOT/evals/design-code-sync.md"
 test -f "$ROOT/evals/taste-calibration.md"
+test -f "$ROOT/evals/shadcn-materialization.md"
 test -f "$ROOT/templates/project/docs/design/MESSAGING.md"
 test -f "$ROOT/templates/project/docs/design/ASSETS.md"
 test -f "$ROOT/templates/project/docs/design/HANDOFF.md"
@@ -24,7 +25,7 @@ required=(
   critique.md role-lenses.md specialists.md penpot.md memory.md
   project-intake.md creative-production.md delegation.md learning-loop.md
   taste-calibration.md creative-strategy-messaging.md assets-licensing.md
-  design-canvas.md pen-dev.md penpot.md design-code-sync.md visual-qa.md artifact-dod.md
+  design-canvas.md pen-dev.md penpot.md component-library-materialization.md shadcn-materialization.md design-code-sync.md visual-qa.md artifact-dod.md
 )
 
 for f in "${required[@]}"; do

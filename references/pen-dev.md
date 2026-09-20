@@ -115,3 +115,54 @@ If the local MCP is unavailable:
 - verify pen.dev is running and the intended file is open if live editing is desired;
 - if CLI exists and `pen status` is healthy, use the headless path;
 - otherwise fall back according to `references/design-canvas.md`.
+
+
+## Strict tool discipline for component libraries
+
+When materializing a design system, do not improvise Pencil operations from memory.
+
+Before the first write in a session:
+1. call `read_skill()`;
+2. load the current schema guidance such as `pen-schema.md`;
+3. load `execute.md`;
+4. inspect `get_app_state()`;
+5. inspect existing variables/components before inserting anything.
+
+Only use operations documented by the currently loaded tool/schema.
+
+If an operation fails:
+- read the returned error;
+- re-read the relevant tool/schema guidance;
+- correct the smallest failing operation;
+- do not invent another API name.
+
+### Bounded writes
+
+For component-library work, prefer one component or one tightly related family per coherent write/batch.
+
+Examples:
+- Button + Button states;
+- Input + Textarea + Label;
+- Checkbox + Radio + Switch;
+- Dialog primitives;
+- Table family.
+
+Do not attempt dozens of component origins in one `execute` call.
+
+After each batch:
+1. inspect structure;
+2. `TakeScreenshot()`;
+3. visually inspect;
+4. fix;
+5. save/checkpoint;
+6. only then continue.
+
+### Reusable origins, instances and slots
+
+A library must use actual reusable components rather than flattened drawings.
+
+Use component origins/instances and slots when content needs insertion.
+
+For compound components, build from verified primitives instead of redrawing everything independently.
+
+Prefer a `.lib.pen` file for a reusable product design library.

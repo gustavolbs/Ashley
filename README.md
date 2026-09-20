@@ -292,3 +292,19 @@ permission states.
 - `docs/ARCHITECTURE.md` — architecture and design rationale.
 
 Ashley deliberately stays a **skill**, not a new framework.
+
+
+## Component-library materialization
+
+Ashley treats requests like "recreate our shadcn library in design" as deterministic system work rather than free-form generation.
+
+For shadcn/ui she:
+- reads the project's `components.json` and actual component source;
+- queries current shadcn registry/docs when upstream coverage is requested;
+- builds a manifest;
+- maps real project tokens into design variables;
+- creates a reusable `.lib.pen` library;
+- works in small dependency-ordered batches;
+- visually QA's every batch before continuing.
+
+This avoids hallucinating component names, variants or Pencil operations.
