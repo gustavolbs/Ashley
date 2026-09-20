@@ -308,3 +308,10 @@ For shadcn/ui she:
 - visually QA's every batch before continuing.
 
 This avoids hallucinating component names, variants or Pencil operations.
+
+
+### Design-first shadcn
+
+Ashley can prepare a shadcn-oriented design system **before shadcn is installed**.
+
+In that mode she derives the required component set from product flows, checks the current official shadcn catalog for implementation feasibility, builds product-specific semantic tokens and creates the reusable design library first. When shadcn is installed later, implementation mirrors the approved design contract rather than defining the visual system from scratch.

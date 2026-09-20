@@ -1,61 +1,133 @@
 # shadcn/ui Materialization
 
-Use this when the project uses shadcn/ui or the user asks to recreate shadcn components in the design canvas.
+Use this when shadcn/ui is the intended implementation system, whether or not shadcn has already been installed.
 
-## Never rely on memory for the catalog
+shadcn evolves, so Ashley must not rely on a memorized catalog.
 
-shadcn evolves.
+## Choose the operating mode
 
-Determine the current contract from:
-1. the project's `components.json` when present;
-2. actual installed component source files;
-3. the current shadcn CLI/registry/docs when upstream coverage is requested.
+### A. Design-first shadcn mode
 
-The project may use Radix, Base UI or another base. Do not assume.
+Use when shadcn is **not installed yet** and the user wants Ashley to prepare the future component system.
 
-## Scope: installed project vs full upstream
+Inputs:
+1. product/domain/flows;
+2. approved brand and visual foundations;
+3. current official shadcn component catalog/docs/registry;
+4. accessibility and platform constraints.
 
-Clarify internally from the request:
+Output:
+- planned component manifest;
+- reusable design variables;
+- `design/ui.lib.pen`;
+- optional `design/ui-catalog.pen`;
+- future implementation contract in DESIGN_SYSTEM.md/HANDOFF.md.
 
-### Project-installed library
-Mirror what the repository actually uses/contains.
+In this mode, design is the initial visual specification.
 
-This is normally the most useful design-system source.
+Do not require `components.json` or local shadcn source because they do not exist yet.
 
-### Full current shadcn catalog
-If the user explicitly wants upstream coverage, query the current registry rather than inventing names.
+### B. Mirror mode
 
-Useful current CLI patterns include:
-```bash
-npx shadcn@latest info
-npx shadcn@latest search @shadcn --limit 100
-npx shadcn@latest view button card dialog
-npx shadcn@latest docs combobox
-```
+Use when shadcn is already installed.
 
-Use current CLI help/docs if exact commands differ.
+Inputs:
+1. `components.json`;
+2. actual installed/local component source;
+3. project theme/tokens;
+4. current official docs only when local code is insufficient.
 
-Do not install components into the product merely to inspect them unless the user asks. Prefer read/view/docs operations.
+Local code wins over upstream examples.
 
-## Project discovery
+## Current upstream evidence
 
-Inspect:
-- `components.json`;
-- configured aliases;
-- component base/style;
-- CSS variables/theme;
-- `components/ui` or resolved UI alias;
-- variants defined with CVA or equivalent;
-- Lucide/other icon usage;
-- local modifications to upstream components.
+When planning before installation, consult the current official shadcn docs/registry at task time.
 
-Local code wins over generic upstream appearance.
+Do not fabricate the catalog.
 
-## Token translation
+The current official component directory is the authoritative discovery surface. Use current CLI/docs/registry commands when exact anatomy/behavior/availability matters.
 
-Translate the project's actual semantic variables into design variables.
+Read/view/search operations are preferred over installing components merely for inspection.
 
-Typical roles may include:
+## Design-first selection: product needs first
+
+Do not start with "draw every shadcn component."
+
+Start with product flows and derive a planned set.
+
+For a B2B operations product, likely families may include:
+
+### Foundations / basic display
+- Typography
+- Button
+- Button Group when product actions justify it
+- Badge
+- Separator
+- Avatar
+- Skeleton
+- Spinner
+
+### Form controls
+- Label
+- Field/Form composition
+- Input
+- Input Group when justified
+- Textarea
+- Checkbox
+- Radio Group
+- Switch
+- Select / Native Select as appropriate
+- Slider only when a real use case exists
+- Date Picker / Calendar when workflows require dates
+
+### Feedback / empty states
+- Alert
+- Progress when asynchronous progress exists
+- Toast/Sonner
+- Empty
+
+### Navigation / disclosure
+- Tabs
+- Accordion
+- Breadcrumb
+- Pagination
+- Sidebar only if the IA actually uses one
+- Command only if command/search workflows justify it
+
+### Overlays
+- Dialog
+- Alert Dialog
+- Sheet/Drawer when narrow-screen or contextual workflows need them
+- Popover
+- Tooltip
+- Dropdown Menu
+- Context Menu only when the product interaction model requires it
+
+### Data-heavy operations
+- Table
+- Data Table pattern
+- Scroll Area
+- Card only for bounded semantic groups, not as a default layout primitive
+
+This list is planning guidance only. The live official shadcn catalog and product needs decide the final manifest.
+
+## Do not overbuild
+
+Classify planned components:
+
+- **core** — clearly needed by known product flows;
+- **supporting** — likely needed in secondary flows;
+- **deferred** — available upstream but not justified yet.
+
+Materialize core first.
+
+Do not spend time building Carousel, Chart, OTP, Resizable, Aspect Ratio, etc. unless the actual product needs them.
+
+## Foundations
+
+In design-first mode, create the project's future semantic variables from approved brand/design foundations.
+
+Typical shadcn-compatible semantic roles may include:
 - background;
 - foreground;
 - card;
@@ -68,75 +140,87 @@ Typical roles may include:
 - border;
 - input;
 - ring;
-- chart-*.
+- chart-* when needed.
 
-Do not assume their values.
+These names are implementation-alignment aids. Their values come from the product identity, not shadcn defaults.
 
-Preserve the project's custom palette and typography.
+Also define:
+- typography;
+- radius;
+- spacing/control heights;
+- focus treatment;
+- icon sizing/stroke conventions;
+- elevation/border behavior;
+- density.
 
-## Suggested families
+## Component contract in design-first mode
 
-Organize by dependency rather than alphabetically:
+For each planned component Ashley decides and documents:
+- product use cases;
+- anatomy/subcomponents;
+- variants justified by the product;
+- sizes justified by density/context;
+- visual states;
+- interactive states that affect appearance;
+- content slots;
+- token dependencies;
+- intended shadcn counterpart;
+- accessibility implications.
 
-### Foundations / primitives
-Button, Badge, Separator, Skeleton, Avatar.
+Do not copy every upstream example/variant blindly.
 
-### Inputs
-Input, Textarea, Label, Checkbox, Radio Group, Switch, Slider, Select.
-
-### Feedback
-Alert, Progress, Sonner/Toast, Spinner where present.
-
-### Disclosure / navigation
-Accordion, Tabs, Breadcrumb, Pagination, Navigation Menu, Menubar, Sidebar where present.
-
-### Overlays
-Dialog, Alert Dialog, Sheet, Drawer, Popover, Hover Card, Tooltip, Dropdown Menu, Context Menu, Command.
-
-### Data / content
-Card, Table, Calendar, Chart, Carousel, Scroll Area, Aspect Ratio.
-
-### Complex/composed
-Form patterns, Combobox, Date Picker and project-specific compositions.
-
-This is only an ordering aid. The actual manifest comes from code/registry evidence.
-
-## Variants and states
-
-Mirror actual supported variants.
-
-Example for Button: do not invent a variant list; read the implementation/registry item.
-
-Represent at minimum the states that materially affect visual design:
-- default;
-- hover;
-- focus-visible;
-- active/pressed where relevant;
-- disabled;
-- invalid/error where relevant;
-- selected/checked/open where relevant;
-- loading only if the product contract includes it.
+The goal is a product-specific system that can later be implemented cleanly using shadcn primitives.
 
 ## pen.dev target
 
 Prefer:
+
 ```text
 design/
 ├── ui.lib.pen
 └── ui-catalog.pen
 ```
 
-The `.lib.pen` contains origins/variables.
-The catalog shows labeled specimens.
+The library contains reusable origins and variables.
+The catalog contains labeled specimens and state/variant demonstrations.
 
-Use reusable components, refs/instances and slots—not flattened lookalikes.
+Use actual reusable components/instances/slots, not flattened drawings.
 
-## QA
+## Batch order
 
-After every small family:
-- screenshot at useful zoom;
-- inspect spacing/type/color/state legibility;
-- compare against actual project implementation/browser when available;
-- fix before continuing.
+A useful design-first order:
 
-For an existing product, browser-rendered components are valuable reference truth for visual parity.
+1. foundations;
+2. Button / Badge / Separator / Avatar;
+3. Input / Textarea / Label or Field;
+4. Checkbox / Radio Group / Switch;
+5. Select / Popover / Tooltip;
+6. Dialog / Alert Dialog / Sheet/Drawer as needed;
+7. Tabs / Breadcrumb / Pagination;
+8. Table / Data Table;
+9. product-specific composed patterns.
+
+This order is not mandatory. Product dependencies win.
+
+## Batch discipline
+
+Default:
+- 1 complex component; or
+- 2–4 tightly related simple components.
+
+After each batch:
+- inspect structure/reusability;
+- screenshot;
+- visual QA;
+- compare to approved product foundations;
+- fix before continuing;
+- update manifest.
+
+## Later implementation
+
+When shadcn is eventually initialized:
+- compare the code implementation to this design-first contract;
+- map tokens;
+- implement only the approved variants/states;
+- document intentional implementation differences;
+- switch future sync work to mirror mode.

@@ -1,21 +1,36 @@
 # Component Library Materialization
 
-This protocol is for turning an existing implementation/registry into a reusable design library.
+This protocol is for creating a reusable component library in either of two modes:
 
-It is intentionally more deterministic than normal creative work.
+- **mirror mode** — an implementation/registry already exists and design mirrors it;
+- **design-first mode** — the product is being designed before the implementation exists.
 
-## 1. Establish authority
+Both are more deterministic than normal open-ended creative work.
 
-Before drawing:
-- identify the implemented component source;
-- identify token/theme source;
-- identify registry/config files;
-- identify whether design is mirroring code or proposing changes.
+## 1. Establish mode and authority
 
-Default for an existing library:
-- code/registry = behavior + variants authority;
-- approved project tokens = visual authority;
+Before drawing, classify the task.
+
+### Mirror mode
+Use when code/components already exist.
+
+Authority:
+- code/registry = behavior + variants;
+- approved project tokens = visual contract;
 - design canvas = visual representation and design-ahead proposals.
+
+### Design-first mode
+Use when the component library does not exist yet.
+
+Authority:
+- product jobs/flows = component-need evidence;
+- approved brand and design tokens = visual contract;
+- current official target-library docs/registry = implementation-feasibility reference;
+- design canvas = initial component specification.
+
+In design-first mode Ashley is allowed to define the future component API/variants, but only when they are justified by product needs and remain implementable with the intended library.
+
+Do not create a huge component inventory merely because the upstream library offers it.
 
 ## 2. Build a manifest
 
@@ -23,14 +38,18 @@ Do not begin by drawing.
 
 Create an inventory table containing at least:
 - component;
-- source;
+- source/evidence;
 - family;
-- variants;
-- sizes;
-- states;
+- product use cases;
+- planned variants;
+- planned sizes;
+- required states;
 - subcomponents;
 - token dependencies;
+- implementation target/reference;
 - status.
+
+In design-first mode, every component must answer: **which product flow/job needs this?**
 
 Suggested statuses:
 - pending;
@@ -136,3 +155,22 @@ A materialized library is not complete until:
 - compound components use verified primitives;
 - representative screenshots pass visual QA;
 - design↔code mapping is documented.
+
+
+## Design-first planning
+
+When no implementation exists yet:
+
+1. map core product flows;
+2. derive needed interaction primitives/patterns;
+3. map those needs to the intended implementation library;
+4. prefer reusable primitives that cover multiple flows;
+5. avoid materializing low-probability upstream components prematurely;
+6. mark speculative components separately from committed ones.
+
+Suggested manifest classes:
+- **core** — needed by known high-frequency flows;
+- **supporting** — likely needed by secondary/administrative flows;
+- **deferred** — upstream capability that may be useful later but has no current product evidence.
+
+The design library should be complete for the product phase, not necessarily exhaustive for the upstream ecosystem.

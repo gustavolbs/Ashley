@@ -402,9 +402,11 @@ It is a red-team/finish layer, not Ashley's creative director.
 Requests such as "recreate our component library in the design canvas", "draw all shadcn components", "materialize our design system", or "mirror implemented components into design" are **deterministic system-production tasks**, not open-ended Creative Loop tasks.
 
 For these requests:
+- first determine whether this is **mirror mode** (implementation already exists) or **design-first mode** (the library is being prepared before implementation);
 - do not invent the component inventory from memory;
 - do not ask a specialist to hallucinate a catalog;
-- use the actual repository, component registry and current official docs as contracts;
+- in mirror mode, use repository code/registry as the contract;
+- in design-first mode, use product needs + approved brand/tokens + current official component docs/registry as the planning evidence;
 - materialize foundations first;
 - create a reusable design library, not a giant page of unrelated drawings;
 - work in bounded batches and validate every batch before continuing.
