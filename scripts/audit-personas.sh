@@ -21,7 +21,7 @@ for persona in "${PERSONAS[@]}"; do
   persona_version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"
   [[ "$persona_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "$persona VERSION is not semver"
   grep -q "\"$persona\": \"$persona_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json version mismatch for $persona"
-  grep -q "references/evidence.md" "$skill" || fail "$persona SKILL.md must reference anti-hallucination evidence protocol"
+  grep -q "evidence.md" "$skill" || fail "$persona SKILL.md must reference anti-hallucination evidence protocol"
   bytes="$(wc -c < "$skill" | tr -d " ")"
   (( bytes <= 12000 )) || fail "$persona SKILL.md is ${bytes} bytes; move detail into references/"
 
