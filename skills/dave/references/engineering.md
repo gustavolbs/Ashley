@@ -74,3 +74,31 @@ Prefer measurement before micro-optimization.
 Refactor when it lowers the risk/cost of the requested change or removes verified debt in the touched path.
 Avoid opportunistic repository-wide cleanup inside a narrow feature.
 A good refactor leaves behavior demonstrably unchanged and usually reduces conceptual load.
+
+
+## Dependencies
+
+Before adding a dependency, check existing/runtime capability, correct workspace ownership, maintenance cost, bundle/runtime impact and lockfile scope. Do not churn unrelated dependency versions.
+
+## Generated code
+
+Treat generated files as outputs unless repository convention says otherwise. Prefer editing the generator/schema/source and regenerating. If generation cannot be run, report that limitation instead of pretending synchronization happened.
+
+## Database migrations
+
+For schema/data changes:
+- inspect the repository's migration tool and deployment assumptions;
+- preserve forward compatibility when old/new versions may overlap;
+- separate destructive/backfill work when a one-step migration is unsafe;
+- consider idempotency, locks, indexes and table size;
+- never invent production rollback semantics without evidence.
+
+## Application observability
+
+Dave owns instrumentation inside the application boundary: structured logs at meaningful failure boundaries, existing metrics/traces/events conventions, actionable error context without secrets/PII, and required health/readiness behavior.
+
+Guto owns the telemetry platform, dashboards, alerting, SLOs and operational response.
+
+## Feature rollout
+
+For high-blast-radius changes, inspect existing feature flags and compatibility/rollout mechanisms. Prefer established flag or expand/contract patterns over a bespoke rollout framework.

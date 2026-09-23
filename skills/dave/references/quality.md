@@ -51,8 +51,19 @@ When practical:
 
 ## Independent QA
 
-Use Reality Checker/Evidence Collector/API Tester when independence materially improves confidence.
-The implementer still owns fixes and final integration.
+Choose QA by risk:
+- UI behavior/visual regression → Evidence Collector;
+- accessibility → Accessibility Auditor;
+- API contract/integration → API Tester;
+- browser E2E/flaky suites → Test Automation Engineer;
+- performance → Performance Benchmarker;
+- security-sensitive code → Application Security Engineer;
+- broad code-quality/maintainability → Code Reviewer;
+- final integrated readiness → Reality Checker.
+
+QA/review is read-only by default. The implementer or Dave applies fixes, then the relevant failed check is re-run. This preserves independence and prevents a reviewer from certifying its own edits.
+
+Do not require every specialist for every feature. One targeted independent check is often more valuable than a committee.
 
 ## Simplification gate
 
@@ -80,6 +91,9 @@ A software task is done when applicable items are true:
 - final integrated diff was reviewed;
 - unrelated changes are not included;
 - Git history is coherent;
+- generated artifacts/migrations/contracts are synchronized when applicable;
+- changed public behavior/documentation is updated when the repository expects it;
+- durable engineering memory is updated only for decisions worth preserving;
 - remaining real risks/decisions are reported.
 
 Never mark an unrun check as passed. Report skipped checks only when the omission matters.

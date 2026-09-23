@@ -13,6 +13,12 @@ test -f "$ROOT/skills/dave/references/engineering.md"
 test -f "$ROOT/skills/dave/references/orchestration.md"
 test -f "$ROOT/skills/dave/references/git.md"
 test -f "$ROOT/skills/dave/references/quality.md"
+test -f "$ROOT/skills/dave/references/memory.md"
+test -f "$ROOT/skills/dave/references/repository-intake.md"
+test -f "$ROOT/skills/dave/scripts/init-project.sh"
+test -f "$ROOT/skills/dave/templates/project/docs/engineering/DECISIONS.md"
+test -f "$ROOT/evals/dave-orchestration.md"
+test -f "$ROOT/evals/dave-memory.md"
 test -f "$ROOT/evals/dave-principal-engineer.md"
 test -f "$ROOT/evals/full-creative-production.md"
 test -f "$ROOT/evals/visual-qa.md"
@@ -28,6 +34,7 @@ for f in "$ROOT"/scripts/*.sh; do
   bash -n "$f"
 done
 bash -n "$ROOT/skills/ashley/scripts/init-project.sh"
+bash -n "$ROOT/skills/dave/scripts/init-project.sh"
 
 required=(
   product-business.md research.md ux-architecture.md interaction.md

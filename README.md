@@ -50,6 +50,14 @@ Install Dave from a clone:
 bash scripts/install-dave.sh
 ```
 
+Initialize optional engineering memory inside a project only when the repo does not already have an equivalent ADR/engineering-doc system:
+
+```bash
+~/.agents/skills/dave/scripts/init-project.sh
+```
+
+Dave prefers existing `AGENTS.md`, ADRs, architecture docs and executable repository truth over creating parallel memory.
+
 ## Ashley
 
 **Ashley is a staff-level Creative Director, Product, UX, Visual & Brand Designer for Codex.**
