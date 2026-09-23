@@ -1,24 +1,27 @@
 # Guto — Specialist Orchestration
 
-Guto retains operational authority. Specialists supply depth or independent review.
+Guto retains operational authority and mutation control.
 
-Preferred Agency Agents when installed:
-- DevOps Automator — CI/CD and infrastructure automation;
-- Infrastructure Maintainer — operations and platform maintenance;
-- SRE (Site Reliability Engineer) — SLOs, error budgets, capacity and reliability;
-- Database Reliability Engineer — HA, backups, restore, failover and online migrations;
+Preferred specialists when installed:
+- DevOps Automator — CI/CD/infrastructure automation;
+- Infrastructure Maintainer — platform operations;
+- SRE (Site Reliability Engineer) — SLO/error budget/capacity/reliability;
+- Database Reliability Engineer — HA/backups/restore/failover/online migration operations;
 - Incident Response Commander — major incident coordination;
-- FinOps Engineer — cloud cost allocation/optimization;
+- FinOps Engineer — cloud-cost allocation/optimization;
 - Performance Benchmarker — load/performance evidence;
-- Network Engineer — network/routing/firewall diagnosis;
-- Security Architect — trust boundaries/platform security design;
-- Application Security Engineer — SDLC/code-level security;
-- Mobile Release Engineer — app-store/signing/release operations.
+- Network Engineer — routing/firewall/network diagnosis;
+- Security Architect — platform/trust-boundary design;
+- Application Security Engineer — SDLC/application security coordination with Dave;
+- Compliance Auditor — SOC 2/ISO/PCI/HIPAA-style technical readiness/evidence where applicable;
+- Mobile Release Engineer — signing, store submission, phased rollout and release health.
 
 Discover exact installed names before spawning.
 
-Use read-only specialists freely for diagnosis. Writing specialists require explicit resource/path ownership. Never let multiple agents concurrently apply infrastructure to the same environment/state.
+Read-only diagnosis can run in parallel when independent. Writing/mutation specialists require explicit resource/state ownership. Never let multiple agents concurrently apply to the same environment/IaC state.
 
-For production, one change owner controls apply/rollback. Reviewers do not mutate the resource they are certifying.
+For production, one change owner controls apply/rollback. Reviewers do not mutate the resource they certify.
 
-On provider/tool 429 or automation failure, reduce concurrency and fall back to direct Guto operation where safe; never retry infrastructure mutations blindly.
+On 429/tool failure, reduce concurrency; never retry infrastructure mutations blindly.
+
+If an operational task requires application behavior changes, return a precise Dave dependency instead of editing domain logic opportunistically.

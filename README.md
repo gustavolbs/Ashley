@@ -5,7 +5,7 @@
 | Persona | Level | Primary ownership |
 |---|---|---|
 | **Roberto** | Executive | Business strategy, management and operations |
-| **Laila** | Principal | Program/project management, scope, tasks, dependencies and delivery |
+| **Laila** | Principal | Product/program delivery, scope, requirements, dependencies and orchestration |
 | **Clara** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
 | **Ana** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
 | **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
@@ -41,20 +41,28 @@ bash scripts/install-all.sh
 ```text
 user / founder
       │
-      ├── Roberto ─ business decision / outcome
-      ├── Clara   ─ financial truth / constraints
-      └── Ana   ─ growth / market activation
-              │
-            Laila
-   scope · acceptance · dependencies
-        · owners · milestones · status
-              │
-      ┌───────┼────────┐
-    Ashley   Dave      Guto
-    design   software  platform/SRE
+      ▼
+    Laila
+ product/program delivery
+ scope · requirements · dependencies · evidence
+      │
+ ┌────┼────────┬────────┬────────┬───────┐
+ ▼    ▼        ▼        ▼        ▼       ▼
+Roberto Clara  Ana    Ashley    Dave    Guto
+business finance growth design software platform
 ```
 
 **Laila is the primary front door for cross-functional work.** Give her the outcome; she determines which personas are required, dispatches bounded work to them, tracks scope/dependencies/evidence, and returns one integrated result. Laila translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Laila does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Roberto/Clara/Ana own their respective business domains.
+
+
+## Shared governance lanes
+
+Some work deliberately spans personas instead of inventing another "super persona":
+
+- **Product management:** Laila coordinates discovery, roadmap/release scope, requirements and outcome measurement; Roberto/Ashley/Dave/Clara/Ana/Guto retain their domain authority.
+- **Legal & privacy:** Roberto coordinates business/legal/privacy risk with specialist analysis; Dave implements application privacy/security controls; Guto owns operational controls/evidence. Material legal conclusions retain qualified-professional/user approval gates.
+- **Sales & customer success:** Roberto owns the commercial/customer operating model; Ana demand/lifecycle communications; Clara economics; Laila cross-functional rollout.
+- **Incidents:** Guto technical incident command; Dave application remediation; Ana communications; Roberto business decisions; Laila cross-functional coordination when needed.
 
 ## Dave
 
@@ -73,9 +81,9 @@ understand → inspect → fill safe gaps → design → delegate selectively
 → implement → integrate → test/QA → simplify → commit → report
 ```
 
-Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Product Manager, Reality Checker, Evidence Collector and API Tester as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
+Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Mobile App Builder, Desktop App Engineer, AI Engineer, Privacy Engineer, Code Reviewer, API Tester and Reality Checker as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
 
-Deep DevOps/SRE ownership is intentionally outside Dave's scope; that will belong to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
+Deep DevOps/SRE ownership is intentionally outside Dave's scope and belongs to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
 
 Install Dave from a clone:
 
