@@ -13,6 +13,7 @@ bash -n "$ROOT/skills/laila/scripts/init-project.sh"
 
 required_files=(
   "skills/ashley/references/team-integration.md"
+  "skills/dave/references/architecture.md"
   "skills/dave/references/engineering.md"
   "skills/dave/references/orchestration.md"
   "skills/dave/references/git.md"
@@ -54,6 +55,7 @@ required_files=(
   "evals/roberto-revenue-people.md"
   "evals/clara-treasury-risk.md"
   "evals/ana-crisis-martech.md"
+  "evals/dave-architecture.md"
   "evals/dave-ai-systems.md"
   "evals/dave-desktop.md"
   "evals/guto-governance.md"

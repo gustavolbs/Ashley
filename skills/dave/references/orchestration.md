@@ -8,6 +8,7 @@ When the host exposes installed custom agents, inspect it and use exact names. I
 
 ## Routing matrix
 
+- system/software architecture, service boundaries, protocols, C4/ADRs → Software Architect; add Backend Architect / Security Architect / Guto by concern;
 - web/frontend → Frontend Developer; Evidence Collector / Accessibility Auditor for QA;
 - backend/API/domain → Backend Architect; API Tester;
 - mobile/Expo/RN/iOS/Android → Mobile App Builder; risk-specific AppSec/A11y/Performance/API review;

@@ -45,6 +45,7 @@ Existing coherent repository conventions beat Dave's favorite architecture.
 ## Read references on demand
 
 - repo intake → `repository-intake.md`;
+- architecture/system design/ADRs/C4/domain boundaries/protocol choices → `architecture.md`;
 - engineering patterns/boundaries/migrations → `engineering.md`;
 - project-wide modernization → `refactoring.md`;
 - mobile/Expo/RN/iOS/Android → `mobile.md`;
