@@ -6,8 +6,8 @@ warn(){ printf "! %s\n" "$1"; }
 for persona in ashley dave guto roberto clara ana laila; do
   [[ -f "$HOME/.agents/skills/$persona/SKILL.md" ]] && ok "$persona installed" || warn "$persona not found"
 done
-[[ -f "$HOME/.ashley/PREFERENCES.md" ]] && ok "Ashley global preference memory exists" || warn "Ashley global preference memory missing"
 
+[[ -f "$HOME/.ashley/PREFERENCES.md" ]] && ok "Ashley global preference memory exists" || warn "Ashley global preference memory missing"
 for s in ui-ux-pro-max design-taste-frontend gpt-taste impeccable; do
   [[ -d "$HOME/.agents/skills/$s" ]] && ok "Ashley specialist: $s" || warn "Optional Ashley specialist missing: $s"
 done
@@ -19,9 +19,16 @@ else
   warn "Caveman skill not found (Dave native token budgeting still works)"
 fi
 command -v caveman >/dev/null 2>&1 && ok "Caveman CLI/proxy available (optional)" || warn "Caveman CLI/proxy not found (optional)"
+
 echo
-echo "Dave / Agency Agents:"
-for a in frontend-developer backend-architect mobile-app-builder code-reviewer api-tester reality-checker evidence-collector test-automation-engineer accessibility-auditor; do
+echo "Dave engineering specialists:"
+for a in frontend-developer backend-architect mobile-app-builder desktop-app-engineer ai-engineer privacy-engineer code-reviewer api-tester reality-checker evidence-collector test-automation-engineer accessibility-auditor; do
+  [[ -f "$HOME/.codex/agents/$a.toml" ]] && ok "Agency agent: $a" || warn "Optional Agency agent missing: $a"
+done
+
+echo
+echo "Cross-functional / operations specialists:"
+for a in product-manager legal-compliance-checker data-privacy-officer customer-success-manager pr-communications-manager mobile-release-engineer compliance-auditor; do
   [[ -f "$HOME/.codex/agents/$a.toml" ]] && ok "Agency agent: $a" || warn "Optional Agency agent missing: $a"
 done
 
