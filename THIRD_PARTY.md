@@ -100,9 +100,9 @@ Dave does not depend on Caveman. Native context budgeting, targeted reads, read 
 The non-design personas also use Agency Agents selectively rather than copying its full roster.
 
 - **Guto**: DevOps Automator, Infrastructure Maintainer, SRE, Database Reliability Engineer, Incident Response Commander, FinOps Engineer, Network Engineer and security specialists.
-- **Victor**: Operations Manager, Chief of Staff, Product Manager, market/trend and pricing specialists.
-- **Nora**: Chief Financial Officer, Bookkeeper & Controller, Tax Strategist, Finance Tracker, Investment Researcher and Pricing Analyst.
-- **Maya**: Growth Hacker, SEO/AEO specialists, Content Creator, paid-media specialists, Analytics Reporter and Experiment Tracker.
-- **Parker**: Senior Project Manager, Project Shepherd, Sprint Prioritizer and Jira Workflow Steward when lower-level delivery support is useful.
+- **Roberto**: Operations Manager, Chief of Staff, Product Manager, market/trend and pricing specialists.
+- **Clara**: Chief Financial Officer, Bookkeeper & Controller, Tax Strategist, Finance Tracker, Investment Researcher and Pricing Analyst.
+- **Ana**: Growth Hacker, SEO/AEO specialists, Content Creator, paid-media specialists, Analytics Reporter and Experiment Tracker.
+- **Laila**: Senior Project Manager, Project Shepherd, Sprint Prioritizer and Jira Workflow Steward when lower-level delivery support is useful.
 
 The persona remains the authority for its domain; Agency Agents are bounded workers/reviewers.

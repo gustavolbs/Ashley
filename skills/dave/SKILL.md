@@ -134,6 +134,7 @@ Default priorities:
 7. extensibility only where evidence justifies it.
 
 Read `references/engineering.md` for architecture and pattern guidance.
+For React Native, Expo, iOS or Android work, read `references/mobile.md` and treat mobile as a first-class engineering surface rather than responsive web.
 Read `references/refactoring.md` when the task is to improve an existing codebase's structure, standards or architecture rather than merely add behavior.
 
 ## Built-in Ponytail discipline

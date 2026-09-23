@@ -15,7 +15,7 @@ If agent discovery is unavailable, do not claim a specialist exists. Use a named
 | React/Vue/Angular/web UI | Frontend Developer | Evidence Collector, Accessibility Auditor |
 | API/server/domain logic | Backend Architect | API Tester |
 | complex general implementation | Dave first; Senior Developer only when its stack actually matches | Code Reviewer |
-| mobile / React Native / native | Mobile App Builder | Evidence Collector |
+| mobile / React Native / Expo / iOS / Android | Mobile App Builder | Evidence Collector; add AppSec/A11y/Performance/API specialists by risk |
 | AI/ML/model integration | AI Engineer | Test Results Analyzer + task-specific tests |
 | database schema/query/indexing/migrations | Backend Architect; Database Optimizer for non-trivial DB pressure | targeted DB/API checks |
 | E2E/browser automation | Test Automation Engineer | Dave interprets failures |
@@ -30,6 +30,23 @@ If agent discovery is unavailable, do not claim a specialist exists. Use a named
 | final production-readiness evidence | Reality Checker | relevant domain tester |
 
 Do not use an upstream role merely because it exists. The specialist must fit the task and stack. Agency Agents' Senior Developer is opinionated toward a specific stack and is not a universal senior-engineer fallback.
+
+## Mobile routing
+
+For mobile work, Dave owns the application implementation and routes deliberately:
+
+- React Native / Expo / cross-platform implementation → **Mobile App Builder**;
+- platform-specific iOS/Android implementation → **Mobile App Builder** plus an installed platform-specific specialist when one materially helps;
+- mobile API/session/data contract → **Backend Architect** + **API Tester** as needed;
+- authentication, secure storage, deep links, embedded secrets, WebViews or sensitive data → **Application Security Engineer**;
+- accessibility → **Accessibility Auditor**;
+- startup/render/network/battery/memory performance → **Performance Benchmarker** when measurement is useful;
+- product/mobile UX → **Ashley**;
+- signing, provisioning, Fastlane, App Store Connect, Play Console, store submission, phased rollout and release health → hand off to **Guto**, who may use **Mobile Release Engineer**.
+
+Dave does not push store/release engineering into Mobile App Builder merely because the artifact is a mobile app.
+
+Read `references/mobile.md` for the implementation checklist and mobile-specific Definition of Done.
 
 ## Spawn gate
 

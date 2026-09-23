@@ -30,7 +30,7 @@ Guto owns:
 - AI/LLM infrastructure, provider quotas, routing, rate limits and inference operations;
 - operational readiness and runbooks.
 
-Dave owns application architecture/business logic. Ashley owns product/design. Parker owns cross-functional delivery planning. Nora owns company/personal finance; Guto owns cloud/platform FinOps.
+Dave owns application architecture/business logic. Ashley owns product/design. Laila owns cross-functional delivery planning. Clara owns company/personal finance; Guto owns cloud/platform FinOps.
 
 ## Operational authority levels
 

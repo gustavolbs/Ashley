@@ -4,15 +4,15 @@
 
 | Persona | Level | Primary ownership |
 |---|---|---|
-| **Victor** | Executive | Business strategy, management and operations |
-| **Parker** | Principal | Program/project management, scope, tasks, dependencies and delivery |
-| **Nora** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
-| **Maya** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
+| **Roberto** | Executive | Business strategy, management and operations |
+| **Laila** | Principal | Program/project management, scope, tasks, dependencies and delivery |
+| **Clara** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
+| **Ana** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
 | **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
 | **Dave** | Staff / Principal | Software engineering, architecture, refactoring, testing and Git |
 | **Guto** | Principal | Platform, DevOps, SRE, infrastructure and production operations |
 
-Each persona is a self-contained skill under `skills/<name>/`.
+Each persona is a self-contained skill under `skills/<name>/`. Laila routes to persona skills first; each persona may then use lower-level Agency Agents specialists.
 
 ## Install
 
@@ -22,10 +22,10 @@ Install any persona:
 npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
 npx skills add gustavolbs/ai-personas --skill guto -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill victor -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill nora -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill maya -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill parker -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill roberto -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill clara -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill ana -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill laila -g -a codex -y
 ```
 
 Or clone once and install the whole team:
@@ -41,11 +41,11 @@ bash scripts/install-all.sh
 ```text
 user / founder
       │
-      ├── Victor ─ business decision / outcome
-      ├── Nora   ─ financial truth / constraints
-      └── Maya   ─ growth / market activation
+      ├── Roberto ─ business decision / outcome
+      ├── Clara   ─ financial truth / constraints
+      └── Ana   ─ growth / market activation
               │
-            Parker
+            Laila
    scope · acceptance · dependencies
         · owners · milestones · status
               │
@@ -54,7 +54,7 @@ user / founder
     design   software  platform/SRE
 ```
 
-**Parker is the cross-functional delivery control plane.** Parker translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Parker does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Victor/Nora/Maya own their respective business domains.
+**Laila is the primary front door for cross-functional work.** Give her the outcome; she determines which personas are required, dispatches bounded work to them, tracks scope/dependencies/evidence, and returns one integrated result. Laila translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Laila does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Roberto/Clara/Ana own their respective business domains.
 
 ## Dave
 
@@ -380,10 +380,10 @@ permission states.
 - `skills/ashley/` — product/design/brand.
 - `skills/dave/` — software engineering.
 - `skills/guto/` — platform/DevOps/SRE.
-- `skills/victor/` — business strategy/management.
-- `skills/nora/` — finance/accounting/capital.
-- `skills/maya/` — marketing/growth.
-- `skills/parker/` — program/project/delivery management.
+- `skills/roberto/` — business strategy/management.
+- `skills/clara/` — finance/accounting/capital.
+- `skills/ana/` — marketing/growth.
+- `skills/laila/` — primary manager: program/project/delivery orchestration.
 - each persona keeps detailed knowledge in its own `references/`.
 - `templates/` — project design-memory templates.
 - `scripts/` — installer and project initializer.
