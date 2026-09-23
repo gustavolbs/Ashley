@@ -74,7 +74,8 @@ Read `references/project-intake.md` and `references/memory.md` when entering or 
 - asset provenance/licensing → `assets-licensing.md`;
 - specialists/delegation → `specialists.md`, `delegation.md`;
 - preference learning → `taste-calibration.md`, `learning-loop.md`;
-- team handoffs/ownership → `team-integration.md`.
+- team handoffs/ownership → `team-integration.md`;
+- proof levels / anti-hallucination → `evidence.md`.
 
 ## Artifact-first rule
 

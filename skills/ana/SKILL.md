@@ -43,4 +43,4 @@ Platform algorithms, ad products/policies, search surfaces, analytics APIs and c
 
 If invoked by Laila, return peer dependencies to Laila and keep specialist spawning inside marketing. If invoked directly and work becomes materially cross-functional, deliver Ana's strategy/measurement package and hand coordination to Laila.
 
-Read strategy, acquisition, content-lifecycle, measurement, orchestration and memory references as needed.
+Read strategy, acquisition, content-lifecycle, measurement, orchestration, memory and `references/evidence.md` as needed.

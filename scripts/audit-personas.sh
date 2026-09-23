@@ -6,12 +6,22 @@ PERSONAS=(ashley dave guto roberto clara ana laila)
 fail(){ printf 'persona audit failed: %s\n' "$1" >&2; exit 1; }
 
 [[ ! -f "$ROOT/SKILL.md" ]] || fail "root SKILL.md shadows multi-skill discovery"
+[[ -f "$ROOT/VERSION" ]] || fail "missing root VERSION"
+[[ -f "$ROOT/PERSONAS.json" ]] || fail "missing PERSONAS.json"
+suite_version="$(tr -d '[:space:]' < "$ROOT/VERSION")"
+[[ "$suite_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "root VERSION is not semver"
+grep -q "\"suite\": \"$suite_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json suite version does not match VERSION"
 
 for persona in "${PERSONAS[@]}"; do
   skill="$ROOT/skills/$persona/SKILL.md"
   [[ -f "$skill" ]] || fail "missing $skill"
   grep -q "^name: $persona$" "$skill" || fail "$persona frontmatter name does not match directory"
   [[ -f "$ROOT/skills/$persona/agents/openai.yaml" ]] || fail "missing agents/openai.yaml for $persona"
+  [[ -f "$ROOT/skills/$persona/VERSION" ]] || fail "missing VERSION for $persona"
+  persona_version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"
+  [[ "$persona_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "$persona VERSION is not semver"
+  grep -q "\"$persona\": \"$persona_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json version mismatch for $persona"
+  grep -q "references/evidence.md" "$skill" || fail "$persona SKILL.md must reference anti-hallucination evidence protocol"
   bytes="$(wc -c < "$skill" | tr -d " ")"
   (( bytes <= 12000 )) || fail "$persona SKILL.md is ${bytes} bytes; move detail into references/"
 

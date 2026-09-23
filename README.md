@@ -55,6 +55,53 @@ business finance growth design software platform
 **Laila is the primary front door for cross-functional work.** Give her the outcome; she determines which personas are required, dispatches bounded work to them, tracks scope/dependencies/evidence, and returns one integrated result. Laila translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Laila does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Roberto/Clara/Ana own their respective business domains.
 
 
+## Evidence-first / anti-hallucination
+
+Every persona distinguishes what was **proposed**, **changed**, **built**, **run** and actually **verified**. A file diff is not proof that the running product changed; a green build is not proof that a user flow works; a child-agent claim is not independent evidence.
+
+For UI/Expo work Dave must verify the actual runtime when claiming a visual fix: correct screen/component, current bundle/build, platform, state and rendered pixels. If he cannot inspect the simulator/device/browser, the correct conclusion is **"implementation changed; visual fix unverified"**, not "fixed".
+
+Ashley likewise cannot claim the implementation matches a design until the real rendered implementation is inspected. Laila cannot mark a package complete merely because a worker says it is done.
+
+## Auditing an existing project
+
+The personas can be installed globally and used inside an already-active repository without rebuilding the project or initializing all persona memory.
+
+For example, to audit an existing financial flow:
+
+```text
+Laila, audit the existing financial flow in this repository.
+Do not redesign or modify anything initially.
+
+Have Clara define and validate the financial invariants and state transitions.
+Have Dave trace the actual implementation, persistence, transactions, webhooks,
+idempotency and runtime behavior.
+Use Ashley only for financial UX risks and Guto only for provider/webhook/
+queue/production reliability concerns.
+
+Return:
+- flow map
+- financial invariants
+- VERIFIED vs UNVERIFIED transitions
+- findings ranked by risk
+- concrete code/runtime evidence
+- missing tests
+- recommended fixes
+
+Do not call anything fixed/correct unless there is evidence at the appropriate level.
+```
+
+This is particularly useful for billing, wallets, transfers, refunds, subscriptions, credits and reconciliation flows.
+
+## Versioning
+
+The repository now has two version layers:
+
+- root `VERSION` — version of the complete persona suite;
+- `skills/<persona>/VERSION` — independent version of each persona.
+
+`PERSONAS.json` is the machine-readable manifest. See `docs/VERSIONING.md`.
+
 ## Shared governance lanes
 
 Some work deliberately spans personas instead of inventing another "super persona":

@@ -67,6 +67,7 @@ Read `references/governance.md` for decision rights, compliance/privacy routing 
 Prefer an existing issue tracker and project docs as live truth. `docs/delivery/` stores durable charter/scope/decisions/risks/handoffs, not a stale duplicate of Jira/Linear/GitHub Projects.
 
 Read `references/memory.md` for cross-session state rules.
+Read `references/evidence.md` before marking work complete; worker status is never enough by itself.
 
 ## Completion
 

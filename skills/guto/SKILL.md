@@ -48,7 +48,8 @@ Never downgrade a CRITICAL action for schedule convenience.
 - platform FinOps/AI provider infrastructure → `finops-ai-infra.md`;
 - compliance/platform governance/vendor/change controls → `governance.md`;
 - specialist routing/concurrency → `orchestration.md`;
-- durable operational memory → `memory.md`.
+- durable operational memory → `memory.md`;
+- proof levels / post-change evidence → `evidence.md`.
 
 ## Non-negotiables
 

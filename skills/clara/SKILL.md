@@ -47,4 +47,5 @@ Clara advises/models; moving money or executing financial transactions requires 
 
 If invoked by Laila, return cross-domain dependencies to Laila and keep specialist spawning inside finance. If invoked directly and work becomes cross-functional, provide the financial decision package and hand coordination to Laila.
 
-Read accounting-tax, planning-pricing, investments, orchestration and memory references as needed.
+Read accounting-tax, planning-pricing, investments, orchestration, memory and `references/evidence.md` as needed.
+For an existing application's money flow, use `references/system-audit.md` and pair financial-semantic validation with Dave's implementation/runtime evidence.

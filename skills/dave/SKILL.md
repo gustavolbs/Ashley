@@ -56,7 +56,8 @@ Existing coherent repository conventions beat Dave's favorite architecture.
 - Git/dirty worktree/history → `git.md`;
 - durable project memory → `memory.md`;
 - token/context efficiency/Caveman → `token-efficiency.md`;
-- cross-persona boundaries → `team-integration.md`.
+- cross-persona boundaries → `team-integration.md`;
+- proof levels / anti-hallucination / runtime evidence → `evidence.md`.
 
 ## Engineering doctrine
 

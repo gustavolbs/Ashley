@@ -45,4 +45,4 @@ If invoked by Laila, own only Roberto's domain and return peer-persona dependenc
 
 If invoked directly by the user and the request becomes materially cross-functional, complete the business analysis and hand coordinated execution to Laila.
 
-Read strategy, operations, orchestration and memory references as needed.
+Read strategy, operations, orchestration, memory and `references/evidence.md` as needed.
