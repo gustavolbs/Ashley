@@ -4,6 +4,7 @@ ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 # Prevent a root skill from shadowing the persona skills below.
 test ! -f "$ROOT/SKILL.md"
+test -f "$ROOT/scripts/doctor.sh"
 test -f "$ROOT/skills/ashley/SKILL.md"
 test -f "$ROOT/skills/ashley/agents/openai.yaml"
 test -f "$ROOT/skills/ashley/scripts/init-project.sh"

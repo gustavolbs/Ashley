@@ -5,10 +5,11 @@ PROJECT_ROOT="$(git rev-parse --show-toplevel 2>/dev/null || pwd)"
 TEMPLATE="$SKILL_ROOT/templates/project/docs/engineering"
 DEST="$PROJECT_ROOT/docs/engineering"
 
-if [[ -e "$PROJECT_ROOT/AGENTS.md" || -d "$PROJECT_ROOT/docs/adr" || -d "$PROJECT_ROOT/docs/adrs" ]]; then
-  echo "Existing engineering instruction/ADR system detected."
-  echo "Dave should reuse it instead of creating duplicate memory unless you explicitly want docs/engineering."
-  exit 0
+if [[ -d "$PROJECT_ROOT/docs/adr" || -d "$PROJECT_ROOT/docs/adrs" ]]; then
+  echo "Existing ADR system detected. Prefer extending it for architectural decisions."
+fi
+if [[ -e "$PROJECT_ROOT/AGENTS.md" ]]; then
+  echo "AGENTS.md detected. Dave will treat it as repository instructions, not as a replacement for engineering memory."
 fi
 
 mkdir -p "$DEST"
@@ -23,4 +24,4 @@ done
 
 echo
 echo "Dave engineering memory initialized at $DEST"
-echo "Commit durable project knowledge; keep HANDOFF.md only when a multi-session handoff is useful."
+echo "If the repository already has equivalent docs/ADRs, merge useful content there rather than maintaining duplicates."
