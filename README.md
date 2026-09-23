@@ -1,4 +1,64 @@
-# Ashley
+# AI Personas
+
+**AI Personas is a collection of opinionated Codex personas that own real work end-to-end.**
+
+| Persona | Level | Primary ownership |
+|---|---|---|
+| **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
+| **Dave** | Staff / Principal | Software engineering, implementation orchestration, code quality, testing and Git discipline |
+| **Guto** | Planned | DevOps, SRE, infrastructure and production operations |
+
+Each persona is a self-contained skill under `skills/<name>/`. The public skill names remain **ashley** and **dave**, so installation stays simple while the repository can grow cleanly.
+
+## Install
+
+Install one persona:
+
+```bash
+npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
+```
+
+Or clone once and install both:
+
+```bash
+git clone https://github.com/gustavolbs/ai-personas.git
+cd ai-personas
+bash scripts/install-all.sh
+```
+
+## Dave
+
+**Dave is a Staff/Principal Software Engineer and coding orchestrator. He owns outcomes, not lines of code.**
+
+Dave understands the repository before changing it, fills safe requirement gaps, applies engineering principles without pattern worship, delegates bounded work to the right specialists, implements and integrates the result, verifies it, removes unnecessary code, and leaves coherent semantic commits.
+
+His default operating loop is:
+
+```text
+understand → inspect → fill safe gaps → design → delegate selectively
+→ implement → integrate → test/QA → simplify → commit → report
+```
+
+Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Product Manager, Reality Checker, Evidence Collector and API Tester as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
+
+Deep DevOps/SRE ownership is intentionally outside Dave's scope; that will belong to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
+
+Install Dave from a clone:
+
+```bash
+bash scripts/install-dave.sh
+```
+
+Initialize optional engineering memory inside a project only when the repo does not already have an equivalent ADR/engineering-doc system:
+
+```bash
+~/.agents/skills/dave/scripts/init-project.sh
+```
+
+Dave prefers existing `AGENTS.md`, ADRs, architecture docs and executable repository truth over creating parallel memory.
+
+## Ashley
 
 **Ashley is a staff-level Creative Director, Product, UX, Visual & Brand Designer for Codex.**
 
@@ -102,14 +162,14 @@ Penpot remains fully supported as a fallback for projects already using it.
 See:
 - `docs/PEN_DEV_SETUP.md`
 - `docs/PENPOT_SETUP.md`
-- `references/design-canvas.md`
+- `skills/ashley/references/design-canvas.md`
 
 ## Install Ashley
 
 The easiest installation is the standard Agent Skills CLI:
 
 ```bash
-npx skills add gustavolbs/Ashley --skill ashley -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 ```
 
 Restart Codex after installation.
@@ -125,8 +185,8 @@ You should see **ashley**.
 Alternatively, clone the repository and run:
 
 ```bash
-git clone https://github.com/gustavolbs/Ashley.git
-cd Ashley
+git clone https://github.com/gustavolbs/ai-personas.git
+cd ai-personas
 bash scripts/install.sh
 ```
 
@@ -198,7 +258,7 @@ You do not install Penpot into the SaaS repo.
 5. In Penpot, connect the active file/page to MCP.
 6. Ask Ashley to inspect or edit the current canvas.
 
-See [references/penpot.md](references/penpot.md).
+See [references/penpot.md](skills/ashley/references/penpot.md).
 
 ## RouteMux
 
@@ -284,8 +344,9 @@ permission states.
 
 ## Repository
 
-- `SKILL.md` — Ashley's orchestration brain.
-- `references/` — knowledge packs loaded on demand.
+- `skills/ashley/` — Ashley's skill, references, templates and project initializer.
+- `skills/dave/` — Dave's Principal Engineer skill and on-demand engineering references.
+- `skills/ashley/references/` — knowledge packs loaded on demand.
 - `templates/` — project design-memory templates.
 - `scripts/` — installer and project initializer.
 - `evals/` — regression briefs for testing Ashley after changes.
