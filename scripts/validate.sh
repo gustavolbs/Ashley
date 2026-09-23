@@ -2,21 +2,32 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-test -f "$ROOT/SKILL.md"
-test -f "$ROOT/agents/openai.yaml"
+# Prevent a root skill from shadowing the persona skills below.
+test ! -f "$ROOT/SKILL.md"
+test -f "$ROOT/skills/ashley/SKILL.md"
+test -f "$ROOT/skills/ashley/agents/openai.yaml"
+test -f "$ROOT/skills/ashley/scripts/init-project.sh"
+test -f "$ROOT/skills/dave/SKILL.md"
+test -f "$ROOT/skills/dave/agents/openai.yaml"
+test -f "$ROOT/skills/dave/references/engineering.md"
+test -f "$ROOT/skills/dave/references/orchestration.md"
+test -f "$ROOT/skills/dave/references/git.md"
+test -f "$ROOT/skills/dave/references/quality.md"
+test -f "$ROOT/evals/dave-principal-engineer.md"
 test -f "$ROOT/evals/full-creative-production.md"
 test -f "$ROOT/evals/visual-qa.md"
 test -f "$ROOT/evals/design-code-sync.md"
 test -f "$ROOT/evals/taste-calibration.md"
 test -f "$ROOT/evals/shadcn-materialization.md"
 test -f "$ROOT/evals/shadcn-design-first.md"
-test -f "$ROOT/templates/project/docs/design/MESSAGING.md"
-test -f "$ROOT/templates/project/docs/design/ASSETS.md"
-test -f "$ROOT/templates/project/docs/design/HANDOFF.md"
+test -f "$ROOT/skills/ashley/templates/project/docs/design/MESSAGING.md"
+test -f "$ROOT/skills/ashley/templates/project/docs/design/ASSETS.md"
+test -f "$ROOT/skills/ashley/templates/project/docs/design/HANDOFF.md"
 
 for f in "$ROOT"/scripts/*.sh; do
   bash -n "$f"
 done
+bash -n "$ROOT/skills/ashley/scripts/init-project.sh"
 
 required=(
   product-business.md research.md ux-architecture.md interaction.md
@@ -30,7 +41,7 @@ required=(
 )
 
 for f in "${required[@]}"; do
-  test -f "$ROOT/references/$f"
+  test -f "$ROOT/skills/ashley/references/$f"
 done
 
-echo "Ashley repository validation passed."
+echo "AI Personas repository validation passed."

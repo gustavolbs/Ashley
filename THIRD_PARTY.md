@@ -1,6 +1,6 @@
-# Third-party design intelligence
+# Third-party intelligence
 
-Ashley does not vendor these projects. They remain optional independently installed skills/resources.
+AI Personas does not vendor these projects. They remain optional independently installed skills/resources. Persona instructions may absorb durable principles while keeping upstream tools independently updateable.
 
 ## Agency Agents
 https://github.com/msitarzewski/agency-agents
@@ -61,3 +61,35 @@ Role inside Ashley:
 Ashley prefers project-owned `.pen` files when the workflow benefits from versioned design artifacts. The desktop/IDE MCP is used for live canvas work; the CLI provides headless editing, screenshots/exports and resilience when a GUI host is unavailable.
 
 Ashley does not edit `.pen` JSON manually; it uses pen.dev tooling.
+
+
+## Dave engineering intelligence
+
+### Agency Agents
+https://github.com/msitarzewski/agency-agents
+
+Dave uses Agency Agents as an optional specialist roster. Preferred roles include:
+- Frontend Developer
+- Backend Architect
+- Product Manager
+- Reality Checker
+- Evidence Collector
+- API Tester
+
+The upstream Codex integration installs custom agents under `~/.codex/agents/`. Dave delegates only bounded tasks and retains final integration authority.
+
+### Ponytail
+https://github.com/StarQuant/ponytail-skill
+
+Role inside Dave:
+**anti-overengineering discipline** — YAGNI, reuse existing code, prefer standard/native capabilities, avoid unnecessary dependencies and delete needless code after implementation.
+
+Dave internalizes the principle rather than depending on Ponytail being installed. An installed Ponytail skill may be used as an additional simplification review.
+
+### Caveman
+https://github.com/JuliusBrussee/caveman
+
+Role inside Dave:
+**communication compression** — keep technical substance while removing narration and filler.
+
+Dave does not confuse terse output with small context. His orchestration protocol separately limits what each subagent receives through task capsules.

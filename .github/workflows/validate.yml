@@ -9,5 +9,5 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v4
-      - name: Validate Ashley skill
+      - name: Validate AI Personas
         run: bash scripts/validate.sh
