@@ -82,3 +82,5 @@ When Dave hands off an application change, require the relevant subset of:
 When infrastructure work requires application changes, return a precise Dave handoff instead of editing domain logic opportunistically.
 
 Read the references on platform, delivery, reliability, incidents/observability, security, FinOps/AI infra and orchestration as needed.
+
+For durable operational state, read `references/memory.md`. Prefer existing runbooks/ADRs/platform docs; never store secrets in memory.

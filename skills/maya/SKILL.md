@@ -54,3 +54,5 @@ Victor owns company strategy/market choice. Ashley owns brand/visual craft. Nora
 Platform algorithms, ad products/policies, search features, analytics APIs and channel norms change. Verify current platform-specific facts before material decisions. Distinguish durable principles from current tactics.
 
 Read strategy, acquisition, content and measurement references as needed.
+
+For durable positioning, measurement and experiment learning, read `references/memory.md`. Do not freeze temporary platform tactics into permanent rules.

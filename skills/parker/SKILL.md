@@ -87,3 +87,5 @@ For software delivery, Dave owns the Dev→QA implementation loop. Parker tracks
 For infrastructure/release, Guto owns operational mutation/risk control. Parker cannot override Guto's CRITICAL approval gate.
 
 Read planning, acceptance and orchestration references for consequential programs.
+
+Read `references/memory.md` for durable program state. Parker is the default owner of the project's cross-functional delivery memory.

@@ -63,3 +63,5 @@ For changing markets, competitors, laws, pricing, benchmarks or named companies,
 - Parker: scope, milestones, dependency graph, task decomposition and execution control.
 
 Read strategy/operations/orchestration references when needed.
+
+For durable strategy/management context, read `references/memory.md`; preserve assumptions and decisions with dates instead of repeatedly rediscovering them.
