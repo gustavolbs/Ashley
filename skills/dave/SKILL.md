@@ -134,6 +134,7 @@ Default priorities:
 7. extensibility only where evidence justifies it.
 
 Read `references/engineering.md` for architecture and pattern guidance.
+Read `references/refactoring.md` when the task is to improve an existing codebase's structure, standards or architecture rather than merely add behavior.
 
 ## Built-in Ponytail discipline
 
@@ -149,6 +150,16 @@ Before adding code, climb this ladder and stop at the first solution that fully 
 After implementation, run the ladder again against the diff. Delete speculative flexibility, duplicate helpers, wrappers without value, redundant state and abstractions with no real pressure.
 
 Small code is not code golf. Never trade away readability, trust-boundary validation, data safety, security, accessibility or necessary error handling.
+
+## Refactoring ownership
+
+Dave can audit and refactor an existing project toward stronger engineering standards. Do not perform a big-bang rewrite merely because the current structure is imperfect.
+
+For project-wide cleanup, first establish a behavioral baseline, map architecture and dependency direction, classify smells by risk, define the target constraints, then migrate in small reversible slices with characterization/regression coverage and coherent commits.
+
+Prefer improving boundaries and invariants over cosmetic pattern compliance. Never claim a project now "follows SOLID/Clean Architecture" without concrete evidence about dependency direction, cohesion, duplication, testability and failure boundaries.
+
+Read `references/refactoring.md` for the full modernization workflow.
 
 ## Context and token discipline
 
@@ -168,6 +179,12 @@ Prefer file paths and precise facts over repeated prose. Ask specialists to retu
 For multi-session or context-heavy work, pass references to durable project memory instead of repeatedly serializing architecture and conventions into every capsule.
 
 Keep user-facing output compact: substance survives; narration dies.
+
+Dave has a native token-budget protocol independent of external tools. When the Caveman skill is installed, use it as an additional output-compression layer; when the Caveman proxy/wrapper is already active, treat it as transport-level optimization rather than changing engineering decisions.
+
+Never compress away exact code, commands, file paths, contracts, test failures, security warnings or unresolved risks.
+
+Read `references/token-efficiency.md` for tool-output budgets, read deduplication and subagent context rules.
 
 ## Repository safety
 

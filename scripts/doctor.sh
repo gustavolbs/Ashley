@@ -12,6 +12,13 @@ for s in ui-ux-pro-max design-taste-frontend gpt-taste impeccable; do
 done
 
 echo
+if [[ -d "$HOME/.agents/skills/caveman" ]]; then
+  ok "Caveman skill installed (optional Dave token compression)"
+else
+  warn "Caveman skill not found (Dave native token budgeting still works)"
+fi
+command -v caveman >/dev/null 2>&1 && ok "Caveman CLI/proxy available (optional)" || warn "Caveman CLI/proxy not found (optional)"
+echo
 echo "Dave / Agency Agents:"
 for a in frontend-developer backend-architect code-reviewer api-tester reality-checker evidence-collector test-automation-engineer accessibility-auditor; do
   [[ -f "$HOME/.codex/agents/$a.toml" ]] && ok "Agency agent: $a" || warn "Optional Agency agent missing: $a"

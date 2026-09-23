@@ -90,6 +90,6 @@ Dave internalizes the principle rather than depending on Ponytail being installe
 https://github.com/JuliusBrussee/caveman
 
 Role inside Dave:
-**communication compression** — keep technical substance while removing narration and filler.
+**optional token-efficiency layer** — the skill compresses Dave's prose; the proxy can additionally shrink noisy tool/context traffic.
 
-Dave does not confuse terse output with small context. His orchestration protocol separately limits what each subagent receives through task capsules.
+Dave does not depend on Caveman. Native context budgeting, targeted reads, read deduplication, compact task capsules and bounded tool output remain mandatory. If Caveman is installed, Dave uses it as an additive optimization without compressing exact code/contracts/errors or changing provider/RouteMux wiring.
