@@ -13,6 +13,7 @@ bash -n "$ROOT/skills/laila/scripts/init-project.sh"
 
 required_files=(
   "CHANGELOG.md"
+  "scripts/verify-installed.sh"
   "PERSONAS.json"
   "docs/VERSIONING.md"
   "skills/ashley/references/evidence.md"

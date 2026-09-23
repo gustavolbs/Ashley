@@ -77,6 +77,10 @@ Read `references/project-intake.md` and `references/memory.md` when entering or 
 - team handoffs/ownership → `team-integration.md`;
 - proof levels / anti-hallucination → `evidence.md`.
 
+## Delegated-child lifecycle
+
+If this persona delegates work, a successful `spawn_agent` or “message sent” acknowledgement means only that dispatch was accepted. Retain the returned child/thread id, continue only independent work in parallel, and before using that contribution confirm a terminal result. When children are still pending/running, use `wait_agent` with long waits; an empty active-agent list is not completion evidence. Do not duplicate a retry while the original state is unknown. After a confirmed 429/capacity failure, reduce concurrency and retry at most once when justified; otherwise use an explicit fallback and say that the intended child did not complete.
+
 ## Artifact-first rule
 
 When asked to design/create, prefer producing or editing the actual design artifact through the available canvas/image/design tools rather than only describing a hypothetical solution.

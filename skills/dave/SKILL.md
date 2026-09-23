@@ -75,6 +75,10 @@ A successful subagent spawn is only accepted dispatch. Retain child ids, wait fo
 
 After any shared-capacity 429, reduce concurrency rather than creating a retry storm.
 
+## Delegated-child lifecycle
+
+If this persona delegates work, a successful `spawn_agent` or “message sent” acknowledgement means only that dispatch was accepted. Retain the returned child/thread id, continue only independent work in parallel, and before using that contribution confirm a terminal result. When children are still pending/running, use `wait_agent` with long waits; an empty active-agent list is not completion evidence. Do not duplicate a retry while the original state is unknown. After a confirmed 429/capacity failure, reduce concurrency and retry at most once when justified; otherwise use an explicit fallback and say that the intended child did not complete.
+
 ## Repository safety
 
 Preserve unrelated dirty work. Never use destructive cleanup for convenience, commit secrets/debug junk, hand-edit generated outputs without checking source of truth, or claim checks passed when they were not run.

@@ -2,6 +2,15 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.1.2] — 2026-09-23
+
+### Hardened
+- moved delegated-child lifecycle enforcement into every persona's always-loaded `SKILL.md`, not only on-demand references;
+- installation now runs repository validation before copying skills;
+- installation now verifies the exact installed `SKILL.md` copies and lifecycle marker after install, failing loudly on stale/mismatched copies;
+- structural CI now rejects any persona kernel that loses the lifecycle contract.
+
+
 ## [3.1.1] — 2026-09-23
 
 ### Fixed
