@@ -1,0 +1,17 @@
+{
+  "suite": "3.1.0",
+  "personas": {
+    "laila": "1.0.0",
+    "roberto": "1.0.0",
+    "clara": "1.0.0",
+    "ana": "1.0.0",
+    "ashley": "1.0.0",
+    "dave": "1.0.0",
+    "guto": "1.0.0"
+  },
+  "policy": {
+    "scheme": "semver",
+    "suite": "Bump when repository-level behavior, installation, orchestration contracts or compatibility change.",
+    "persona": "Bump only when that persona's public behavior/knowledge contract changes."
+  }
+}
