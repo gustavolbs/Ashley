@@ -1,13 +1,13 @@
 {
-  "suite": "3.1.0",
+  "suite": "3.1.1",
   "personas": {
-    "laila": "1.0.0",
-    "roberto": "1.0.0",
-    "clara": "1.0.0",
-    "ana": "1.0.0",
-    "ashley": "1.0.0",
-    "dave": "1.0.0",
-    "guto": "1.0.0"
+    "laila": "1.0.1",
+    "roberto": "1.0.1",
+    "clara": "1.0.1",
+    "ana": "1.0.1",
+    "ashley": "1.0.1",
+    "dave": "1.0.1",
+    "guto": "1.0.1"
   },
   "policy": {
     "scheme": "semver",

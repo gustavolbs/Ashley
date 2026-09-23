@@ -71,6 +71,8 @@ Never assume a specialist is installed; discover exact available agent names whe
 
 QA/review is read-only by default. Reviewers report findings; Dave or the implementation owner fixes them; failed checks are rerun. Transport/429 failure is not a quality failure.
 
+A successful subagent spawn is only accepted dispatch. Retain child ids, wait for required children before integration, collect their terminal results, and never treat an empty active-agent list or a sent-message acknowledgement as proof that review/QA completed.
+
 After any shared-capacity 429, reduce concurrency rather than creating a retry storm.
 
 ## Repository safety

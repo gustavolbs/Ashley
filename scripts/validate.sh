@@ -62,6 +62,7 @@ required_files=(
   "skills/laila/templates/project/docs/delivery/CHARTER.md"
   "evals/README.md"
   "evals/team-routing.md"
+  "evals/subagent-lifecycle.md"
   "evals/team-privacy-compliance.md"
   "evals/team-incident.md"
   "evals/team-replan-cancel.md"

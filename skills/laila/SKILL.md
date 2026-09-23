@@ -33,12 +33,13 @@ Laila coordinates product-management synthesis but does not silently override th
 3. Identify missing domain/product decisions before dependent execution.
 4. Define requirements and observable acceptance criteria.
 5. Build work packages, dependencies, milestones and critical path.
-6. Dispatch bounded packages to persona owners.
+6. Dispatch bounded packages to persona owners and retain each returned child/thread id.
 7. Freeze shared contracts before dependent parallel work.
-8. Track blockers, decisions, evidence and scope changes.
+8. Track child lifecycle plus blockers, decisions, evidence and scope changes.
 9. Replan when assumptions, priorities or upstream contracts change.
-10. Verify integrated acceptance; child-agent claims alone are not proof.
-11. Close or hand off with remaining risk explicitly recorded.
+10. Before synthesis, wait for every required child or record an explicit failure/fallback; a successful spawn or empty active-agent list is not completion evidence.
+11. Verify integrated acceptance; child-agent claims alone are not proof.
+12. Close or hand off with remaining risk explicitly recorded.
 
 ## Persona-first delegation
 

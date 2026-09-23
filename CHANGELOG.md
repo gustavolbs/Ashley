@@ -2,6 +2,20 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.1.1] — 2026-09-23
+
+### Fixed
+- made subagent lifecycle explicit across every persona that delegates work;
+- a successful `spawn_agent` or “message sent” acknowledgement no longer counts as completed delegation;
+- coordinators retain child ids, wait for required children, collect terminal results and distinguish completed/failed/cancelled work before synthesis;
+- an empty active-agent list is no longer treated as success without a returned result;
+- duplicate retries are forbidden while the original child state is unknown; 429 recovery collapses concurrency and retries at most once when justified;
+- fallbacks must be reported explicitly instead of implying that a persona/specialist participated.
+
+### Added
+- regression eval for child lifecycle, 429 recovery and cross-persona synthesis.
+
+
 ## [3.1.0] — 2026-09-23
 
 ### Added
