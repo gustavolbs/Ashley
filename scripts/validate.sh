@@ -46,6 +46,7 @@ required_files=(
   "skills/laila/references/lifecycle-resilience.md"
   "skills/laila/scripts/init-project.sh"
   "skills/laila/templates/project/docs/delivery/CHARTER.md"
+  "evals/README.md"
   "evals/team-routing.md"
   "evals/team-privacy-compliance.md"
   "evals/team-incident.md"

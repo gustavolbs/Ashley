@@ -34,3 +34,24 @@ Require explicit user/authorized-owner approval when a decision is materially ir
 Freeze only what downstream work needs: business semantics, pricing/entitlements, user roles, API/data contracts, measurement definitions, release constraints and acceptance criteria.
 
 When an upstream decision changes, invalidate affected downstream work explicitly; do not silently carry stale contracts forward.
+
+## Security lane
+
+- application/product security architecture and code controls → Dave with Security Architect / Application Security Engineer;
+- platform/IAM/network/runtime/secrets/security operations → Guto;
+- regulatory/business/security-risk decisions → Roberto;
+- cross-functional security acceptance/approval dependencies → Laila.
+
+A security reviewer should not silently mutate the implementation it is certifying. Findings return to the owning implementer/operator for correction and re-check.
+
+## Data, BI & analytics lane
+
+There is no single owner of every metric:
+- executive/business KPI semantics → Roberto;
+- finance/accounting metrics → Clara;
+- acquisition/lifecycle/marketing analytics → Ana;
+- product event instrumentation and application data pipelines → Dave;
+- production telemetry/platform/data infrastructure → Guto;
+- experiment/product outcome traceability and cross-domain metric definitions → Laila.
+
+When multiple domains use the same metric, freeze one definition, source, grain/time window and owner before building dashboards or automation. Avoid multiple teams calling different formulas by the same KPI name.

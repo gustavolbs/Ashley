@@ -13,6 +13,10 @@ When the host exposes installed custom agents, inspect it and use exact names. I
 - mobile/Expo/RN/iOS/Android → Mobile App Builder; risk-specific AppSec/A11y/Performance/API review;
 - desktop/Electron/Tauri → Desktop App Engineer; platform/security/release partners as needed;
 - AI/LLM/agents/RAG/MCP → AI Engineer, RAG Pipeline Engineer, Search Relevance Engineer or other exact installed specialist; task-specific eval review;
+- application data pipelines/ETL/analytics data work → Data Engineer; production data-platform operations may require Guto;
+- realtime presence/sync/collaboration → Realtime Collaboration Engineer when the problem fits;
+- developer tooling/CLI/internal developer experience → Developer Tooling Engineer;
+- data visualization implementation → Data Visualization Engineer, with KPI/semantic definitions supplied by the owning business domain;
 - identity/authn/authz → Identity & Access Engineer plus AppSec/API tests;
 - privacy/PII/consent/deletion → Privacy Engineer plus AppSec and governance handoff;
 - database schema/query/indexing → Backend Architect / Database Optimizer; DB reliability operations belong to Guto;
