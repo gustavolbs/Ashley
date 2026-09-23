@@ -24,6 +24,31 @@ test -f "$ROOT/evals/dave-orchestration.md"
 test -f "$ROOT/evals/dave-memory.md"
 test -f "$ROOT/evals/dave-refactor.md"
 test -f "$ROOT/evals/dave-principal-engineer.md"
+
+for persona in guto victor nora maya parker; do
+  test -f "$ROOT/skills/$persona/SKILL.md"
+  test -f "$ROOT/skills/$persona/agents/openai.yaml"
+  test -f "$ROOT/skills/$persona/references/memory.md"
+done
+
+test -f "$ROOT/skills/guto/references/platform.md"
+test -f "$ROOT/skills/guto/references/delivery.md"
+test -f "$ROOT/skills/guto/references/reliability.md"
+test -f "$ROOT/skills/guto/references/orchestration.md"
+test -f "$ROOT/skills/victor/references/strategy.md"
+test -f "$ROOT/skills/victor/references/operations.md"
+test -f "$ROOT/skills/nora/references/accounting-tax.md"
+test -f "$ROOT/skills/nora/references/planning-pricing.md"
+test -f "$ROOT/skills/maya/references/strategy.md"
+test -f "$ROOT/skills/maya/references/measurement.md"
+test -f "$ROOT/skills/parker/references/planning.md"
+test -f "$ROOT/skills/parker/references/acceptance.md"
+test -f "$ROOT/skills/parker/scripts/init-project.sh"
+test -f "$ROOT/skills/parker/templates/project/docs/delivery/CHARTER.md"
+test -f "$ROOT/evals/guto-production-release.md"
+test -f "$ROOT/evals/parker-cross-functional.md"
+test -f "$ROOT/evals/nora-pricing-cash.md"
+test -f "$ROOT/evals/maya-growth-plan.md"
 test -f "$ROOT/evals/full-creative-production.md"
 test -f "$ROOT/evals/visual-qa.md"
 test -f "$ROOT/evals/design-code-sync.md"
@@ -39,6 +64,7 @@ for f in "$ROOT"/scripts/*.sh; do
 done
 bash -n "$ROOT/skills/ashley/scripts/init-project.sh"
 bash -n "$ROOT/skills/dave/scripts/init-project.sh"
+bash -n "$ROOT/skills/parker/scripts/init-project.sh"
 
 required=(
   product-business.md research.md ux-architecture.md interaction.md

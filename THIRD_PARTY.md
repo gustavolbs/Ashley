@@ -93,3 +93,16 @@ Role inside Dave:
 **optional token-efficiency layer** — the skill compresses Dave's prose; the proxy can additionally shrink noisy tool/context traffic.
 
 Dave does not depend on Caveman. Native context budgeting, targeted reads, read deduplication, compact task capsules and bounded tool output remain mandatory. If Caveman is installed, Dave uses it as an additive optimization without compressing exact code/contracts/errors or changing provider/RouteMux wiring.
+
+
+## Core operating team specialists
+
+The non-design personas also use Agency Agents selectively rather than copying its full roster.
+
+- **Guto**: DevOps Automator, Infrastructure Maintainer, SRE, Database Reliability Engineer, Incident Response Commander, FinOps Engineer, Network Engineer and security specialists.
+- **Victor**: Operations Manager, Chief of Staff, Product Manager, market/trend and pricing specialists.
+- **Nora**: Chief Financial Officer, Bookkeeper & Controller, Tax Strategist, Finance Tracker, Investment Researcher and Pricing Analyst.
+- **Maya**: Growth Hacker, SEO/AEO specialists, Content Creator, paid-media specialists, Analytics Reporter and Experiment Tracker.
+- **Parker**: Senior Project Manager, Project Shepherd, Sprint Prioritizer and Jira Workflow Steward when lower-level delivery support is useful.
+
+The persona remains the authority for its domain; Agency Agents are bounded workers/reviewers.

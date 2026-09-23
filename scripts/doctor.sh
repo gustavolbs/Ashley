@@ -3,8 +3,9 @@ set -u
 ok(){ printf "✓ %s\n" "$1"; }
 warn(){ printf "! %s\n" "$1"; }
 
-[[ -f "$HOME/.agents/skills/ashley/SKILL.md" ]] && ok "Ashley installed" || warn "Ashley not found"
-[[ -f "$HOME/.agents/skills/dave/SKILL.md" ]] && ok "Dave installed" || warn "Dave not found"
+for persona in ashley dave guto victor nora maya parker; do
+  [[ -f "$HOME/.agents/skills/$persona/SKILL.md" ]] && ok "$persona installed" || warn "$persona not found"
+done
 [[ -f "$HOME/.ashley/PREFERENCES.md" ]] && ok "Ashley global preference memory exists" || warn "Ashley global preference memory missing"
 
 for s in ui-ux-pro-max design-taste-frontend gpt-taste impeccable; do
@@ -25,6 +26,7 @@ for a in frontend-developer backend-architect code-reviewer api-tester reality-c
 done
 
 [[ -d "docs/design" ]] && ok "Current project has design memory" || warn "Current project has no docs/design"
+[[ -d "docs/delivery" ]] && ok "Current project has Parker delivery memory" || warn "Current project has no docs/delivery (optional)"
 if [[ -e "AGENTS.md" || -d "docs/adr" || -d "docs/adrs" || -d "docs/engineering" ]]; then
   ok "Current project has engineering instructions/memory"
 else

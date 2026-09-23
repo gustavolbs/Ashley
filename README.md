@@ -4,22 +4,31 @@
 
 | Persona | Level | Primary ownership |
 |---|---|---|
+| **Victor** | Executive | Business strategy, management and operations |
+| **Parker** | Principal | Program/project management, scope, tasks, dependencies and delivery |
+| **Nora** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
+| **Maya** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
 | **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
-| **Dave** | Staff / Principal | Software engineering, implementation orchestration, code quality, testing and Git discipline |
-| **Guto** | Planned | DevOps, SRE, infrastructure and production operations |
+| **Dave** | Staff / Principal | Software engineering, architecture, refactoring, testing and Git |
+| **Guto** | Principal | Platform, DevOps, SRE, infrastructure and production operations |
 
-Each persona is a self-contained skill under `skills/<name>/`. The public skill names remain **ashley** and **dave**, so installation stays simple while the repository can grow cleanly.
+Each persona is a self-contained skill under `skills/<name>/`.
 
 ## Install
 
-Install one persona:
+Install any persona:
 
 ```bash
 npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill guto -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill victor -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill nora -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill maya -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill parker -g -a codex -y
 ```
 
-Or clone once and install both:
+Or clone once and install the whole team:
 
 ```bash
 git clone https://github.com/gustavolbs/ai-personas.git
@@ -27,9 +36,33 @@ cd ai-personas
 bash scripts/install-all.sh
 ```
 
+## Team operating model
+
+```text
+user / founder
+      │
+      ├── Victor ─ business decision / outcome
+      ├── Nora   ─ financial truth / constraints
+      └── Maya   ─ growth / market activation
+              │
+            Parker
+   scope · acceptance · dependencies
+        · owners · milestones · status
+              │
+      ┌───────┼────────┐
+    Ashley   Dave      Guto
+    design   software  platform/SRE
+```
+
+**Parker is the cross-functional delivery control plane.** Parker translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Parker does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Victor/Nora/Maya own their respective business domains.
+
 ## Dave
 
 **Dave is a Staff/Principal Software Engineer and coding orchestrator. He owns outcomes, not lines of code.**
+
+Dave can also audit and incrementally refactor an existing codebase toward stronger architecture and engineering standards. He establishes a behavioral baseline, maps concrete structural pressure, defines target constraints, protects legacy behavior with tests, migrates in reviewable slices and only applies patterns where they solve a real problem.
+
+Dave has native token/context budgeting. Caveman is optional: if its skill is installed Dave can use it to compress prose; if its proxy is already active it may reduce noisy tool/context traffic. Installing Dave does **not** alter RouteMux/provider wiring or install a proxy automatically.
 
 Dave understands the repository before changing it, fills safe requirement gaps, applies engineering principles without pattern worship, delegates bounded work to the right specialists, implements and integrates the result, verifies it, removes unnecessary code, and leaves coherent semantic commits.
 
@@ -344,9 +377,14 @@ permission states.
 
 ## Repository
 
-- `skills/ashley/` — Ashley's skill, references, templates and project initializer.
-- `skills/dave/` — Dave's Principal Engineer skill and on-demand engineering references.
-- `skills/ashley/references/` — knowledge packs loaded on demand.
+- `skills/ashley/` — product/design/brand.
+- `skills/dave/` — software engineering.
+- `skills/guto/` — platform/DevOps/SRE.
+- `skills/victor/` — business strategy/management.
+- `skills/nora/` — finance/accounting/capital.
+- `skills/maya/` — marketing/growth.
+- `skills/parker/` — program/project/delivery management.
+- each persona keeps detailed knowledge in its own `references/`.
 - `templates/` — project design-memory templates.
 - `scripts/` — installer and project initializer.
 - `evals/` — regression briefs for testing Ashley after changes.
