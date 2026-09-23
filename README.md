@@ -4,22 +4,31 @@
 
 | Persona | Level | Primary ownership |
 |---|---|---|
+| **Roberto** | Executive | Business strategy, management and operations |
+| **Laila** | Principal | Product/program delivery, scope, requirements, dependencies and orchestration |
+| **Clara** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
+| **Ana** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
 | **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
-| **Dave** | Staff / Principal | Software engineering, implementation orchestration, code quality, testing and Git discipline |
-| **Guto** | Planned | DevOps, SRE, infrastructure and production operations |
+| **Dave** | Staff / Principal | Software engineering, architecture, refactoring, testing and Git |
+| **Guto** | Principal | Platform, DevOps, SRE, infrastructure and production operations |
 
-Each persona is a self-contained skill under `skills/<name>/`. The public skill names remain **ashley** and **dave**, so installation stays simple while the repository can grow cleanly.
+Each persona is a self-contained skill under `skills/<name>/`. Laila routes to persona skills first; each persona may then use lower-level Agency Agents specialists.
 
 ## Install
 
-Install one persona:
+Install any persona:
 
 ```bash
 npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill guto -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill roberto -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill clara -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill ana -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill laila -g -a codex -y
 ```
 
-Or clone once and install both:
+Or clone once and install the whole team:
 
 ```bash
 git clone https://github.com/gustavolbs/ai-personas.git
@@ -27,9 +36,41 @@ cd ai-personas
 bash scripts/install-all.sh
 ```
 
+## Team operating model
+
+```text
+user / founder
+      │
+      ▼
+    Laila
+ product/program delivery
+ scope · requirements · dependencies · evidence
+      │
+ ┌────┼────────┬────────┬────────┬───────┐
+ ▼    ▼        ▼        ▼        ▼       ▼
+Roberto Clara  Ana    Ashley    Dave    Guto
+business finance growth design software platform
+```
+
+**Laila is the primary front door for cross-functional work.** Give her the outcome; she determines which personas are required, dispatches bounded work to them, tracks scope/dependencies/evidence, and returns one integrated result. Laila translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Laila does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Roberto/Clara/Ana own their respective business domains.
+
+
+## Shared governance lanes
+
+Some work deliberately spans personas instead of inventing another "super persona":
+
+- **Product management:** Laila coordinates discovery, roadmap/release scope, requirements and outcome measurement; Roberto/Ashley/Dave/Clara/Ana/Guto retain their domain authority.
+- **Legal & privacy:** Roberto coordinates business/legal/privacy risk with specialist analysis; Dave implements application privacy/security controls; Guto owns operational controls/evidence. Material legal conclusions retain qualified-professional/user approval gates.
+- **Sales & customer success:** Roberto owns the commercial/customer operating model; Ana demand/lifecycle communications; Clara economics; Laila cross-functional rollout.
+- **Incidents:** Guto technical incident command; Dave application remediation; Ana communications; Roberto business decisions; Laila cross-functional coordination when needed.
+
 ## Dave
 
 **Dave is a Staff/Principal Software Engineer and coding orchestrator. He owns outcomes, not lines of code.**
+
+Dave can also audit and incrementally refactor an existing codebase toward stronger architecture and engineering standards. He establishes a behavioral baseline, maps concrete structural pressure, defines target constraints, protects legacy behavior with tests, migrates in reviewable slices and only applies patterns where they solve a real problem.
+
+Dave has native token/context budgeting. Caveman is optional: if its skill is installed Dave can use it to compress prose; if its proxy is already active it may reduce noisy tool/context traffic. Installing Dave does **not** alter RouteMux/provider wiring or install a proxy automatically.
 
 Dave understands the repository before changing it, fills safe requirement gaps, applies engineering principles without pattern worship, delegates bounded work to the right specialists, implements and integrates the result, verifies it, removes unnecessary code, and leaves coherent semantic commits.
 
@@ -40,9 +81,9 @@ understand → inspect → fill safe gaps → design → delegate selectively
 → implement → integrate → test/QA → simplify → commit → report
 ```
 
-Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Product Manager, Reality Checker, Evidence Collector and API Tester as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
+Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Mobile App Builder, Desktop App Engineer, AI Engineer, Privacy Engineer, Code Reviewer, API Tester and Reality Checker as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
 
-Deep DevOps/SRE ownership is intentionally outside Dave's scope; that will belong to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
+Deep DevOps/SRE ownership is intentionally outside Dave's scope and belongs to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
 
 Install Dave from a clone:
 
@@ -344,9 +385,14 @@ permission states.
 
 ## Repository
 
-- `skills/ashley/` — Ashley's skill, references, templates and project initializer.
-- `skills/dave/` — Dave's Principal Engineer skill and on-demand engineering references.
-- `skills/ashley/references/` — knowledge packs loaded on demand.
+- `skills/ashley/` — product/design/brand.
+- `skills/dave/` — software engineering.
+- `skills/guto/` — platform/DevOps/SRE.
+- `skills/roberto/` — business strategy/management.
+- `skills/clara/` — finance/accounting/capital.
+- `skills/ana/` — marketing/growth.
+- `skills/laila/` — primary manager: program/project/delivery orchestration.
+- each persona keeps detailed knowledge in its own `references/`.
 - `templates/` — project design-memory templates.
 - `scripts/` — installer and project initializer.
 - `evals/` — regression briefs for testing Ashley after changes.
