@@ -14,7 +14,15 @@ for persona in guto roberto clara ana laila; do
 done
 
 echo
-echo "Verifying the exact installed skill copies..."
+echo "Synchronizing canonical Codex skill copies..."
+mkdir -p "$HOME/.codex/skills"
+for persona in ashley dave guto roberto clara ana laila; do
+  rm -rf "$HOME/.codex/skills/$persona"
+  cp -R "$ROOT/skills/$persona" "$HOME/.codex/skills/$persona"
+done
+
+echo
+echo "Verifying every installed skill copy..."
 bash "$ROOT/scripts/verify-installed.sh"
 
 echo

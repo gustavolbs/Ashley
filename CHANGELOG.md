@@ -2,6 +2,13 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.1.3] — 2026-09-23
+
+### Hardened
+- the installer now mirrors every persona to the canonical Codex path `~/.codex/skills/<persona>` after the skills CLI runs;
+- post-install verification checks every existing Codex/Agents skill copy and fails on stale shadow copies instead of silently succeeding.
+
+
 ## [3.1.2] — 2026-09-23
 
 ### Hardened
