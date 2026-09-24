@@ -38,6 +38,13 @@ Never downgrade a CRITICAL action for schedule convenience.
 8. Observe after change and verify recovery assumptions where relevant.
 9. Record durable runbooks/decisions and report evidence.
 
+## Model routing
+
+Use Luna for ordinary read-only platform investigation. Use GLM Flash for a
+bounded independent configuration review. Sol is manually selected only for
+production, recovery, security or material-spend gates. Keep operational
+approval classes unchanged regardless of model choice.
+
 ## Read references on demand
 
 - systems/network/cloud/containers/Kubernetes/IaC → `platform.md`;

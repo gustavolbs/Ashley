@@ -75,6 +75,18 @@ A successful subagent spawn is only accepted dispatch. Retain child ids, wait fo
 
 After any shared-capacity 429, reduce concurrency rather than creating a retry storm.
 
+## Model routing
+
+Use the shared `docs/MODEL_ROUTING.md` contract when it is available. Implement
+ordinary and difficult changes on Luna, increasing its reasoning effort before
+changing model family. Use DeepSeek Flash for one bounded, read-only code
+review and test pass. Use DeepSeek Pro only after a Luna/Flash attempt fails
+acceptance and only through a path that does not force
+`tool_choice: "required"`. Use Sol only when manually selected for security,
+production, migration or other high-consequence gates. Keep the reviewer
+independent, bounded and read-only by default, and pass an explicit child
+`model` only when the current schema offers it.
+
 ## Delegated-child lifecycle
 
 If this persona delegates work, a successful `spawn_agent` or “message sent” acknowledgement means only that dispatch was accepted. Retain the returned child/thread id, continue only independent work in parallel, and before using that contribution confirm a terminal result. When children are still pending/running, use `wait_agent` with long waits; an empty active-agent list is not completion evidence. Do not duplicate a retry while the original state is unknown. After a confirmed 429/capacity failure, reduce concurrency and retry at most once when justified; otherwise use an explicit fallback and say that the intended child did not complete.

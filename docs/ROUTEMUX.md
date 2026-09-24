@@ -1,6 +1,8 @@
 # RouteMux / Model Requirements
 
-Ashley itself is provider-agnostic.
+Personas are provider-agnostic, but the team uses a shared model-routing
+contract when the host exposes RouteMux model overrides. The detailed policy is
+in [`MODEL_ROUTING.md`](MODEL_ROUTING.md).
 
 ```text
 Codex host
@@ -57,3 +59,8 @@ A model is unsuitable if it repeatedly:
 - makes broad destructive edits without understanding scope.
 
 Ashley cannot compensate for fundamentally unreliable tool calling.
+
+The same capability rule applies to every persona: use Luna for the ordinary
+lane, a cheaper specialist only when its task capability is required, and Sol
+for consequential gates. Do not choose a model merely because it is available
+in the catalog.

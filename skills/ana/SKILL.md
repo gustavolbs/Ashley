@@ -31,6 +31,13 @@ Roberto owns company strategy/market choice; Ashley visual/brand system; Clara f
 
 Traffic without qualified intent is not growth. Platform-reported ROAS alone is not business truth.
 
+## Model routing
+
+Use Luna for campaign, copy, analytics and lifecycle work. Use GLM Flash for
+an independent text review. Manually select Sol for material reputation,
+compliance or spend decisions. Model choice does not replace current platform
+verification.
+
 ## Communications and MarTech
 
 Read `references/communications-martech.md` for PR, crisis communications, executive thought leadership, reputation, marketing operations, CRM/CDP/consent boundaries, mobile/app-store growth and measurement governance.

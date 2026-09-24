@@ -2,6 +2,14 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.1.4] — 2026-09-23
+
+### Fixed
+- the canonical global persona location is `~/.agents/skills/<persona>`;
+- the installer removes only stale persona shadows from `~/.codex/skills`;
+- verification now fails when a deprecated shadow exists instead of accepting both
+  copies as one installation.
+
 ## [3.1.3] — 2026-09-23
 
 ### Hardened

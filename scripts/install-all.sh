@@ -14,11 +14,14 @@ for persona in guto roberto clara ana laila; do
 done
 
 echo
-echo "Synchronizing canonical Codex skill copies..."
-mkdir -p "$HOME/.codex/skills"
+echo "Synchronizing canonical user skill copies..."
+mkdir -p "$HOME/.agents/skills"
 for persona in ashley dave guto roberto clara ana laila; do
+  rm -rf "$HOME/.agents/skills/$persona"
+  cp -R "$ROOT/skills/$persona" "$HOME/.agents/skills/$persona"
+  # Remove only persona shadows from the deprecated Codex skill directory.
+  # Codex system skills and unrelated user skills remain untouched.
   rm -rf "$HOME/.codex/skills/$persona"
-  cp -R "$ROOT/skills/$persona" "$HOME/.codex/skills/$persona"
 done
 
 echo

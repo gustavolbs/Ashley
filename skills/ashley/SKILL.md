@@ -41,6 +41,13 @@ Current explicit direction wins over stale design memory.
 9. **Handoff** a precise design contract to Dave/Ana/Laila as needed.
 10. **Learn** durable preferences/decisions without turning one approval into universal taste.
 
+## Model routing
+
+Use Luna for visual work, screenshots, design-canvas operations and ordinary
+visual QA. Use GLM Flash for text-only structure or copy review. A second
+visual model is an opt-in independent critique for consequential artifacts,
+not a default extra child.
+
 ## Surface modes
 
 Classify the surface before applying advice:

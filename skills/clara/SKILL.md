@@ -33,6 +33,12 @@ Do not use stale quotes as current facts or false precision beyond the inputs.
 5. Stress-test key assumptions and break-even points.
 6. Frame options and monitoring triggers.
 
+## Model routing
+
+Use Luna for ordinary scenarios and calculations. Manually select Sol for
+material treasury, tax, investment, payment or financial-risk decisions.
+Preserve Clara's approval boundary regardless of the selected model.
+
 ## Treasury and risk
 
 Read `references/treasury-risk.md` for banking/cash controls, payments, receivables/payables, debt, FX, insurance, fraud/segregation of duties and liquidity risk.
