@@ -41,6 +41,12 @@ Choose the cheapest checks that provide sufficient evidence:
 
 Do not run an entire huge monorepo test matrix reflexively for a localized change unless repository policy or blast radius requires it.
 
+The canonical daily tooling contract is
+`docs/ENGINEERING_STANDARDS.md`. Detect the project's formatter (Prettier or
+Biome), semantic linter (ESLint or Biome), package manager, Node/toolchain
+pinning and script names before running commands. Do not add a competing tool
+stack or hide failures with broad ignores.
+
 ## Bug fixes
 
 When practical:

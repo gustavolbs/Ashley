@@ -28,7 +28,7 @@
   <rect x="44" y="40" width="2312" height="1420" rx="24" fill="#111C33" stroke="#253555" stroke-width="1"/>
 
   <text x="88" y="108" class="title">Persona orchestration and model routing</text>
-  <text x="88" y="143" class="subtitle">Luna first. Increase reasoning before changing model family. Escalate only with evidence or a risk gate.</text>
+  <text x="88" y="143" class="subtitle">Luna first. Keep every child on the parent provider. Increase reasoning before changing model family.</text>
   <text x="2310" y="108" text-anchor="end" class="muted">AI Personas / RouteMux / 2026-09-23</text>
 
   <!-- Main coordinator -->
@@ -38,7 +38,7 @@
     <text x="956" y="246" class="card-title">Laila</text>
     <text x="956" y="275" class="card-copy">Cross-functional coordinator</text>
     <text x="956" y="314" class="lane-title">Default model</text>
-    <text x="956" y="339" class="model">routemux/openai/gpt-6-luna</text>
+    <text x="956" y="339" class="model">provider-local Luna tier</text>
     <text x="956" y="365" class="card-copy">medium effort / compact handoffs / terminal child evidence</text>
   </g>
 
@@ -112,17 +112,17 @@
   <g>
     <rect x="80" y="770" width="300" height="140" rx="12" fill="#17233D" stroke="#334155"/>
     <text x="104" y="806" class="lane-title">Implement</text>
-    <text x="104" y="834" class="model">Luna / high or xhigh</text>
+    <text x="104" y="834" class="model">provider-local Luna / high</text>
     <text x="104" y="864" class="lane-copy">Increase effort before</text>
     <text x="104" y="884" class="lane-copy">changing model family.</text>
     <rect x="80" y="930" width="300" height="140" rx="12" fill="#17233D" stroke="#334155"/>
     <text x="104" y="966" class="lane-title">Independent QA</text>
-    <text x="104" y="994" class="model">DeepSeek Flash / high</text>
+    <text x="104" y="994" class="model">provider-local reviewer / high</text>
     <text x="104" y="1024" class="lane-copy">Read-only diff, tests,</text>
     <text x="104" y="1044" class="lane-copy">evidence and re-check.</text>
     <rect x="80" y="1090" width="300" height="140" rx="12" fill="#261F16" stroke="#B7791F"/>
     <text x="104" y="1126" class="lane-title">Opt-in escalation</text>
-    <text x="104" y="1154" class="model">DeepSeek Pro / high</text>
+    <text x="104" y="1154" class="model">provider-local Pro / high</text>
     <text x="104" y="1184" class="lane-copy">Only after failed acceptance;</text>
     <text x="104" y="1204" class="lane-copy">avoid forced tool_choice.</text>
   </g>
@@ -163,7 +163,7 @@
   <!-- Footer -->
   <rect x="80" y="1290" width="620" height="112" rx="12" fill="#17233D" stroke="#334155"/>
   <text x="108" y="1324" class="lane-title">Active subagent pool</text>
-  <text x="108" y="1352" class="model">Luna  |  DeepSeek Flash cheap  |  GLM Flash</text>
+  <text x="108" y="1352" class="model">native GPT parent → native GPT children  |  RouteMux parent → RouteMux children</text>
   <text x="108" y="1380" class="muted">3 active children maximum; one bounded reviewer by default.</text>
 
   <rect x="730" y="1290" width="760" height="112" rx="12" fill="#102A2A" stroke="#285E61"/>

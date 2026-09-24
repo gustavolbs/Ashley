@@ -296,6 +296,27 @@ They remain independent upstream skills so they can be updated normally.
 
 Ashley is the design director. Specialist instructions never override the active product brief, accessibility constraints, approved brand decisions, or Ashley's mode-specific rules.
 
+Dave has a separate optional engineering roster for bounded implementation and
+review work:
+
+```bash
+bash scripts/install-dave-specialists.sh
+```
+
+This installs AI Engineer, Frontend Developer, Application Security Engineer,
+API Tester, Accessibility Auditor, Reality Checker, Code Reviewer and Test
+Automation Engineer into Codex. Dave remains the owner and uses only the
+specialist relevant to the current stack and risk.
+
+The other personas have a similarly curated, optional roster:
+
+```bash
+bash scripts/install-team-specialists.sh
+```
+
+It adds bounded product, design, reliability, business, finance and marketing
+workers without installing the full Agency Agents catalog.
+
 ## Initialize a product repository
 
 Inside the SaaS/product repo:

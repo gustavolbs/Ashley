@@ -78,6 +78,27 @@ Dave uses Agency Agents as an optional specialist roster. Preferred roles includ
 
 The upstream Codex integration installs custom agents under `~/.codex/agents/`. Dave delegates only bounded tasks and retains final integration authority.
 
+The bounded Dave roster installer also supports:
+- AI Engineer;
+- Frontend Developer;
+- Application Security Engineer;
+- API Tester;
+- Accessibility Auditor;
+- Reality Checker;
+- Code Reviewer;
+- Test Automation Engineer.
+
+Install that optional roster with:
+
+```bash
+bash scripts/install-dave-specialists.sh
+```
+
+These children are not permanent authorities. Dave remains the engineering
+owner, delegates only when the task-specific specialist adds independent value,
+and falls back to himself when a child is unavailable or more expensive than
+the expected quality gain.
+
 ### Ponytail
 https://github.com/StarQuant/ponytail-skill
 
@@ -106,3 +127,30 @@ The non-design personas also use Agency Agents selectively rather than copying i
 - **Laila**: Product Manager, UX Researcher, Feedback Synthesizer, Senior Project Manager, Project Shepherd, Sprint Prioritizer and Jira Workflow Steward when lower-level product/delivery support is useful.
 
 The persona remains the authority for its domain; Agency Agents are bounded workers/reviewers.
+
+### Curated team roster
+
+The optional team installer adds a small, domain-matched roster instead of the
+entire Agency Agents catalog:
+
+```bash
+bash scripts/install-team-specialists.sh
+```
+
+The mapping is:
+
+- **Laila:** Product Manager, Feedback Synthesizer, Project Shepherd, Senior Project Manager;
+- **Ashley:** UX Researcher, UI Finish-Gate Reviewer, Brand Guardian;
+- **Guto:** DevOps Automator, SRE, Database Reliability Engineer, Incident Response Commander, Security Architect;
+- **Roberto:** Business Strategist, Operations Manager, Customer Success Manager, Data Privacy Officer, Legal Compliance Checker;
+- **Clara:** Financial Analyst, Tax Strategist, Investment Researcher, Bookkeeper & Controller, Pricing Analyst;
+- **Ana:** Growth Hacker, SEO Specialist, Content Creator, Social Media Strategist,
+  Paid Media Auditor, Ad Creative Strategist, Paid Social Strategist, PPC
+  Strategist, Tracking & Measurement Specialist, PR & Communications Manager,
+  Analytics Reporter and Experiment Tracker.
+
+Installers are intentionally separate so a user can keep the lightweight core
+or add only the specialist roster needed by their work. Specialists remain
+bounded workers: they return evidence and recommendations to their persona
+owner, never replace the persona's authority, and never create a peer-persona
+mesh.

@@ -58,14 +58,15 @@ When multi-agent execution is available, give the child a compact handoff and ex
 
 ## Model routing
 
-Use the shared `docs/MODEL_ROUTING.md` contract when it is available. Luna is
-the default for coordination, investigation and synthesis; increase its
-reasoning effort before changing model family. Use GLM Flash only for an
-independent text-only research pass. DeepSeek Pro is an opt-in escalation
-after a failed Luna/Flash acceptance. Sol is manually selected only for
-consequential business, security, production, financial or governance gates.
-Pass an explicit `model` on `spawn_agent` only when that model is offered by
-the current schema; otherwise omit it and record the fallback.
+Use the shared `docs/MODEL_ROUTING.md` contract when it is available. Use the
+provider-local Luna tier for coordination, investigation and synthesis;
+increase reasoning effort before changing model family. Use the provider-local
+reviewer tier for an independent text-only research pass. The provider-local
+Pro tier is an opt-in escalation after failed acceptance. The provider-local
+Sol tier is manually selected only for consequential business, security,
+production, financial or governance gates. Pass an explicit `model` on
+`spawn_agent` only when that model is offered by the current schema; otherwise
+omit it and record the fallback.
 
 Read `references/orchestration.md` for dispatch and nesting rules.
 

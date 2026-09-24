@@ -4,6 +4,11 @@ Personas are provider-agnostic, but the team uses a shared model-routing
 contract when the host exposes RouteMux model overrides. The detailed policy is
 in [`MODEL_ROUTING.md`](MODEL_ROUTING.md).
 
+The provider is selected per active parent session. Native ChatGPT subscription
+parents call native `gpt-*` children; RouteMux parents call `routemux/...`
+children. The team never crosses that boundary silently because provider
+choice controls quota, billing, credentials, protocols and tool compatibility.
+
 ```text
 Codex host
   ├── Ashley skill
