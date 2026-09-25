@@ -110,6 +110,12 @@ semantic linter per file family.
 - A formatter does not replace code review: it cannot validate security,
   architecture, accessibility, runtime behavior or business correctness.
 
+When available, AIslop may add a deterministic changed-code quality signal for
+narrative comments, speculative abstractions, dead code, unsafe casts, weak
+tests and related AI-assisted failure modes. It is advisory until a project
+baseline is calibrated and never replaces ESLint/Biome, TypeScript, tests,
+security analysis or runtime evidence.
+
 Prettier's configured options are the source of truth for its CLI and editor
 integrations. Biome can combine formatting, linting and import organization;
 when Biome is adopted, use its pinned project version and `biome ci` in CI

@@ -94,6 +94,16 @@ Prefer an existing issue tracker and project docs as live truth. `docs/delivery/
 
 Read `references/memory.md` for cross-session state rules.
 Read `references/evidence.md` before marking work complete; worker status is never enough by itself.
+Read `references/ecc-workflows.md` when a request needs research-first planning,
+agent-failure recovery, evals for persona/routing changes or strategic context
+compaction. Dave's engineering workflow remains the authority for code gates.
+
+## Anti-slop quality gate
+
+Apply `docs/ANTI_SLOP.md` when available. Require each work package to name its
+purpose, specificity, evidence and scope. Treat low-confidence style findings
+as advisory and never let them override domain, security, accessibility or user
+constraints.
 
 ## Completion
 

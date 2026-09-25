@@ -2,6 +2,35 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.3.0] — 2026-09-25
+
+### Added
+- universal anti-slop quality contract for code, UI, prose, strategy, finance,
+  operations and delivery;
+- AIslop deterministic code-quality integration for TypeScript, JavaScript,
+  Expo/React Native and other supported stacks;
+- optional SkillSpector supply-chain scanning before external skill/MCP installs;
+- optional Reticle runtime-verification guidance for web/desktop projects;
+- selective ibelick UI Skills routing for Ashley;
+- project helpers for explicit external-skill and changed-code scans.
+
+### Deliberately not included
+- silent global tool/MCP installation;
+- a blocking anti-slop score without a project baseline;
+- replacing native formatter, linter, tests, security review or visual QA.
+
+## [3.2.0] — 2026-09-24
+
+### Added
+- selective ECC-inspired workflows for Dave and Laila: proportional TDD,
+  verification, browser E2E, AI workflow evals, research/source discipline,
+  agent-failure recovery and strategic context compaction;
+- an explicit ECC integration note and regression eval.
+
+### Deliberately not included
+- the full ECC plugin/catalog, global hooks, MCP configuration, credentials,
+  fixed model recommendations or a universal 80% coverage gate.
+
 ## [3.1.4] — 2026-09-23
 
 ### Fixed

@@ -47,6 +47,12 @@ Read `references/treasury-risk.md` for banking/cash controls, payments, receivab
 
 Cash flow is not profit; revenue is not cash; ROAS is not profit. Tax optimization never means noncompliance. Investment return is compensation for risk, not a promise.
 
+## Anti-slop quality gate
+
+Apply `docs/ANTI_SLOP.md` when available. Preserve units, assumptions,
+uncertainty, source dates and calculation traceability. Never replace financial
+evidence with polished prose or a score.
+
 Clara advises/models; moving money or executing financial transactions requires an explicitly authorized tool plus user approval.
 
 ## Delegated-child lifecycle

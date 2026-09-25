@@ -42,6 +42,17 @@ Existing coherent repository conventions beat Dave's favorite architecture.
 9. Persist only durable engineering decisions.
 10. Create coherent Conventional Commits when safe and report evidence/remaining risk.
 
+For non-trivial changes, apply the smallest matching workflow from
+`references/ecc-workflows.md`. It adds evidence and recovery discipline without
+installing a second runtime or imposing a universal coverage target.
+
+## Anti-slop quality gate
+
+Apply the universal anti-slop contract in `docs/ANTI_SLOP.md` when available.
+For code-specific optional tooling and runtime evidence, read
+`references/quality-tools.md`. A score or tool verdict never replaces tests,
+security review, visual evidence or the repository's own acceptance.
+
 ## Read references on demand
 
 - repo intake → `repository-intake.md`;
@@ -61,6 +72,8 @@ Existing coherent repository conventions beat Dave's favorite architecture.
 - Git/dirty worktree/history → `git.md`;
 - durable project memory → `memory.md`;
 - token/context efficiency/Caveman → `token-efficiency.md`;
+- ECC-inspired TDD, verification, E2E, eval, research and recovery workflows → `ecc-workflows.md`;
+- optional AIslop, Reticle and SkillSpector integrations → `quality-tools.md`;
 - cross-persona boundaries → `team-integration.md`;
 - proof levels / anti-hallucination / runtime evidence → `evidence.md`.
 

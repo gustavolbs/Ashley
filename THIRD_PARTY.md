@@ -65,6 +65,58 @@ Ashley does not edit `.pen` JSON manually; it uses pen.dev tooling.
 
 ## Dave engineering intelligence
 
+### AIslop
+https://github.com/scanaislop/aislop
+
+MIT-licensed deterministic code-quality and AI-slop scanner. AI Personas uses
+its changed-file/CI mode as an optional signal for comments, speculative
+abstraction, dead code, swallowed errors, unsafe casts, weak tests and related
+patterns. It never replaces repository-native linting, tests, security review
+or runtime evidence.
+
+### NVIDIA SkillSpector
+https://github.com/NVIDIA/skillspector
+
+Apache-2.0 security scanner for third-party agent skills, MCPs and bundles.
+AI Personas exposes an explicit pre-install helper and opt-in Agency Agents
+gate; it does not silently install the scanner or treat a static clean result
+as proof of safety.
+
+### Reticle
+https://github.com/reticlehq/reticle
+
+Project-local runtime verification for supported web/desktop apps. SDK packages
+are Apache-2.0; server/test packages have their own source-available license,
+so users must review the package license before commercial use. AI Personas
+documents Reticle as a complement to Playwright and pixel inspection, not a
+global automatic install.
+
+### ibelick UI Skills
+https://github.com/ibelick/ui-skills
+
+MIT-licensed narrow design-engineering skills. Ashley selectively uses its
+routing, accessibility, motion-performance, metadata, design-evidence and
+baseline ideas without importing the entire registry or overriding project
+design authority.
+
+### Slop Cop
+https://github.com/howshannon/slop-cop
+
+MIT-licensed cross-artifact quality rubric for prose, UI/design and code. AI
+Personas absorbs its evidence-first, voice-preserving and no-authorship-claim
+principles into `docs/ANTI_SLOP.md`; it does not add another always-on reviewer
+or humorous scorecard.
+
+### Everything Claude Code (ECC)
+https://github.com/affaan-m/ECC
+
+AI Personas selectively adapts workflow ideas from ECC for Codex: TDD,
+verification loops, stable E2E, eval-driven agent development, research/source
+hygiene, failure introspection and context compaction. It does not vendor or
+install ECC's full catalog, hooks, MCP configuration or model recommendations.
+The adapted material is documented in `docs/ECC_INTEGRATION.md` and the Dave and
+Laila reference files. ECC is MIT licensed.
+
 ### Agency Agents
 https://github.com/msitarzewski/agency-agents
 

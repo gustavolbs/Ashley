@@ -7,6 +7,7 @@ set -euo pipefail
 AGENCY_REPO="${AGENCY_AGENTS_REPO:-https://github.com/msitarzewski/agency-agents.git}"
 TMP="$(mktemp -d "${TMPDIR:-/tmp}/agency-agents-team.XXXXXX")"
 trap 'rm -rf "$TMP"' EXIT
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
 AGENTS=(
   # Laila: product/delivery
@@ -53,6 +54,9 @@ AGENTS=(
 
 echo "Installing curated non-Dave persona specialists from Agency Agents..."
 git clone --depth 1 -q "$AGENCY_REPO" "$TMP/repo"
+if [[ "${AI_PERSONAS_REQUIRE_SKILLSPECTOR:-0}" == "1" ]]; then
+  bash "$ROOT/scripts/scan-external-skill.sh" "$TMP/repo"
+fi
 (
   cd "$TMP/repo"
   bash scripts/convert.sh --tool codex >/dev/null
@@ -68,3 +72,4 @@ echo "Installed curated team specialist roster:"
 printf '  - %s\n' "${AGENTS[@]}"
 echo
 echo "Restart Codex/ChatGPT Desktop so the agent catalog is reloaded."
+echo "Optional supply-chain gate: AI_PERSONAS_REQUIRE_SKILLSPECTOR=1 bash scripts/install-team-specialists.sh"

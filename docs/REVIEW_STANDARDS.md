@@ -34,6 +34,14 @@ Visual QA is not complete from a source diff, typecheck or DOM inspection alone:
 the affected route/state must be rendered and inspected at the target viewport.
 Stabilize fonts, viewport, data and animations before comparing screenshots.
 
+## Anti-slop quality
+
+Review generic or unsupported output only when there is observable evidence:
+redundant comments, speculative abstractions, dead code, swallowed failures,
+weak tests, generic UI defaults or unsupported claims. Do not infer authorship
+from style, remove useful structure to improve a score, or treat AIslop/other
+heuristics as a replacement for the stack-specific checks above.
+
 ## Independent review
 
 The external reviewer is a read-only child using a different model/provider from

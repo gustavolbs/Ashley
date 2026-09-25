@@ -14,6 +14,20 @@
 
 Each persona is a self-contained skill under `skills/<name>/`. Laila routes to persona skills first; each persona may then use lower-level Agency Agents specialists.
 
+The suite also incorporates a small, provider-neutral subset of
+[ECC](https://github.com/affaan-m/ECC) workflows inside Dave and Laila. No ECC
+plugin, global hook, MCP server or extra installation step is required; see
+[`docs/ECC_INTEGRATION.md`](docs/ECC_INTEGRATION.md).
+
+The suite has an evidence-first anti-slop contract across every persona. It can
+use [AIslop](https://github.com/scanaislop/aislop) for deterministic changed-code
+checks, [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector) before
+external skill/MCP installation, [Reticle](https://github.com/reticlehq/reticle)
+for project-local runtime verification, and selected
+[UI Skills](https://github.com/ibelick/ui-skills) lenses for Ashley. These are
+optional integrations; absent tools are reported as skipped, never silently
+installed.
+
 ## Install
 
 Install any persona:
@@ -35,6 +49,26 @@ git clone https://github.com/gustavolbs/ai-personas.git
 cd ai-personas
 bash scripts/install-all.sh
 ```
+
+## Optional quality gates
+
+Run the deterministic changed-code scan when the target project has AIslop:
+
+```bash
+bash scripts/scan-project-quality.sh origin/main
+```
+
+Use `AI_PERSONAS_USE_NPX=1` for an explicit one-off `npx aislop@latest` run.
+For third-party skill/MCP bundles, install SkillSpector separately and scan
+before executing their installers:
+
+```bash
+bash scripts/scan-external-skill.sh /path/to/skill
+AI_PERSONAS_REQUIRE_SKILLSPECTOR=1 bash scripts/install-dave-specialists.sh
+```
+
+These gates are opt-in. Native linting, typechecking, tests, security review
+and runtime/UI evidence remain the actual acceptance gates.
 
 ## Team operating model
 

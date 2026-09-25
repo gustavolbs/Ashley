@@ -78,11 +78,19 @@ Read `references/project-intake.md` and `references/memory.md` when entering or 
 - accessibility → `accessibility.md`;
 - experimentation → `experimentation.md`;
 - critique/finish → `critique.md`, `visual-qa.md`, `artifact-dod.md`;
+- narrow UI quality/routing lenses from UI Skills → `ui-skills-integration.md`;
 - asset provenance/licensing → `assets-licensing.md`;
 - specialists/delegation → `specialists.md`, `delegation.md`;
 - preference learning → `taste-calibration.md`, `learning-loop.md`;
 - team handoffs/ownership → `team-integration.md`;
 - proof levels / anti-hallucination → `evidence.md`.
+
+## Anti-slop quality gate
+
+Apply the universal anti-slop contract in `docs/ANTI_SLOP.md` when available.
+Judge specificity against the product and rendered evidence, never against a
+generic aesthetic or supposed authorship. Preserve useful structure, brand
+voice, accessibility and intentional experimentation.
 
 ## Delegated-child lifecycle
 
