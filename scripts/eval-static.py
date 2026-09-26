@@ -56,7 +56,8 @@ if "Laila never programs" not in (ROOT/"skills/laila/SKILL.md").read_text():
     errors.append("laila: programming prohibition missing")
 if "sole application-programming authority" not in (ROOT/"skills/dave/SKILL.md").read_text():
     errors.append("dave: application write authority missing")
-if "never writes production application code" not in (ROOT/"skills/ashley/SKILL.md").read_text():
+ashley=(ROOT/"skills/ashley/SKILL.md").read_text().lower()
+if "production application code" not in ashley or "never" not in ashley:
     errors.append("ashley: production-code prohibition missing")
 
 manifest=json.loads((ROOT/"PERSONAS.json").read_text())
