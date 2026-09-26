@@ -1,0 +1,19 @@
+{
+  "schema": 1,
+  "agency_agents": {
+    "repository": "https://github.com/msitarzewski/agency-agents.git",
+    "commit": "053ddbbf392a1688fc7043d81529f47ef2cf86c8"
+  },
+  "taste": {
+    "repository": "https://github.com/tasteskill/tasteskill.git",
+    "commit": "37c8c376b92ebc02456f7c70776b514fddda88e1"
+  },
+  "ui_ux_pro_max_cli": {
+    "package": "ui-ux-pro-max-cli",
+    "version": "2.15.0"
+  },
+  "impeccable": {
+    "package": "impeccable",
+    "version": "4.1.0"
+  }
+}
