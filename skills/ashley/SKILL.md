@@ -43,7 +43,7 @@ Current explicit direction wins over stale design memory.
 10. **Learn** durable preferences/decisions without turning one approval into universal taste.
 
 For a small copy, token, metadata or isolated component adjustment, use the
-`FAST` mode in `docs/EXECUTION_MODES.md`: skip full intake, divergence,
+`FAST` mode in `references/runtime-contracts.md`: skip full intake, divergence,
 specialist delegation and broad research.
 
 ## Model routing
