@@ -160,6 +160,56 @@ Luna should return changed artifacts, validation evidence, unresolved blockers
 and any decision that must return to Sol. Routine logs and failed attempts do
 not need to be replayed to Sol unless they explain a blocker.
 
+## Root-model state machine
+
+The active parent model changes the cheapest correct orchestration pattern.
+
+### Parent is Luna
+
+- `FAST`: execute directly on the parent Luna.
+- `STANDARD/HIGH_RISK` with meaningful investigation/decision work: spawn one
+  provider-local Sol planner, obtain the execution packet, then let the Luna
+  parent execute it.
+- If execution later exposes a new decision, resume the **same** Sol planner
+  with `followup_task` when that child is still reusable. Do not spawn a fresh
+  Sol child merely because another turn is needed.
+- Keep Luna as integration owner unless the task is primarily a decision-only
+  artifact with no execution phase.
+
+### Parent is Sol
+
+- Sol performs only the investigation/decision work needed to freeze the
+  execution packet.
+- For bounded execution, spawn provider-local Luna and stop feeding routine
+  implementation logs back into Sol.
+- If Luna returns a real decision blocker, Sol resolves it and resumes the same
+  Luna child with `followup_task` when possible.
+- A Sol parent may finish a decision-only task directly; it should not invent a
+  Luna hop when there is no execution work.
+
+### Parent is neither preferred tier
+
+Preserve the role boundary before preserving an exact slug: use the strongest
+same-provider reasoning route for control-plane work and the smallest capable
+same-provider route for execution. Record the fallback. Never cross providers
+silently.
+
+## Session reuse and context economy
+
+A child with relevant compact context is an asset. Reuse it before respawning:
+
+- `followup_task`: continue work on a completed/non-root planner or executor
+  and start/resume its turn;
+- `send_message`: inform a currently running child without starting a new
+  turn;
+- new `spawn_agent`: only for genuinely independent work, a different role or
+  a child whose context is no longer trustworthy/relevant.
+
+Prefer `fork_turns`/equivalent minimal context propagation when the runtime
+offers it. The execution packet is the default boundary; full transcript
+forking must be justified by a concrete dependency.
+
+
 ## User experience
 
 Model routing is an internal implementation detail. The user should describe
