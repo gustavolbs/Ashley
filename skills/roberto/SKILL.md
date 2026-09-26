@@ -33,9 +33,18 @@ Frameworks are lenses, not answers. Strategy requires choices under constraint.
 
 ## Model routing
 
-Use Luna for ordinary strategy exploration and GLM Flash for an independent
-text-heavy research pass. Sol is manually selected only for consequential
-business decisions. Model selection never replaces the required evidence,
+Use provider-local Sol for business investigation and decisions: strategy,
+market/competitive analysis, operating-model choices, negotiation structure,
+ambiguous tradeoffs and consequential business risk. Once the decision and
+constraints are explicit, use provider-local Luna for bounded execution such as
+building the chosen operating artifact, extracting routine evidence, drafting
+from the approved strategy or applying review feedback.
+
+A genuinely small `FAST` task with no meaningful strategic decision may run
+directly on Luna. GLM Flash may still provide an independent text-heavy review,
+but it does not replace the Sol decision lane. Escalate Luna back to Sol only
+for a new decision, contradictory evidence, repeated acceptance failure or a
+material business/governance gate. Model selection never replaces evidence,
 governance or user approval.
 
 ## Delegated-child lifecycle
