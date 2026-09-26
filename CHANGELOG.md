@@ -2,6 +2,28 @@
 
 All notable changes to AI Personas are documented here.
 
+## [4.0.0] — 2026-09-26
+
+### Breaking orchestration change
+- persistent persona sessions now default to Luna: **Luna runs, Sol decides**;
+- Sol is an ephemeral read-only decision advisor rather than the resident
+  orchestration/control loop;
+- STANDARD work no longer automatically earns a Sol planning pass;
+- Laila must never be the persistent Sol orchestrator.
+
+### Breaking authority change
+- Laila, Roberto, Clara and Ana are explicitly non-coding personas;
+- Ashley cannot write production application code;
+- Dave is the sole application-programming authority;
+- Guto owns infrastructure/IaC/CI/CD/production mutations and cannot change
+  application behavior owned by Dave;
+- write-capable tools do not expand persona authority.
+
+### Added
+- shared Mutation Authority Contract packaged into every persona;
+- Sol quota budgets and regression eval;
+- cross-persona mutation-boundary eval.
+
 ## [3.7.0] — 2026-09-26
 
 ### Added
@@ -128,7 +150,6 @@ All notable changes to AI Personas are documented here.
 - the installer now mirrors every persona to the canonical Codex path `~/.codex/skills/<persona>` after the skills CLI runs;
 - post-install verification checks every existing Codex/Agents skill copy and fails on stale shadow copies instead of silently succeeding.
 
-
 ## [3.1.2] — 2026-09-23
 
 ### Hardened
@@ -137,7 +158,6 @@ All notable changes to AI Personas are documented here.
 - installation now verifies the exact installed `SKILL.md` copies and lifecycle marker after install, failing loudly on stale/mismatched copies;
 - structural CI now rejects any persona kernel that loses the lifecycle contract.
 
-
 ## [3.1.1] — 2026-09-23
 
 ### Fixed
@@ -145,12 +165,11 @@ All notable changes to AI Personas are documented here.
 - a successful `spawn_agent` or “message sent” acknowledgement no longer counts as completed delegation;
 - coordinators retain child ids, wait for required children, collect terminal results and distinguish completed/failed/cancelled work before synthesis;
 - an empty active-agent list is no longer treated as success without a returned result;
-- duplicate retries are forbidden while the original child state is unknown; 429 recovery collapses concurrency and retries at most once when justified;
+- duplicate retries are forbidden while the original child's state is unknown; 429 recovery collapses concurrency and retries at most once when justified;
 - fallbacks must be reported explicitly instead of implying that a persona/specialist participated.
 
 ### Added
 - regression eval for child lifecycle, 429 recovery and cross-persona synthesis.
-
 
 ## [3.1.0] — 2026-09-23
 

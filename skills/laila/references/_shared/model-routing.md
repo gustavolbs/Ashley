@@ -1,240 +1,173 @@
 # Model Routing Contract
 
-This contract controls model selection for the persona team when the Codex host
-exposes native and/or RouteMux model overrides.
+## Core rule: Luna runs, Sol decides
 
-## Core rule: Sol thinks, Luna executes
+**Luna is the resident model. Sol is an ephemeral decision specialist.**
 
-Treat **Sol as the control plane** and **Luna as the execution plane**.
+Persistent persona conversations, orchestration loops and implementation should
+default to the provider-local Luna tier. Do not keep a long-lived Laila, Dave or
+other persona on Sol merely because the task is non-trivial.
 
-Use the provider-local **Sol tier** for work whose main cost is deciding what
-should be done:
+Use Luna for:
 
-- ambiguous request investigation and requirement reconstruction;
-- repository/system investigation before a non-trivial change;
-- root-cause analysis when the cause is not already isolated;
-- architecture, product/UX, business, financial or operational reasoning;
-- task decomposition, orchestration and dependency planning;
-- resolving conflicting evidence or constraints;
-- consequential tradeoffs, risk gates and review of substantial outputs.
+- user interaction and task intake;
+- project-context freshness checks and targeted reads;
+- routine analysis with clear repository/domain evidence;
+- persona routing, decomposition from known constraints and dispatch;
+- waiting/polling child lifecycle and status updates;
+- integration/synthesis of already-decided work;
+- implementation, tests, fixes, refactors and validation;
+- calculations, content production, design materialization and routine ops;
+- evidence collection and checkpointing.
 
-Use the provider-local **Luna tier** for work whose main cost is carrying out an
-already-bounded decision:
+Use Sol only when a **decision gate** remains after Luna has gathered the
+relevant evidence:
 
-- implementation from an approved plan or execution packet;
-- tests, lint/type/build fixes, CRUD, migrations and repetitive refactors;
-- applying review feedback and mechanical follow-up changes;
-- routine calculations or scenario runs after assumptions are frozen;
-- copy/content variants from a fixed brief;
-- design-canvas/materialization work from an approved direction;
-- routine data extraction, formatting, status updates and evidence collection;
-- bounded infrastructure/configuration edits with a defined validation plan.
+1. requirements are materially ambiguous and safe inference is not possible;
+2. architecture/system/product/business/financial/operational tradeoffs have
+   multiple credible options with meaningful consequences;
+3. root cause remains uncertain after a bounded Luna investigation;
+4. current evidence conflicts and choosing the wrong interpretation matters;
+5. a HIGH_RISK security, production, migration, compliance, reputation or
+   material-spend decision needs deeper reasoning;
+6. a substantial final review genuinely requires independent high-reasoning
+   judgment.
 
-Do not keep Sol attached to routine execution merely because Sol created the
-plan. The executor returns concise evidence; Sol re-enters only when a new
-decision is required.
+Task size, number of files or "STANDARD" classification alone are **not** Sol
+triggers.
 
-### FAST exception
+## Sol is advisory and read-only by default
 
-A genuinely small, low-risk task with an obvious solution does **not** need a
-Sol planning hop. Route it directly to Luna, perform the targeted validation
-and finish. The Sol/Luna split exists to reduce waste, not to add ceremony.
+Sol returns a compact decision packet and then gets out of the execution loop.
+It should not:
 
-### Re-escalation rule
+- write application or infrastructure code;
+- perform routine implementation;
+- tail command/test logs;
+- poll agents;
+- repeatedly reread the repository;
+- create status updates;
+- synthesize normal completed work that Luna can integrate.
 
-A Luna worker escalates back to Sol only when one of these is true:
+A Sol consultation may inspect narrowly scoped evidence when required to make
+the decision.
 
-1. implementation reveals a new architectural/product/business/financial/
-   operational decision;
-2. repository or runtime evidence contradicts the approved plan;
-3. requirements or constraints are materially ambiguous;
-4. the worker fails acceptance repeatedly and another implementation attempt
-   would be guesswork;
-5. a high-consequence security, production, migration, compliance, reputation
-   or material-spend gate is reached.
-
-Task size alone is not a reason to escalate.
-
-## Execution packet
-
-When Sol hands work to Luna, send a compact execution packet instead of the
-entire transcript:
+## Decision packet
 
 ```text
-Goal
-Relevant evidence / files
-Approved decision
-Constraints
-Required changes
-Do not change
-Acceptance criteria
-Validation commands or proof
-Known risks
+Decision
+Evidence used
+Assumptions / uncertainty
+Approved constraints
+Rejected alternatives (only material ones)
+Acceptance implications
+What Luna should do next
+What would require returning to Sol
 ```
 
-Luna should return changed artifacts, validation evidence, unresolved blockers
-and any decision that must return to Sol. Routine logs and failed attempts do
-not need to be replayed to Sol unless they explain a blocker.
+Do not copy the entire transcript into Sol or back out of Sol.
+
+## Quota budgets
+
+### FAST
+- resident: Luna
+- Sol consultations: **0**
+
+### STANDARD
+- resident: Luna
+- Sol consultations: **0 by default**
+- if a decision gate triggers: at most **one reusable Sol decision thread**
+- resume that same thread for a directly related unresolved decision instead of
+  spawning fresh Sol agents
+
+### HIGH_RISK
+- resident/coordinator: Luna
+- one reusable Sol decision thread may be established early
+- Sol participates only at consequential decision/review gates
+- implementation, tool loops, validation, waiting and reporting remain on Luna
+
+These are routing constraints, not quality shortcuts. If evidence shows a real
+decision gate, use Sol. If the decision is already clear, do not spend Sol.
+
+## Laila-specific rule
+
+**Never use Sol as the persistent Laila orchestrator.**
+
+Laila/Luna owns coordination, work-package routing, child lifecycle, status and
+normal synthesis. Domain decisions go first to the owning persona. That persona
+decides whether its own Sol consultation is necessary.
+
+Laila herself may consult Sol only for an irreducible cross-domain
+scope/priority/governance conflict or other consequential program decision that
+cannot be resolved from the domain-owner outputs.
+
+Laila must not use Sol merely to:
+- understand a fresh/stale project-context snapshot;
+- decompose an already-defined outcome;
+- decide which persona owns a task;
+- wait for Dave/Ashley/Guto/etc.;
+- summarize child results;
+- write status/roadmaps/handoffs.
 
 ## Parent-state routing
 
-The role split must work regardless of which model owns the current parent
-session.
+### Parent is Luna — preferred
 
-### Parent is Sol
+Keep Luna resident. Gather evidence first. If no decision gate triggers, finish
+without Sol. If a gate triggers, spawn/reuse one same-provider Sol advisor,
+receive the decision packet, then continue on Luna.
 
-For STANDARD/HIGH_RISK work:
+### Parent is Sol — exception
 
-1. Sol investigates and freezes the decision boundary.
-2. Sol creates one compact execution packet.
-3. Sol dispatches Luna for bounded execution when the host supports an explicit
-   same-provider Luna child.
-4. Sol does independent work only; it does not tail routine implementation logs.
-5. If Luna returns a genuine decision blocker, resume the **same Sol planner**
-   when the runtime supports follow-up/reuse instead of spawning a fresh planner.
-6. Return the revised decision packet to Luna and continue execution.
+A user may explicitly open a persona on Sol. For work that will involve ongoing
+coordination or execution, Sol should minimize its own activity and hand the
+resident work to Luna when the runtime supports a same-provider child override.
+Sol remains a decision advisor only.
 
-### Parent is Luna
-
-For FAST work, execute directly.
-
-For STANDARD/HIGH_RISK work that needs a decision lane:
-
-1. Luna spawns one same-provider Sol planner when available.
-2. Sol returns the compact execution packet and remains the reusable decision
-   thread for that task.
-3. The Luna parent executes the packet itself or dispatches bounded Luna workers.
-4. New decision blockers go back to the same Sol planner when possible.
-5. Do not create a new Sol planner for every implementation question.
-
-### Planner reuse invariant
-
-A task should normally have **one control-plane planning thread**, not a chain of
-fresh Sol children. Reuse preserves reasoning continuity and avoids repeatedly
-paying the investigation/context cost. Spawn a replacement planner only when the
-original is unavailable, terminally failed or its context is no longer relevant.
-
-## User experience
-
-Model routing is an internal implementation detail. The user should describe
-the outcome, not choose a model, effort or child graph. Personas select the
-smallest capable route and only expose a model/fallback detail when it
-materially affects risk, cost or acceptance. Personas must never ask the user
-to copy a model slug for normal work.
+If the host cannot transfer the resident loop, the efficient configuration is
+to start a new persistent persona session on Luna and let it call Sol on demand.
+The persona must not pretend that prompt instructions can change the model of an
+already-open parent session.
 
 ## Provider-local routing
 
-Model selection is local to the active parent session:
+Never cross provider families for a child override.
 
-- If the parent uses a native `gpt-*` model from the ChatGPT subscription,
-  every explicit child override must also be a currently offered native model
-  ID. Never send a `routemux/...` child from a subscription parent.
-- If the parent uses a `routemux/...` model, every explicit child override
-  must also use `routemux/...`. Never cross into native subscription models
-  from a RouteMux parent.
-- Detect the provider from the actual active parent model/session and current
-  tool schema, not from a display label or stale configuration file.
-- If the desired lane is not offered by the active provider, omit the override
-  so the child inherits the parent, record the fallback internally and preserve
-  the decision/execution boundary in the prompt.
-
-| Lane | ChatGPT subscription | RouteMux |
+| Role | ChatGPT subscription | RouteMux |
 |---|---|---|
-| Investigation / orchestration / architecture | current native Sol-tier | `routemux/openai/gpt-6-sol` |
-| Bounded execution / implementation | current native Luna-tier | `routemux/openai/gpt-6-luna` |
+| Resident persona / coordinator / executor | current native Luna-tier | `routemux/openai/gpt-6-luna` |
+| Decision advisor | current native Sol-tier | `routemux/openai/gpt-6-sol` |
 | Independent code review | offered native Luna-tier reviewer | `routemux/deepseek/deepseek-v4-flash-cheap` |
-| Independent text-only review | offered native Luna-tier reviewer | `routemux/zhipu/glm-5.3-flash` |
+| Independent text review | offered native Luna-tier reviewer | `routemux/zhipu/glm-5.3-flash` |
 | Visual execution / QA | native vision-capable Luna-tier or Ashley | RouteMux vision-capable Luna-tier or Ashley |
-| Critical decision gate | current native Sol-tier | `routemux/openai/gpt-6-sol` |
 
-M3, Kimi, Grok and Astra are opt-in candidates only after a task-specific
-benchmark demonstrates a quality advantage worth their additional cost.
-DeepSeek relay routes must pass a current local health probe before becoming
-defaults; public uptime pages are not sufficient evidence. DeepSeek Pro remains
-an opt-in recovery route after acceptance failure, not the default planner or
-implementer.
-
-## Decision rules
-
-1. Classify the work as **decision/investigation** or **bounded execution**
-   before choosing a model.
-2. Use Sol for the first category and Luna for the second.
-3. For `FAST` work with no meaningful decision boundary, skip Sol and execute
-   directly on Luna.
-4. Increase reasoning effort inside the correct tier before changing model
-   family.
-5. Do not let Sol stream-watch normal implementation commands, test logs or
-   mechanical retries. Luna returns a concise evidence bundle.
-6. If Luna encounters a new decision, stop guessing and return that decision to
-   Sol; after Sol resolves it, resume on Luna.
-7. Use the provider-local reviewer lane for one bounded independent review when
-   the execution mode/risk requires it. Reviewers are read-only by default.
-8. Never assign a text-only reviewer to a visual gate. Use Ashley or a
-   vision-capable route and mark the gate unverified when pixels cannot be seen.
-9. Never cross provider families for a child override, even when the model is
-   visible in the picker.
-10. Do not create extra children merely to use another model. Independent work
-    or a required review gate must justify fan-out.
-11. Keep handoffs compact. Do not copy an entire repository or transcript into
-    a child when paths, symbols, constraints and acceptance are enough.
-12. Keep ordinary fan-out at three active children or fewer. A 429 reduces
-    concurrency before any retry.
-13. High-consequence approval boundaries are unchanged by model quality. Sol
-    can improve analysis; it cannot manufacture human authority.
+If the desired lane is unavailable, inherit/use the strongest same-provider
+route and record the fallback rather than silently crossing providers.
 
 ## Persona application
 
-- **Laila:** Sol for cross-functional investigation, planning, decomposition,
-  dependency/risk decisions and synthesis; Luna for bounded execution packages,
-  status transformations and applying already-approved delivery decisions.
-- **Roberto:** Sol for strategy, market/competitive investigation, operating
-  model, negotiation and consequential business tradeoffs; Luna for execution
-  artifacts built from an approved strategy.
-- **Clara:** Sol for assumption-setting, financial investigation, tax/investment
-  reasoning and material financial decisions; Luna for calculations,
-  reconciliations and scenario execution after assumptions are frozen.
-- **Ana:** Sol for positioning, channel/experiment strategy, causal analysis and
-  reputation/compliance decisions; Luna for campaign execution, copy variants,
-  reporting and routine analytics from a fixed brief.
-- **Ashley:** Sol for UX/product investigation, information architecture,
-  design direction and consequential critique; Luna for materializing approved
-  directions, component/state variants and routine visual QA.
-- **Dave:** Sol for repository investigation, root cause, architecture,
-  decomposition and substantial review; Luna for implementation, tests,
-  refactors, fixes and applying review feedback.
-- **Guto:** Sol for incident/root-cause investigation, topology/reliability
-  decisions and production/security/spend gates; Luna for bounded config/IaC/
-  CI execution, dry-runs and routine diagnostics from an approved plan.
+- **Laila:** Luna always for resident coordination; Sol only for irreducible
+  consequential cross-domain decisions.
+- **Roberto:** Luna for evidence gathering, routine business analysis and
+  execution artifacts; Sol for consequential strategy/tradeoff decisions.
+- **Clara:** Luna for calculations, reconciliation and scenario execution; Sol
+  for consequential assumption/tax/investment/capital decisions.
+- **Ana:** Luna for campaign/content/analytics execution; Sol for consequential
+  positioning/channel/causal/reputation decisions.
+- **Ashley:** Luna for routine UX analysis, materialization and QA; Sol for
+  genuinely ambiguous/consequential design direction.
+- **Dave:** Luna is the resident engineer and only application-code writer; Sol
+  advises on hard root cause, architecture, security or substantial review.
+- **Guto:** Luna is the resident operational executor; Sol advises on hard
+  incident/topology/reliability/security/spend decisions.
 
-## Dave QA loop
+## Decision rules
 
-```text
-FAST:
-  Luna executes directly -> targeted check -> return
-
-STANDARD / HIGH_RISK:
-  Sol investigates and produces execution packet
-    -> Luna implements and validates
-    -> provider-local reviewer reports findings when required
-    -> Luna fixes mechanical findings
-    -> Sol resolves only new decisions / material contradictions
-    -> same reviewer re-checks changed areas when required
-    -> Sol performs substantial final decision review only when warranted
-```
-
-A reviewer is evidence-producing and read-only by default. A child claim is not
-proof until the parent receives its terminal result and verifies the integrated
-state.
-
-## Fallback and measurement
-
-If Sol is unavailable for a decision lane, keep the work provider-local, use the
-strongest available same-provider reasoning route and record that the preferred
-control-plane model was unavailable. If Luna is unavailable for execution,
-inherit the parent or use the nearest same-provider execution route rather than
-crossing providers silently.
-
-Before promoting another default model, compare it with the current lane
-default on matched cases. Track task success, evidence quality, tool-call
-validity, tests, latency, input/output tokens, fallback count and estimated
-cost. A cheaper route wins only when it preserves acceptance.
+1. Start on Luna.
+2. Retrieve current evidence before escalating.
+3. Ask: "Is there a consequential unresolved decision?" If no, stay on Luna.
+4. If yes, consult/reuse Sol and request only a decision packet.
+5. Return immediately to Luna for execution/integration.
+6. Never use Sol for routine tool loops or because a task is merely large.
+7. Respect `references/_shared/mutation-authority.md`; model capability does
+   not grant write authority.

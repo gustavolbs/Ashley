@@ -12,13 +12,27 @@ Use the narrowest domain owner that can complete the outcome.
 | application engineering, architecture, testing | Dave |
 | platform, DevOps, SRE, releases, production | Guto |
 
-Do not route a single-domain task through Laila merely because she can coordinate.
+Do not route a single-domain task through Laila merely because she can
+coordinate. Laila never programs.
 
 ## Model routing
 
-FAST work can execute on Luna directly. Non-trivial investigation, architecture
-and consequential decisions use Sol; bounded execution returns to Luna. Reuse
-one Sol planning thread when a new decision appears.
+Start persistent persona sessions on Luna. FAST uses zero Sol. STANDARD stays
+on Luna unless a consequential unresolved decision appears. HIGH_RISK also keeps
+Luna resident and uses one reusable Sol advisor only at decision/review gates.
+
+Do not keep Laila on Sol for routine orchestration, waiting, status or synthesis.
+
+## Mutation routing
+
+- application implementation -> Dave;
+- infrastructure/IaC/CI/CD/production -> Guto;
+- design artifacts -> Ashley;
+- delivery docs/status -> Laila;
+- business/finance/marketing artifacts -> owning domain persona.
+
+Laila, Roberto, Clara and Ana never program. Ashley never writes production
+application code.
 
 ## Session reuse / project context
 
@@ -38,9 +52,6 @@ Optional local Graphify support:
 bash scripts/install-context-tools.sh
 ```
 
-Graphify is only an accelerator for multi-hop code relationships; the native
-cache requires no dependency.
-
 ## Project initialization
 
 ```bash
@@ -50,5 +61,3 @@ bash scripts/init-project.sh --engineering
 bash scripts/init-project.sh --delivery
 bash scripts/init-project.sh --all
 ```
-
-Project memory is optional and should not duplicate an existing source of truth.
