@@ -15,5 +15,8 @@ for f in CHARTER.md SCOPE.md PLAN.md DECISIONS.md RISKS.md HANDOFFS.md LEARNINGS
   fi
 done
 
+python3 "$SKILL_ROOT/scripts/project-context.py" --root "$PROJECT_ROOT" bootstrap
+
 echo "Laila delivery memory initialized at $DEST"
+echo "Local project-context cache initialized in Git metadata; it does not dirty the working tree."
 echo "If Jira/Linear/GitHub Projects is authoritative, keep live task status there and use these docs only for durable context."
