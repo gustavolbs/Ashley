@@ -22,6 +22,6 @@ with tempfile.TemporaryDirectory() as td:
  (r/"src/new.ts").write_text("export const created=true;\n"); run(["git","add","src/new.ts"],r); run(["git","commit","-qm","add"],r)
  stale=run(["python3",str(SCRIPT),"status"],r).stdout; assert stale.startswith("STALE") and "src/new.ts" in stale
  gd=Path(run(["python3",str(SCRIPT),"graph-dir"],r).stdout.strip()); assert gd.parent==p.parent
-    status=run(["git","status","--porcelain"],r).stdout
-    assert "ai-personas" not in status and "graphify-out" not in status, status
+ status=run(["git","status","--porcelain"],r).stdout
+ assert "ai-personas" not in status and "graphify-out" not in status, status
 print("Project context cache tests passed.")
