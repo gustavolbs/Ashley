@@ -6,7 +6,7 @@ MIT. This is a behavior contract, not an ECC runtime or a second installer.
 
 ## Workflow selector
 
-Classify with `docs/EXECUTION_MODES.md` first. The fast path is the default:
+Classify with `runtime-contracts.md` first. The fast path is the default:
 one owner, one targeted check, no child/research/reviewer unless a risk trigger
 appears. Use the workflows below only when the selected mode requires them.
 
