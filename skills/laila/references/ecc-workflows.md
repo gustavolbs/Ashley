@@ -7,7 +7,7 @@ Laila owns scope, dependencies, evidence and synthesis.
 
 ## Before dispatch
 
-Classify the request with `docs/EXECUTION_MODES.md` first. `FAST` work skips
+Classify the request with `runtime-contracts.md` first. `FAST` work skips
 dispatch, research and reviewer waiting; one owner acts directly and returns
 after a targeted check.
 
