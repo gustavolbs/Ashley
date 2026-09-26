@@ -47,16 +47,16 @@ changed-file/CI mode as an additional signal:
 aislop ci --changes --base origin/main
 ```
 
-For a one-off run without a project installation, use the repository helper so
-the reviewed version from `THIRD_PARTY.lock.json` is used:
+When working from a full AI Personas clone, an explicit one-off run can use the
+repository helper so the reviewed version from `THIRD_PARTY.lock.json` is used:
 
 ```bash
 AI_PERSONAS_USE_NPX=1 bash scripts/scan-project-quality.sh origin/main
 ```
 
-Do not silently download a floating `latest` during a normal task. If the
-scanner is absent and the explicit one-off path was not requested, apply the
-same rubric manually and report the skipped machine check. Do not
+A standalone installed persona may not have that repository helper. Do not
+silently download a floating `latest` to compensate. If the scanner/helper is
+absent, apply the same rubric manually and report the skipped machine check. Do not
 replace the repository's ESLint, Biome, TypeScript, Semgrep, CodeQL or tests
 with an anti-slop score.
 
