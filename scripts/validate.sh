@@ -33,7 +33,7 @@ for path in "${required_files[@]}"; do
   [[ -f "$ROOT/$path" ]] || { echo "missing required file: $path" >&2; exit 1; }
 done
 
-node - <<'NODE' "$ROOT"
+node - "$ROOT" <<'NODE'
 const fs = require("fs");
 const path = require("path");
 const root = process.argv[2];
@@ -42,15 +42,15 @@ for (const [persona, agents] of Object.entries(specialists.agency_agents)) {
   if (new Set(agents).size !== agents.length) throw new Error(`duplicate specialist in ${persona}`);
 }
 const lock = JSON.parse(fs.readFileSync(path.join(root, "THIRD_PARTY.lock.json"), "utf8"));
-for (const key of ["agency_agents","taste"]) {
+for (const key of ["agency_agents","taste","skillspector"]) {
   if (!/^[0-9a-f]{40}$/.test(lock[key].commit)) throw new Error(`unpinned commit for ${key}`);
 }
-for (const key of ["ui_ux_pro_max_cli","impeccable"]) {
+for (const key of ["ui_ux_pro_max_cli","impeccable","aislop"]) {
   if (!/^\d+\.\d+\.\d+$/.test(lock[key].version)) throw new Error(`unpinned package version for ${key}`);
 }
 NODE
 
-if grep -R -n '@latest' "$ROOT/scripts/install-specialists.sh" "$ROOT/scripts/install-dave-specialists.sh" "$ROOT/scripts/install-team-specialists.sh"; then
+if grep -R -n '@latest' "$ROOT/scripts" --include='*.sh'; then
   echo "unpinned latest dependency in specialist installers" >&2
   exit 1
 fi
