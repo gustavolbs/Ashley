@@ -67,9 +67,9 @@ function runCase(c) {
   const res = spawnSync("codex", [
     "exec",
     "--json",
-    prompt,
     "--output-schema", SCHEMA,
     "-o", resultPath,
+    prompt,
   ], { cwd: ROOT, encoding: "utf8" });
 
   writeFileSync(tracePath, res.stdout ?? "", "utf8");
