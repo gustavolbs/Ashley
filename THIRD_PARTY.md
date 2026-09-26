@@ -217,3 +217,20 @@ The optional installers default to reviewed immutable versions instead of upstre
 - Impeccable: `4.1.0`.
 
 Environment-variable overrides are intentionally supported for controlled upgrades. Review the upstream change, scan when appropriate, run repository validation/evals, then update the recorded pin rather than tracking `latest` silently.
+
+
+## Graphify
+
+https://github.com/Graphify-Labs/graphify
+
+Optional local code-graph accelerator for repository dependency/impact
+navigation. AI Personas does not require it for session reuse: the native
+project-context cache remains the default.
+
+When explicitly installed through `scripts/install-context-tools.sh`, the
+default pinned package is `graphifyy==0.9.68`. AI Personas directs Graphify
+output into the clone/worktree Git metadata cache instead of the repository and
+does not require its HTTP/MCP server or any deployment.
+
+The graph is navigation evidence. Current source, tests, schemas and
+configuration remain authoritative.

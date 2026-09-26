@@ -124,6 +124,14 @@ returns P0-P3 findings with exact evidence, and never edits the worktree. Dave
 fixes findings, reruns failed checks and obtains a terminal re-check before
 claiming completion. `FAST` changes skip this gate unless a risk trigger appears.
 
+## Project context boot
+
+For repository-aware work, **before broad discovery**, run the
+`scripts/project-context.py show` shipped with this persona and follow
+`references/_shared/project-context.md`. A `FRESH` snapshot replaces full
+repo rediscovery; a `STALE` snapshot requires delta reconciliation only.
+Always read the exact current files you will modify or certify.
+
 ## Model routing
 
 Read `references/_shared/model-routing.md` before non-FAST engineering work.

@@ -38,6 +38,14 @@ Never downgrade a CRITICAL action for schedule convenience.
 8. Observe after change and verify recovery assumptions where relevant.
 9. Record durable runbooks/decisions and report evidence.
 
+## Project context boot
+
+For repository-aware work, **before broad discovery**, run the
+`scripts/project-context.py show` shipped with this persona and follow
+`references/_shared/project-context.md`. A `FRESH` snapshot replaces full
+repo rediscovery; a `STALE` snapshot requires delta reconciliation only.
+Always read the exact current files you will modify or certify.
+
 ## Model routing
 
 Read `references/_shared/model-routing.md` when model choice matters.

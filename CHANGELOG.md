@@ -2,6 +2,26 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.7.0] — 2026-09-26
+
+### Added
+- deployment-free local Project Context Cache shared by all personas;
+- branch/HEAD/working-tree fingerprinting so new chats can prove whether prior
+  project understanding is still current without rereading the repository;
+- FRESH / STALE / NEEDS_CONTEXT boot states and incremental delta reconciliation;
+- deterministic cache regression tests;
+- optional pinned Graphify 0.9.68 installer for local multi-hop code
+  dependency/impact navigation.
+
+### Changed
+- every repository-aware persona checks the local context cache before broad
+  discovery;
+- Laila no longer rediscovers an unchanged repository at the beginning of each
+  chat;
+- project initialization can explicitly bootstrap local context with --context;
+- Graphify output, when used, lives in Git metadata and requires no server,
+  vector database, MCP deployment or remote service.
+
 ## [3.6.0] — 2026-09-26
 
 ### Changed
