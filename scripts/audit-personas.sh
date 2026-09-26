@@ -18,4 +18,6 @@ for persona in "${PERSONAS[@]}"; do
   while IFS= read -r doc; do while IFS= read -r linked_ref; do [[ -z "$linked_ref" || -f "$ROOT/skills/$persona/$linked_ref" ]] || fail "$persona broken reference $linked_ref"; done < <(grep -oE "references/[A-Za-z0-9_./-]+\.md" "$doc" | sort -u || true); done < <(find "$ROOT/skills/$persona" -maxdepth 3 -type f -name "*.md" | sort)
 done
 [[ ! -f "$ROOT/.DS_Store" && ! -f "$ROOT/skills/.DS_Store" ]] || fail ".DS_Store must not be tracked"
+latest_installs="$(grep -R -n '@latest' "$ROOT/scripts/install-specialists.sh" "$ROOT/scripts/install-dave-specialists.sh" "$ROOT/scripts/install-team-specialists.sh" 2>/dev/null || true)"
+[[ -z "$latest_installs" ]] || { printf '%s\n' "$latest_installs" >&2; fail "installer must not silently track @latest"; }
 echo "Persona package audit passed."
