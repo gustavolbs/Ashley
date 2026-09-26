@@ -1,75 +1,39 @@
 #!/usr/bin/env bash
 set -euo pipefail
 
-# Curated Agency Agents roster for non-Dave personas.
-# These are bounded evidence/research/review workers, not new authorities.
-
-AGENCY_REPO="${AGENCY_AGENTS_REPO:-https://github.com/msitarzewski/agency-agents.git}"
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+LOCK="$ROOT/THIRD_PARTY.lock.json"
+MANIFEST="$ROOT/SPECIALISTS.json"
 TMP="$(mktemp -d "${TMPDIR:-/tmp}/agency-agents-team.XXXXXX")"
 trap 'rm -rf "$TMP"' EXIT
-ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 
-AGENTS=(
-  # Laila: product/delivery
-  product-manager
-  feedback-synthesizer
-  project-shepherd
-  senior-project-manager
-  # Ashley: research/finish/brand
-  ux-researcher
-  ui-finish-gate-reviewer
-  brand-guardian
-  # Guto: production/reliability/security
-  devops-automator
-  sre-site-reliability-engineer
-  database-reliability-engineer
-  incident-response-commander
-  security-architect
-  # Roberto: strategy/operations/customers/compliance
-  business-strategist
-  operations-manager
-  customer-success-manager
-  data-privacy-officer
-  legal-compliance-checker
-  # Clara: finance
-  financial-analyst
-  tax-strategist
-  investment-researcher
-  bookkeeper-controller
-  pricing-analyst
-  # Ana: growth/search/comms/measurement
-  growth-hacker
-  seo-specialist
-  content-creator
-  social-media-strategist
-  paid-media-auditor
-  ad-creative-strategist
-  paid-social-strategist
-  ppc-campaign-strategist
-  tracking-measurement-specialist
-  pr-communications-manager
-  analytics-reporter
-  experiment-tracker
-)
+read_json() {
+  node -e 'const fs=require("fs"); const v=JSON.parse(fs.readFileSync(process.argv[1],"utf8")); const path=process.argv[2].split("."); let x=v; for (const k of path) x=x[k]; console.log(Array.isArray(x)?x.join(","):x);' "$1" "$2"
+}
 
-echo "Installing curated non-Dave persona specialists from Agency Agents..."
-git clone --depth 1 -q "$AGENCY_REPO" "$TMP/repo"
+AGENCY_REPO="${AGENCY_AGENTS_REPO:-$(read_json "$LOCK" agency_agents.repository)}"
+AGENCY_COMMIT="${AGENCY_AGENTS_COMMIT:-$(read_json "$LOCK" agency_agents.commit)}"
+AGENTS_CSV="$(node -e 'const fs=require("fs"); const v=JSON.parse(fs.readFileSync(process.argv[1],"utf8")).agency_agents; const xs=[...new Set(Object.entries(v).filter(([k])=>k!=="dave").flatMap(([,a])=>a))]; console.log(xs.join(","));' "$MANIFEST")"
+IFS=',' read -r -a AGENTS <<< "$AGENTS_CSV"
+
+echo "Installing curated team specialists from pinned Agency Agents commit $AGENCY_COMMIT..."
+git init -q "$TMP/repo"
+git -C "$TMP/repo" remote add origin "$AGENCY_REPO"
+git -C "$TMP/repo" fetch --depth 1 -q origin "$AGENCY_COMMIT"
+git -C "$TMP/repo" checkout --detach -q FETCH_HEAD
+
 if [[ "${AI_PERSONAS_REQUIRE_SKILLSPECTOR:-0}" == "1" ]]; then
   bash "$ROOT/scripts/scan-external-skill.sh" "$TMP/repo"
 fi
+
 (
   cd "$TMP/repo"
   bash scripts/convert.sh --tool codex >/dev/null
-  bash scripts/install.sh \
-    --tool codex \
-    --agent "$(IFS=,; echo "${AGENTS[*]}")" \
-    --no-interactive \
-    --no-convert
+  bash scripts/install.sh     --tool codex     --agent "$(IFS=,; echo "${AGENTS[*]}")"     --no-interactive     --no-convert
 )
 
 echo
-echo "Installed curated team specialist roster:"
+echo "Installed curated team roster from SPECIALISTS.json:"
 printf '  - %s\n' "${AGENTS[@]}"
 echo
 echo "Restart Codex/ChatGPT Desktop so the agent catalog is reloaded."
-echo "Optional supply-chain gate: AI_PERSONAS_REQUIRE_SKILLSPECTOR=1 bash scripts/install-team-specialists.sh"

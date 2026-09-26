@@ -1,38 +1,51 @@
 # Versioning
 
-AI Personas uses two version layers.
+AI Personas versions the suite and each persona separately.
 
 ## Suite version
 
-The root `VERSION` identifies the complete repository/team release.
+Root `VERSION` identifies the complete repository release.
 
-Use semantic versioning:
-- **MAJOR** — incompatible orchestration/install/memory contract changes or persona removals/renames;
-- **MINOR** — new capabilities, references, eval coverage or backward-compatible personas;
-- **PATCH** — fixes/clarifications that should not change the public contract.
+- **MAJOR** — incompatible authority/orchestration/install/memory contracts or
+  persona removal/rename;
+- **MINOR** — backward-compatible runtime behavior, tooling, eval or persona
+  capability changes;
+- **PATCH** — corrections that do not change the public behavior contract.
 
 ## Persona versions
 
-Each `skills/<persona>/VERSION` versions that persona independently.
+`skills/<persona>/VERSION` tracks the public behavior of that skill.
 
-Bump:
-- **MAJOR** when its authority, public workflow or durable-memory contract becomes incompatible;
-- **MINOR** for new domain capability/workflow;
-- **PATCH** for corrections, evidence hardening, routing fixes or wording changes without a new public capability.
+- **MAJOR** — incompatible authority/workflow/memory change;
+- **MINOR** — new workflow/capability or materially changed routing behavior;
+- **PATCH** — corrections/evidence hardening without a new workflow.
 
-`PERSONAS.json` is the machine-readable manifest.
+`PERSONAS.json` is the machine-readable suite/persona manifest.
 
-## Why both
+## Generated and locked artifacts
 
-A project can record that it was audited with, for example, Clara 1.2.0 and Dave 1.4.1 even if the overall suite was 3.6.0. This makes behavioral regressions, memory migration and eval comparison traceable.
+Release consistency also includes:
+
+- every `skills/<persona>/references/runtime-contracts.md` synchronized from
+  canonical `docs/` contracts;
+- `SPECIALISTS.json` as the only curated Agency Agents roster;
+- `THIRD_PARTY.lock.json` with exact external commits/package versions.
+
+Generated contract files are committed because standalone skill installation
+must be self-contained.
 
 ## Release discipline
 
-Before tagging a suite release:
-1. structural CI passes;
-2. relevant persona eval scenarios are run when practical;
-3. VERSION / PERSONAS.json / per-persona VERSION files agree;
-4. breaking memory/orchestration changes are documented;
-5. create a Git tag `v<root VERSION>`.
+Before a suite release:
 
-Do not embed version into the skill `name`; stable names keep invocation and project references compatible.
+1. run `bash scripts/validate.sh`;
+2. confirm generated runtime contracts are synchronized;
+3. confirm root/persona versions agree with `PERSONAS.json`;
+4. review any third-party lock changes;
+5. run the closest live behavior/domain evals when practical;
+6. compare routing/tool/token metrics for changes that affect execution cost;
+7. document user-visible behavior in `CHANGELOG.md`;
+8. create tag `v<root VERSION>`.
+
+Stable skill names are never version-suffixed; discovery and project references
+depend on those names remaining stable.

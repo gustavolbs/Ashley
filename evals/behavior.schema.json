@@ -1,0 +1,14 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "type": "object",
+  "properties": {
+    "selected_persona": {"type":"string","enum":["laila","roberto","clara","ana","ashley","dave","guto"]},
+    "execution_mode": {"type":"string","enum":["FAST","STANDARD","HIGH_RISK"]},
+    "control_plane": {"type":"string","enum":["sol","luna-direct","same-provider-fallback"]},
+    "execution_plane": {"type":"string","enum":["luna","none","same-provider-fallback"]},
+    "delegation_planned": {"type":"boolean"},
+    "reason": {"type":"string"}
+  },
+  "required":["selected_persona","execution_mode","control_plane","execution_plane","delegation_planned","reason"],
+  "additionalProperties": false
+}

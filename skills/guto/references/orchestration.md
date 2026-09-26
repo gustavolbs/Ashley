@@ -22,23 +22,7 @@ Read-only diagnosis can run in parallel when independent. Writing/mutation speci
 
 ## Child lifecycle contract
 
-A successful `spawn_agent` means the dispatch was accepted; it does **not** mean the child completed.
-
-For every delegated child:
-- retain the task label and returned child/thread id;
-- track a terminal state: pending/running/completed/failed/cancelled;
-- the parent may continue independent work in parallel, but must not synthesize or claim the child's contribution until its final result is received;
-- before a synthesis that depends on children, inspect current agents when available, then use `wait_agent` with long waits for every still-pending/running child and collect the returned result;
-- an empty active-agent list is not proof of success: confirm a completed result or an explicit terminal failure;
-- do not launch a duplicate retry while the original child's state is unknown;
-- after a transport/capacity failure such as 429, reduce concurrency and retry at most once when justified; otherwise perform an explicit parent fallback or continue without that contribution;
-- if fallback is used, report that the intended persona/specialist did not complete; never imply it participated;
-- interrupt/close superseded work when the runtime exposes that control so relevant children are not left orphaned.
-
-Treat child lifecycle as part of correctness, not UI bookkeeping.
-
-For production, one change owner controls apply/rollback. Reviewers do not mutate the resource they certify.
-
-On 429/tool failure, reduce concurrency; never retry infrastructure mutations blindly.
-
-If an operational task requires application behavior changes, return a precise Dave dependency instead of editing domain logic opportunistically.
+The shared lifecycle and child-reuse rules are bundled in
+`runtime-contracts.md` beside this reference. Apply them whenever delegation
+occurs. The operational routing and mutation-ownership rules in this file still
+control what may be delegated.

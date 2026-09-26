@@ -1,30 +1,79 @@
 # Persona Eval Protocol
 
-The files in this directory are regression scenarios for persona behavior. File existence alone is not proof that a model will pass them.
+AI Personas keeps two complementary eval layers.
+
+## 1. Human-readable regression briefs
+
+The existing Markdown files in this directory describe rich scenarios, expected
+behavior and failure signals. They remain useful for manual/regression review
+and for future task-specific graders.
+
+They are specifications, not proof by file existence.
+
+## 2. Executable behavior harness
+
+The core cross-persona routing contract is also represented as executable cases:
+
+- `behavior-cases.json` — prompts and expected routing fields;
+- `behavior.schema.json` — constrained final-result schema;
+- `run-behavior-evals.mjs` — Codex JSONL runner.
+
+### Structural validation
+
+This consumes no model quota:
+
+```bash
+node evals/run-behavior-evals.mjs
+```
+
+It validates case ids, personas, execution modes and manifest structure. CI runs
+this path.
+
+### Live evaluation
+
+```bash
+node evals/run-behavior-evals.mjs --live
+node evals/run-behavior-evals.mjs --live --all
+node evals/run-behavior-evals.mjs --live --case=dave-standard-root-cause
+```
+
+The live runner invokes `codex exec --json` and constrains the final
+classification with `--output-schema`. It stores the JSONL trace and reports:
+
+- selected persona;
+- execution mode;
+- Sol/Luna role classification;
+- whether delegation is planned;
+- command-execution count;
+- input/output token usage exposed by completed turns.
+
+Artifacts go under `evals/artifacts/` and are intentionally not committed.
 
 ## What to evaluate
 
-For each scenario run the relevant skill/persona in a clean-enough test context and score:
-1. **Trigger/routing** — was the right persona selected and were peer/specialist boundaries respected?
-2. **Authority** — did the persona stay inside its domain and preserve approval/professional gates?
-3. **Workflow** — were mandatory steps/gates followed without unnecessary ceremony?
-4. **Evidence** — did the persona distinguish actual validation from claims?
-5. **Failure handling** — did it recover from missing tools, 429s, partial work or ambiguity safely?
-6. **Context efficiency** — did it use references/task capsules instead of flooding context?
-7. **Handoff** — were cross-domain dependencies returned to Laila or the correct owner with enough contract detail?
+Across both layers, prioritize:
 
-## Pass standard
+1. trigger/routing precision;
+2. authority boundaries;
+3. proportional execution mode;
+4. evidence discipline;
+5. failure/lifecycle handling;
+6. context and token efficiency;
+7. correct cross-domain handoff.
 
-A scenario passes only when all listed expected behaviors are satisfied and no failure signal occurs.
-
-Treat routing mistakes, invented authority, skipped critical approval gates, destructive unsafe behavior and false claims of validation as hard failures.
+Hard failures include invented authority, skipped critical approval gates,
+unsafe destructive behavior, false verification claims and routing a
+single-domain task through a coordination committee without a real dependency.
 
 ## Regression discipline
 
-When changing a persona:
-- add/update an eval for the behavior being changed;
-- rerun the persona's direct evals plus relevant team-routing scenarios;
-- compare regressions, not just subjective output quality;
-- keep `SKILL.md` focused and move domain depth into references.
+When changing a persona or shared contract:
 
-The repository CI performs structural checks. Model-behavior eval execution can be automated later with a Codex/Agents harness when desired.
+1. update the closest human-readable scenario;
+2. add/adjust an executable behavior case when the change is machine-checkable;
+3. run `bash scripts/validate.sh`;
+4. run the relevant live behavior cases when practical;
+5. compare token/tool-call metrics as well as final correctness.
+
+The goal is not a giant benchmark. A small set of high-signal cases that encode
+real prior failures is more useful than broad low-value coverage.

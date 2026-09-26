@@ -1,71 +1,71 @@
-# RouteMux / Model Requirements
+# RouteMux / Provider-local model routing
 
-Personas are provider-agnostic, but the team uses a shared model-routing
-contract when the host exposes RouteMux model overrides. The detailed policy is
-in [`MODEL_ROUTING.md`](MODEL_ROUTING.md).
+Personas are provider-agnostic. When the host exposes model overrides, the
+canonical behavior is defined in `MODEL_ROUTING.md` and bundled into every
+installed persona through `references/runtime-contracts.md`.
 
-The provider is selected per active parent session. Native ChatGPT subscription
-parents call native `gpt-*` children; RouteMux parents call `routemux/...`
-children. The team never crosses that boundary silently because provider
-choice controls quota, billing, credentials, protocols and tool compatibility.
+## Provider boundary
+
+The active parent provider defines the child provider family.
+
+- native ChatGPT subscription parent -> native offered `gpt-*` children;
+- RouteMux parent -> `routemux/...` children;
+- never cross the boundary silently for price or availability.
+
+Provider choice affects quota, billing, credentials, protocol/tool support and
+observability, so a fallback must remain inside the same provider family unless
+the user explicitly changes providers.
+
+## Role-first routing
 
 ```text
-Codex host
-  ├── Ashley skill
-  ├── skills/memory
-  └── MCP tools
-       ↓
-RouteMux model provider
-       ↓
-selected model
+control plane  -> Sol-equivalent
+  investigation
+  root cause
+  architecture / strategy
+  decomposition / orchestration
+  consequential decisions
+
+execution plane -> Luna-equivalent
+  implementation
+  calculations
+  variants
+  routine diagnostics
+  tests / validation
+  review fixes
 ```
 
-## Required model behavior
+A clear low-risk `FAST` task can use Luna directly.
 
-For full Ashley capability, the selected model should be strong at:
+Exact model ids are discovered from the current provider/schema. Do not invent
+a slug from memory.
 
-- reliable tool/function calling;
-- vision/image understanding;
-- long instruction following;
-- multi-step reasoning;
-- spatial/visual reasoning;
-- structured comparison;
-- maintaining constraints across multiple MCP calls.
+## Parent-model behavior
 
-## Model tiers
+If the parent is Luna and a non-trivial decision phase appears, create/reuse a
+same-provider Sol planner, obtain a compact execution packet and execute on the
+Luna parent.
 
-Use a strong frontier vision/reasoning model for:
-- initial product architecture;
-- brand direction;
-- logo exploration;
-- complex A/B/C comparison;
-- final critique.
+If the parent is Sol, freeze the decision and delegate bounded execution to a
+same-provider Luna child instead of keeping Sol attached to routine commands.
 
-A cheaper capable model is acceptable for:
-- naming/organizing layers;
-- applying approved tokens;
-- repetitive component variants;
-- documentation cleanup;
-- simple spacing adjustments.
+If a completed child still has the relevant context, prefer `followup_task`
+to resume it. Avoid repeatedly paying for fresh planner/executor context.
 
-## Smoke test after changing models
+## Capability gates
 
-1. Ask Ashley to inspect Penpot without writing.
-2. Ask her to create a small disposable frame.
-3. Ask her to re-read the result.
-4. Ask her to produce two genuinely different variants under the same constraints.
+Model tier does not replace capability.
 
-A model is unsuitable if it repeatedly:
-- narrates a tool call instead of executing it;
-- sends malformed MCP arguments;
-- loses the active-page context;
-- ignores the approved project system;
-- cannot visually critique what it created;
-- makes broad destructive edits without understanding scope.
+- visual gates require a vision-capable route;
+- tool-heavy children must reliably call the required tools;
+- high-consequence operational/financial/security work still keeps its approval
+  boundaries;
+- independent reviewers remain read-only by default.
 
-Ashley cannot compensate for fundamentally unreliable tool calling.
+## Health and fallback
 
-The same capability rule applies to every persona: use Luna for the ordinary
-lane, a cheaper specialist only when its task capability is required, and Sol
-for consequential gates. Do not choose a model merely because it is available
-in the catalog.
+A route is eligible only when the active host/provider actually exposes it and,
+for relayed third-party models, current local tool/streaming probes are healthy.
+
+When a preferred tier is unavailable, preserve the role boundary with the
+strongest/smallest capable same-provider alternative and record the fallback.

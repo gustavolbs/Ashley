@@ -2,6 +2,45 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.6.0] — 2026-09-26
+
+### Added
+- self-contained generated `references/runtime-contracts.md` bundles for every
+  persona, synchronized from the canonical execution/model/lifecycle/anti-slop
+  contracts;
+- explicit delegation lifecycle contract with terminal-result discipline,
+  capacity handling and `followup_task` context reuse;
+- executable Codex behavior-eval harness using `codex exec --json`,
+  `--output-schema`, JSONL traces and token/tool-call metrics;
+- canonical `SPECIALISTS.json` roster and `THIRD_PARTY.lock.json` pins.
+
+### Changed
+- Sol/Luna routing now has an operational parent-model state machine: Luna
+  parents can reuse a Sol planner; Sol parents delegate bounded execution to
+  Luna; FAST work can remain Luna-direct;
+- all persona descriptions and agent metadata are more discriminative so
+  single-domain tasks route directly instead of unnecessarily passing through
+  Laila;
+- all seven SKILL files use stronger progressive disclosure and smaller
+  always-on instruction footprints;
+- optional Agency Agents, Taste, UI/UX Pro Max, Impeccable, AIslop and
+  SkillSpector integration paths are reproducibly pinned where applicable;
+- root architecture/usage/readme/model-routing documentation now describes the
+  full seven-persona suite instead of the historical Ashley-centric shape;
+- root project initialization is explicit: design, engineering, delivery or
+  all.
+
+### Fixed
+- standalone persona installs no longer depend on repository-root runtime docs;
+- installed-persona verification now fingerprints the full skill tree rather
+  than only SKILL.md/version;
+- specialist installer, doctor and documentation roster drift is eliminated by
+  the shared manifest;
+- stale Luna-first routing diagram and RouteMux guidance were replaced;
+- tracked .DS_Store files were removed and ignored;
+- CI now uses least-privilege contents permission, concurrency cancellation,
+  timeout and a pinned checkout action.
+
 ## [3.5.0] — 2026-09-26
 
 ### Changed

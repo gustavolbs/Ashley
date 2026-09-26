@@ -1,131 +1,170 @@
-# Ashley Usage Patterns
+# AI Personas Usage
 
-You do not need special command syntax. Address Ashley naturally.
+Use the domain owner directly whenever the request has one clear owner. Use
+Laila when the outcome is materially cross-functional or primarily about
+delivery coordination.
 
-## New SaaS
-
-```text
-Ashley, I want to build a SaaS for [problem].
-Here is the business model, scope and users.
-
-Do not code it yet. Understand the business, identify assumptions, define the
-product/UX architecture, then explore three materially different product and
-visual directions in the active design canvas.
-```
-
-## Brand from zero
+## Direct routing
 
 ```text
-Ashley, create the brand identity for this product. Start from positioning and
-semantic territories. I want to compare multiple directions before you converge.
-Include logo concepts, type, color and shape language.
+Fix this React bug and verify it.                         -> Dave
+Design this onboarding flow and visual system.           -> Ashley
+Investigate why production latency spiked.               -> Guto
+Model runway under these assumptions.                    -> Clara
+Decide our B2B operating model.                          -> Roberto
+Build the launch channel/measurement plan.               -> Ana
+Coordinate launch across pricing/design/code/infra/GTM.  -> Laila
 ```
 
-## Critique
+You normally do not need to name the persona. The skill descriptions are
+written to make implicit routing discriminative.
+
+## Cross-functional work
+
+Example:
 
 ```text
-Ashley, inspect the current design canvas/document. It feels generic.
-Critique product structure first, then visual craft. Tell me what is generic
-because of product structure versus what is only styling, then improve it.
+Coordinate the launch of this subscription feature.
+
+We need:
+- business/packaging decision;
+- financial validation;
+- UX states;
+- implementation;
+- production rollout;
+- launch communications.
+
+Give me one integrated plan, explicit dependencies and evidence-based
+completion.
 ```
 
-## Preference learning
+Laila owns coordination, while the domain personas retain their decision
+authority.
+
+## Sol/Luna behavior
+
+Model selection is internal by default.
+
+For non-trivial work:
 
 ```text
-Ashley, A has the strongest structure. B feels more human.
-C is too experimental. Build A2 from that feedback and record the durable
-project learning without turning it into a universal rule.
+Sol  -> investigate, decide, decompose
+        ↓ execution packet
+Luna -> execute, validate, apply feedback
+        ↓ only if a new decision appears
+Sol  -> resolve decision, preferably reusing the same planner context
 ```
 
-## Dense SaaS
+A small, obvious, low-risk task can run directly on Luna.
 
-```text
-Ashley, this is an expert operations screen. Optimize for scanning and repeated
-work. I do not want spacious marketing-dashboard patterns. Show me how much
-information we can expose without losing hierarchy.
+## Project memory initialization
+
+The root initializer is explicit; it no longer silently means "initialize
+Ashley".
+
+```bash
+bash scripts/init-project.sh --design
+bash scripts/init-project.sh --engineering
+bash scripts/init-project.sh --delivery
+bash scripts/init-project.sh --all
 ```
 
-## Transition to code
+Each initializer preserves existing project-owned sources of truth and should
+only add memory where an equivalent system does not already exist.
 
-```text
-Ashley, the product direction and design-canvas screens are approved.
-Finalize DESIGN_SYSTEM.md, document responsive/state behavior and prepare the
-design handoff. After that, implementation can begin.
+## Installation
+
+Install one persona:
+
+```bash
+npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
 ```
 
+Install the complete suite from a clone:
 
-## Existing project
-
-```text
-Ashley, read and understand this project before designing anything.
-Map the product, domain objects, routes, current design system and brand assets.
-Use an explorer subagent if the repo is large.
-Then design the new [screen/flow/asset] so it belongs to this product rather
-than looking like a generic new project.
+```bash
+bash scripts/install-all.sh
 ```
 
-## Social media / campaign
+Verify the installed trees exactly match the clone:
 
-```text
-Ashley, create a launch campaign for this product.
-Understand the approved brand and launch message first.
-Explore three creative routes, then build the selected route into a reusable
-social system with feed, story, LinkedIn and thumbnail variants in the active design canvas.
-Verify current channel dimensions before final export.
+```bash
+bash scripts/verify-installed.sh
 ```
 
-## General creative production
+Inspect optional local capabilities:
 
-```text
-Ashley, we need [one-pager / ad creative / blog cover / app icon / media kit].
-Use the existing project and brand as source of truth. Create the artifact,
-inspect it at its real consumption size and update the reusable visual system
-if this introduces a durable new pattern.
+```bash
+bash scripts/doctor.sh
 ```
 
-## Automatic learning
+## Optional specialists
 
-You do not need to say "remember this":
+The canonical Agency Agents roster lives in `SPECIALISTS.json`; pinned
+third-party inputs live in `THIRD_PARTY.lock.json`.
 
-```text
-Ashley, the previous campaign was too corporate. This version is much closer:
-I like the typography and the way the product screenshot is treated, but the
-illustration style is still too playful.
+```bash
+bash scripts/install-dave-specialists.sh
+bash scripts/install-team-specialists.sh
+bash scripts/install-specialists.sh
 ```
 
-Ashley should extract scoped signals, update project/global memory when
-appropriate, and use them in future work without overgeneralizing.
+To require a SkillSpector pass for cloned third-party skill/agent bundles:
 
-
-## Taste calibration
-
-```text
-Ashley, calibrate my visual taste. Create a compact design-canvas board with
-meaningfully different choices for typography, density, geometry, color
-intensity, composition, brand expressiveness, illustration and motion.
-I will react to it; extract the reasons and update TASTE_PROFILE.md.
+```bash
+AI_PERSONAS_REQUIRE_SKILLSPECTOR=1 bash scripts/install-dave-specialists.sh
 ```
 
-## Visual QA
+Specialists are bounded workers/reviewers, not new authorities.
 
-```text
-Ashley, before you call this approved, export/render the relevant frames,
-inspect the actual pixels at intended viewing size, critique them, fix any
-issues and inspect again. Do not pass QA from layer structure alone.
+## Repository validation
+
+```bash
+bash scripts/validate.sh
 ```
 
-## Campaign strategy
+This checks persona structure, version consistency, bundled runtime contracts,
+shell syntax, JSON manifests, specialist pins and the behavior-eval manifest.
 
-```text
-Ashley, create a campaign for this launch. Establish audience, insight,
-promise, reason-to-believe, primary message and desired action first.
-Then explore creative routes and build the selected system in the active design canvas.
+## Behavioral evals
+
+Validate the harness without using model quota:
+
+```bash
+node evals/run-behavior-evals.mjs
 ```
 
-## Design ↔ code sync
+Run the default live smoke set:
 
-```text
-Ashley, inspect both the current codebase and design canvas. Determine the source of
-truth for tokens, components, states and assets; document the mapping and
-resolve drift before creating new product UI.
+```bash
+node evals/run-behavior-evals.mjs --live
 ```
+
+Run all routing cases:
+
+```bash
+node evals/run-behavior-evals.mjs --live --all
+```
+
+Run one case:
+
+```bash
+node evals/run-behavior-evals.mjs --live --case=dave-fast-bug
+```
+
+Live traces and metrics are written to `evals/artifacts/`, which is ignored
+by Git.
+
+## Evidence language
+
+A persona should say what was actually established:
+
+- proposed;
+- changed;
+- built;
+- run;
+- verified;
+- unverified.
+
+Do not collapse these states into "done" when the required proof was not
+available.

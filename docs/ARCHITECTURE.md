@@ -1,213 +1,194 @@
-# Ashley Architecture
+# AI Personas Architecture
 
-Ashley intentionally remains **one Codex Agent Skill**.
+AI Personas is a suite of independent Codex Agent Skills with shared runtime
+contracts. There is no persona server, daemon, database or second orchestration
+runtime.
 
-There is no independent Ashley runtime.
-
-## Runtime architecture
+## Runtime shape
 
 ```text
 User
-  ↓
-Codex
-  ├── Ashley SKILL.md
-  ├── Ashley references/ (loaded on demand)
-  ├── repository/project intake
-  ├── project design memory (docs/design)
-  ├── global preference memory (~/.ashley)
-  ├── optional Codex subagents (ephemeral delegation)
-  ├── optional specialist skills
-  │    ├── UI/UX Pro Max
-  │    ├── Taste
-  │    └── Impeccable
-  └── design canvas capability
-       ├── pen.dev / Pencil MCP + .pen files (preferred)
-       ├── pen CLI headless resilience path
-       ├── Penpot MCP (supported fallback)
-       └── code/browser sandbox (last-resort UI fallback)
+ ├─ single-domain request ───────────────> domain persona
+ │                                         ├─ SKILL.md (small router/authority)
+ │                                         ├─ references/ (loaded on demand)
+ │                                         ├─ runtime-contracts.md (generated)
+ │                                         └─ optional bounded specialists
+ │
+ └─ materially cross-functional request -> Laila
+                                           └─ domain persona owners
+                                              └─ bounded specialists
 ```
 
-The model may be provided by OpenAI or by a custom provider such as RouteMux. Ashley is instructions + knowledge + tools, not a model.
+Domain authority stays local:
 
-## Why one skill
+- Roberto — business strategy and operations;
+- Clara — financial truth and capital;
+- Ana — marketing, growth and communications;
+- Ashley — product experience, visual design and brand;
+- Dave — application/software engineering;
+- Guto — platform, production and reliability;
+- Laila — cross-functional scope, dependencies, acceptance and delivery.
 
-A separate service/multi-agent runtime would add:
-- deployment;
-- process management;
-- another tool loop;
-- duplicated memory;
-- additional failure modes;
-- routing complexity.
-
-None is required for the intended founder/design workflow.
-
-The primary intelligence bottleneck is design reasoning, project comprehension, creative exploration and visual evaluation — not orchestration infrastructure.
-
-Codex subagents are used only as ephemeral helpers for independent tasks such as repository mapping, reference research or critique. They do not turn Ashley into a separate multi-agent runtime. Ashley remains the final synthesizer and creative authority.
+Laila is not a mandatory gateway. A request with one clear domain should invoke
+that domain persona directly.
 
 ## Progressive disclosure
 
-`SKILL.md` contains the operating system and routing logic.
+Skill discovery starts from each skill's `name` and `description`. The full
+`SKILL.md` is loaded only when the skill is selected, and detailed references
+are loaded only when the workflow needs them.
 
-Detailed knowledge lives in `references/` so Codex can load only what is relevant:
-- project/repository intake;
-- business/product;
-- research;
-- architecture;
-- interaction;
-- visual craft;
-- brand/logo;
-- creative production and campaign/social design;
-- systems;
-- accessibility;
-- creative exploration;
-- critique;
-- design-canvas abstraction;
-- pen.dev/Pencil;
-- Penpot fallback;
-- memory.
+Therefore:
 
-This keeps the always-on instruction footprint small enough for normal engineering sessions.
+1. frontmatter descriptions optimize routing precision;
+2. `SKILL.md` keeps authority, the operating loop and the shortest critical
+   rules;
+3. domain depth lives in `references/`;
+4. deterministic helpers live in `scripts/`;
+5. project-memory templates live in `templates/`.
 
-## Creativity architecture
+The repository audit enforces a size budget on `SKILL.md` to prevent prompt
+growth from silently becoming permanent context cost.
 
-Ashley does not use "be creative" as the mechanism.
+## Portable shared contracts
 
-She uses a finite design-space loop:
+Repository-level contracts are canonical under `docs/`:
 
-1. Frame the job and constraints.
-2. Identify design dimensions with meaningful freedom.
-3. Retrieve near, adjacent and (when useful) distant patterns.
-4. Generate multiple coherent hypotheses.
-5. Remove dominated/redundant concepts.
-6. Materialize the survivors.
-7. Critique against product and craft constraints.
-8. Receive human preference signal.
-9. Produce descendants.
-10. Store scoped learnings.
+- `EXECUTION_MODES.md`;
+- `MODEL_ROUTING.md`;
+- `DELEGATION_LIFECYCLE.md`;
+- `ANTI_SLOP.md`.
 
-This balances novelty and assertiveness:
-- constraints prevent random art;
-- divergence prevents first-answer fixation;
-- critique prevents novelty for novelty's sake;
-- human preference trains product-specific taste.
+A standalone installed skill cannot assume that repository-root `docs/` also
+exists. `scripts/sync-runtime-contracts.sh` therefore generates
+`skills/<persona>/references/runtime-contracts.md` for every persona.
 
-## Memory
+CI runs the sync script in `--check` mode. A canonical contract edit that is
+not propagated into every skill fails validation.
 
-No DB/runtime is required.
+## Model control plane
 
-### Project memory
-Versioned with each product:
-`docs/design/*.md`.
-
-### Global memory
-Local to the user:
-`~/.ashley/PREFERENCES.md`
-`~/.ashley/HEURISTICS.md`.
-
-Ashley evaluates learning proactively after approvals, rejections, corrections and observed design failures. The distinction between project and global memory prevents a decision for one product from becoming an accidental rule for every future product.
-
-There is no background learner. "Automatic learning" means Ashley updates the appropriate durable memory during normal design sessions without requiring an explicit "remember this" command.
-
-## Specialist model
-
-Ashley is the authority.
-
-Specialists are tools:
-- UI/UX Pro Max = searchable repertoire/data.
-- Taste = creative visual pressure / anti-generic exploration.
-- Impeccable = critique / finish pressure.
-
-Ashley may take a recommendation, adapt it, or reject it.
-
-## Design canvas
-
-Ashley does not depend on one vendor-specific canvas.
-
-### Preferred: pen.dev / Pencil
-Repo-owned `.pen` files provide a durable, versionable design artifact. Ashley can use the local `pencil` MCP when the desktop/IDE host is available, and the `pen` CLI as a headless resilience/export path.
-
-### Supported fallback: Penpot
-Penpot remains supported for existing projects and stable MCP sessions.
-
-### Last-resort UI fallback
-If no writable design canvas is available, Ashley may use an isolated code/browser visual sandbox for UI exploration and visual QA, while clearly marking that the result is not an editable vector design source.
-
-Every consequential visual write is followed by rendered inspection regardless of canvas.
-
-## Evals
-
-`evals/` contains stable design briefs used as regression tests.
-
-After changing Ashley's core process:
-- run several briefs with the same capable model;
-- compare product reasoning, diversity, visual specificity, usability and adherence;
-- reject changes that improve one aesthetic style while degrading mode generality.
-
-The evals are intentionally cross-domain to prevent Ashley becoming "the SaaS dashboard skill".
-
-
-## Full creative scope
-
-Ashley owns more than product UI. The same reasoning/memory/creative loop applies to:
-- identities and logo systems;
-- social-media creative;
-- campaigns and ad concepts;
-- launch/marketing graphics;
-- icon and vector systems;
-- editorial/blog/email graphics;
-- branded diagrams and collateral.
-
-The selected editable design canvas remains the default layout/vector production surface. If the host exposes image-generation/editing tools, Ashley can use them as source-asset tools under her art direction.
-
-## Existing projects
-
-Before designing into an existing repository, Ashley runs a proportional Project Intake:
-- product/docs;
-- domain models and routes;
-- existing UI/components/tokens;
-- brand assets;
-- current design memory.
-
-Large repo exploration can be delegated read-only to Codex's built-in explorer subagent. Ashley then synthesizes the findings and designs from the actual product context rather than a generic SaaS prior.
-
-
-## Ashley 1.0 production architecture
-
-The runtime remains one skill, but the quality loop now contains six explicit production concerns:
+The shared default is:
 
 ```text
-project + business understanding
-        ↓
-creative strategy / message
-        ↓
-taste prior + creative divergence
-        ↓
-editable canvas production
-        ↓
-render/export visual QA
-        ↓
-artifact-specific finish gate
-        ↓
-design↔code / asset handoff
-        ↓
-learning + contradiction-aware memory
+decision / investigation / orchestration -> Sol
+bounded execution / implementation       -> Luna
 ```
 
-### Taste
-`~/.ashley/TASTE_PROFILE.md` stores a soft preference prior. It never overrides the brief, product evidence or approved project identity.
+A clear low-risk `FAST` task can skip Sol and execute directly on Luna.
 
-### Visual observation
-For high-fidelity work, structure inspection is insufficient. Ashley should export/render a representative artifact and inspect the pixels with a vision-capable model. A successful MCP write is not a visual pass.
+The runtime contract also handles the active parent model:
 
-### Messaging
-Campaign and growth creative receives a communication brief before visual execution.
+- Luna parent: spawn/reuse a Sol planner when a real decision phase is needed,
+  then execute on Luna;
+- Sol parent: freeze the decision/execution packet, delegate execution to Luna,
+  and avoid streaming routine logs into Sol;
+- when a child already has the right compact context, resume it with
+  `followup_task` instead of respawning it.
 
-### Provenance
-Asset use records whether rights/source are owned, licensed, generated, verified or unresolved.
+Exact model slugs remain provider-local. Role separation is more important than
+silently crossing provider families.
 
-### Design ↔ code
-Existing implementations are evidence. Ashley identifies whether design or code is authoritative for each system layer and records the mapping instead of silently creating divergence.
+## Execution modes
 
-### Definition of done
-Completion is artifact-specific and evidence-based.
+Every persona uses the same proportionality model:
+
+- `FAST` — direct owner, no committee, one targeted proof;
+- `STANDARD` — moderate uncertainty or multi-file/cross-layer work, bounded
+  delegation/review only when it changes quality;
+- `HIGH_RISK` — security, privacy, money, production, migrations, destructive
+  actions, critical contracts or similarly consequential decisions.
+
+Risk gates are authority rules, not model-quality rules. A stronger model does
+not remove required human approval.
+
+## Delegation topology
+
+Persona owners may use lower-level specialists inside their domain. A persona
+invoked by Laila returns peer-domain dependencies to Laila rather than building
+a peer-to-peer mesh.
+
+The shared lifecycle contract requires terminal child results and prefers
+context reuse over respawn. Concurrency is bounded and reduced after shared
+capacity failures.
+
+Specialist rosters are defined once in `SPECIALISTS.json`. Installers and the
+doctor command read that manifest instead of maintaining independent lists.
+
+## Reproducible third-party inputs
+
+Optional external tools remain external, but installer inputs are pinned in
+`THIRD_PARTY.lock.json`.
+
+Current lock classes include:
+
+- Agency Agents repository commit;
+- Taste repository commit;
+- UI/UX Pro Max CLI version;
+- Impeccable CLI version.
+
+Upgrades are deliberate repository changes: update the lock, review/scan the
+new input, run validation/evals and commit the new pin.
+
+## Evidence and anti-hallucination
+
+All personas distinguish proposal, mutation and proof. Domain evidence files
+define what counts as verification for that persona.
+
+Examples:
+
+- a diff does not prove runtime behavior;
+- a green build does not prove a user flow;
+- a child response does not prove integrated correctness;
+- a design-layer write does not prove rendered visual quality;
+- production success requires post-change operational evidence.
+
+## Durable memory
+
+Memory adapts to existing project sources of truth instead of creating parallel
+databases.
+
+- Ashley: `docs/design/` when needed;
+- Dave: existing AGENTS/ADRs/engineering docs first, optional
+  `docs/engineering/`;
+- Laila: tracker/project docs first, optional `docs/delivery/`;
+- other personas prefer existing domain-owned project documents and store only
+  durable decisions/assumptions when necessary.
+
+Executable/reconciled current truth overrides stale memory.
+
+## Evaluation architecture
+
+The original Markdown scenarios remain human-readable regression briefs.
+
+The executable layer adds:
+
+- `evals/behavior-cases.json` — cross-persona routing cases;
+- `evals/behavior.schema.json` — structured result contract;
+- `evals/run-behavior-evals.mjs` — `codex exec --json` runner.
+
+Repository CI runs the harness in manifest-validation mode without spending
+model quota. A maintainer can run live cases locally and capture JSONL traces,
+routing results, command counts and token usage under `evals/artifacts/`.
+
+## Installation integrity
+
+`scripts/install-all.sh` copies the canonical repository skill directories to
+`~/.agents/skills/<persona>`.
+
+`scripts/verify-installed.sh` compares a recursive digest of each installed
+skill tree against the repository, so stale references/scripts/templates can no
+longer hide behind a matching `SKILL.md` and version number.
+
+## Design principle
+
+Add intelligence only when it earns permanent complexity.
+
+Prefer:
+
+- a precise trigger over another coordinator;
+- a reference over a longer always-on prompt;
+- a deterministic script over repeated prose;
+- a shared generated contract over duplicated policy;
+- one authoritative manifest over synchronized hand-maintained lists;
+- an executable eval over confidence from inspection alone.

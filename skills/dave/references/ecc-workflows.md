@@ -6,7 +6,7 @@ MIT. This is a behavior contract, not an ECC runtime or a second installer.
 
 ## Workflow selector
 
-Classify with `docs/EXECUTION_MODES.md` first. The fast path is the default:
+Classify with `runtime-contracts.md` first. The fast path is the default:
 one owner, one targeted check, no child/research/reviewer unless a risk trigger
 appears. Use the workflows below only when the selected mode requires them.
 
@@ -135,5 +135,5 @@ This workflow layer does not:
 - make every task TDD-heavy or require an arbitrary coverage percentage;
 - let a reviewer edit the worktree or certify its own changes.
 
-The active provider/model contract in `docs/MODEL_ROUTING.md`, repository
+The active provider/model contract in `runtime-contracts.md`, repository
 instructions and Dave's security/UI gates remain authoritative.

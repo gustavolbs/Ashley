@@ -19,7 +19,7 @@ aislop ci --changes --base origin/main
 
 If the repository has a different integration point, use its existing config
 and baseline. Do not turn an uncalibrated score into a hard gate. Review
-findings against `docs/ANTI_SLOP.md`, fix high-confidence issues, and rerun the
+findings against `runtime-contracts.md`, fix high-confidence issues, and rerun the
 scan. `npx aislop@latest` is a deliberate one-off fallback, not an automatic
 dependency installation.
 
