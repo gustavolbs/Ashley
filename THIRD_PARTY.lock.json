@@ -15,5 +15,13 @@
   "impeccable": {
     "package": "impeccable",
     "version": "4.1.0"
+  },
+  "aislop": {
+    "package": "aislop",
+    "version": "0.16.1"
+  },
+  "skillspector": {
+    "repository": "https://github.com/NVIDIA/SkillSpector.git",
+    "commit": "89e90872e2ec813bcb137bf6b3145c92e55811ae"
   }
 }
