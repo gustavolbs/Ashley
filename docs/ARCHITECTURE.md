@@ -43,3 +43,33 @@ Worker status is not proof. Each domain preserves explicit unverified states.
 Durable memory prefers project-owned sources of truth and never stores secrets.
 Third-party specialist installers use a reviewed pinned upstream commit by
 default so an upstream HEAD change cannot silently alter the runtime.
+
+
+## Local project-context reuse
+
+New chats do not imply new repository discovery. Every persona ships the same
+stdlib-only project-context helper and shared boot contract.
+
+For Git repositories the cache lives under `<git-dir>/ai-personas/`, outside
+the working tree. It stores a compact project map plus branch/HEAD/worktree
+fingerprints. A fresh session can therefore prove that its previous context is
+still current using cheap local Git operations.
+
+```text
+new chat
+   |
+project-context show
+   |
+   +-- FRESH --------> compact snapshot -> task files only
+   |
+   +-- STALE --------> committed/dirty delta -> targeted reconciliation
+   |
+   +-- NEEDS_CONTEXT -> one proportional discovery -> checkpoint
+```
+
+Current code/config/tests always outrank the cache. The snapshot is navigation
+memory, not a generated source of truth.
+
+Graphify can be installed as an optional local code-graph accelerator for
+multi-hop dependency/impact questions. It is never required and its output is
+kept in the same Git-metadata cache rather than committed or deployed.
