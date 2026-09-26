@@ -13,4 +13,5 @@ for a in "${TEAM_SPECIALISTS[@]}"; do [[ -f "$HOME/.codex/agents/$a.toml" ]] && 
 if [[ -e "AGENTS.md" || -d "docs/adr" || -d "docs/adrs" || -d "docs/engineering" ]]; then ok "Current project has engineering instructions/memory"; else warn "Current project has no durable engineering memory (optional)"; fi
 command -v codex >/dev/null 2>&1 && ok "Codex CLI found" || warn "Codex CLI not in PATH (Desktop may still exist)"
 command -v pen >/dev/null 2>&1 && ok "pen.dev CLI found" || warn "pen.dev CLI not found (optional for Ashley)"
+command -v graphify >/dev/null 2>&1 && ok "Graphify CLI found (optional context accelerator)" || warn "Graphify CLI not found (optional; native context cache still works)"
 echo; echo "Pinned Agency Agents ref: $AGENCY_AGENTS_REF"; echo "Inside Codex verify /skills, available custom agents, and /mcp."
