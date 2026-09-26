@@ -22,7 +22,44 @@ for persona in "${PERSONAS[@]}"; do
   skill="$ROOT/skills/$persona/SKILL.md"
   [[ -f "$skill" ]] || fail "missing $skill"
   grep -q "^name: $persona$" "$skill" || fail "$persona frontmatter name does not match directory"
-  [[ -f "$ROOT/skills/$persona/agents/openai.yaml" ]] || fail "missing agents/openai.yaml for $persona"
+  agent_yaml="$ROOT/skills/$persona/agents/openai.yaml"
+  [[ -f "$agent_yaml" ]] || fail "missing agents/openai.yaml for $persona"
+  grep -q '^  display_name:' "$agent_yaml" || fail "$persona agent metadata missing display_name"
+  grep -q '^  short_description:' "$agent_yaml" || fail "$persona agent metadata missing short_description"
+  grep -q '^  default_prompt:' "$agent_yaml" || fail "$persona agent metadata missing default_prompt"
+  grep -q '^  allow_implicit_invocation: true
+  [[ -f "$ROOT/skills/$persona/VERSION" ]] || fail "missing VERSION for $persona"
+  [[ -f "$ROOT/skills/$persona/references/runtime-contracts.md" ]] || fail "missing runtime contracts for $persona"
+  persona_version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"
+  [[ "$persona_version" =~ ^[0-9]+.[0-9]+.[0-9]+$ ]] || fail "$persona VERSION is not semver"
+  grep -q "\"$persona\": \"$persona_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json version mismatch for $persona"
+  grep -q "evidence.md" "$skill" || fail "$persona SKILL.md must reference its evidence protocol"
+  grep -q "references/runtime-contracts.md" "$skill" || fail "$persona SKILL.md must reference bundled runtime contracts"
+  for heading in "Anti-slop quality gate" "Execution speed" "Delegated-child lifecycle" "Model routing"; do
+    grep -q "^## $heading$" "$skill" || fail "$persona SKILL.md missing $heading"
+  done
+  bytes="$(wc -c < "$skill" | tr -d " ")"
+  (( bytes <= 10000 )) || fail "$persona SKILL.md is ${bytes} bytes; move detail into references/"
+
+  while IFS= read -r doc; do
+    while IFS= read -r linked_ref; do
+      [[ -z "$linked_ref" || -f "$ROOT/skills/$persona/$linked_ref" ]] || fail "$persona has broken reference $linked_ref in ${doc#$ROOT/}"
+    done < <(grep -oE "references/[A-Za-z0-9._/-]+\.md" "$doc" | sort -u || true)
+  done < <(find "$ROOT/skills/$persona" -maxdepth 2 -type f -name "*.md" | sort)
+done
+
+portable_leaks="$(find "$ROOT/skills" -type f -name '*.md' ! -name 'runtime-contracts.md' -exec grep -HnE 'docs/(MODEL_ROUTING|EXECUTION_MODES|ANTI_SLOP)\.md' {} + 2>/dev/null || true)"
+[[ -z "$portable_leaks" ]] || { printf "%s\n" "$portable_leaks" >&2; fail "installed skills reference repository-only runtime docs"; }
+
+ds_store="$(find "$ROOT" -path "$ROOT/.git" -prune -o -name .DS_Store -print)"
+[[ -z "$ds_store" ]] || { printf "%s\n" "$ds_store" >&2; fail ".DS_Store files are tracked/present"; }
+
+for stale in parker victor nora maya; do
+  [[ ! -d "$ROOT/skills/$stale" ]] || fail "stale persona directory skills/$stale exists"
+done
+
+echo "Persona structure audit passed."
+ "$agent_yaml" || fail "$persona implicit invocation policy missing"
   [[ -f "$ROOT/skills/$persona/VERSION" ]] || fail "missing VERSION for $persona"
   [[ -f "$ROOT/skills/$persona/references/runtime-contracts.md" ]] || fail "missing runtime contracts for $persona"
   persona_version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"
