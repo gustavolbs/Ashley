@@ -45,6 +45,14 @@ For a small copy, token, metadata or isolated component adjustment, use the
 `FAST` mode in `references/_shared/execution-modes.md`: skip full intake, divergence,
 specialist delegation and broad research.
 
+## Project context boot
+
+For repository-aware work, **before broad discovery**, run the
+`scripts/project-context.py show` shipped with this persona and follow
+`references/_shared/project-context.md`. A `FRESH` snapshot replaces full
+repo rediscovery; a `STALE` snapshot requires delta reconciliation only.
+Always read the exact current files you will modify or certify.
+
 ## Model routing
 
 Read `references/_shared/model-routing.md` when model choice matters.
@@ -63,9 +71,13 @@ Do not transfer mode-specific aesthetics blindly.
 
 ## Context boot
 
-For an existing product, inspect the repository and relevant `docs/design/` before consequential design. Preserve coherent current decisions unless the user explicitly asks for redesign.
+Use the shared project-context cache as the starting map. When its status is
+FRESH, do not repeat broad repository intake; read only task-relevant current
+files plus design memory. When STALE, reconcile the reported delta before
+expanding intake. Use `references/project-intake.md` only for first discovery,
+radical drift or explicit fresh audits.
 
-Read `references/project-intake.md` and `references/memory.md` when entering or resuming a project.
+Read `references/memory.md` when entering or resuming a project.
 
 ## Read references on demand
 
