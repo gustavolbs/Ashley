@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "cases": [
+    {
+      "id": "dave-fast-bug",
+      "prompt": "Fix a one-line TypeScript typo in an existing function. The failing test already identifies the exact line.",
+      "expect": {"selected_persona":"dave","execution_mode":"FAST","control_plane":"luna-direct","execution_plane":"luna","delegation_planned":false},
+      "max_command_executions": 5
+    },
+    {
+      "id": "dave-standard-root-cause",
+      "prompt": "Investigate an intermittent checkout bug that crosses React state, an API route and database writes, then implement the smallest verified fix.",
+      "expect": {"selected_persona":"dave","execution_mode":"STANDARD","control_plane":"sol","execution_plane":"luna"}
+    },
+    {
+      "id": "guto-production-risk",
+      "prompt": "Plan and safely execute a production DNS cutover with rollback and post-change verification.",
+      "expect": {"selected_persona":"guto","execution_mode":"HIGH_RISK","control_plane":"sol","execution_plane":"luna"}
+    },
+    {
+      "id": "ashley-fast-visual",
+      "prompt": "Change only the spacing between two already-approved UI elements in an existing design without changing the design direction.",
+      "expect": {"selected_persona":"ashley","execution_mode":"FAST","control_plane":"luna-direct","execution_plane":"luna","delegation_planned":false}
+    },
+    {
+      "id": "ashley-product-direction",
+      "prompt": "Design the information architecture and interaction model for a new property-management workflow, then materialize the approved direction.",
+      "expect": {"selected_persona":"ashley","execution_mode":"STANDARD","control_plane":"sol","execution_plane":"luna"}
+    },
+    {
+      "id": "clara-fast-calculation",
+      "prompt": "Given fixed assumptions and values, calculate runway in months and show the arithmetic.",
+      "expect": {"selected_persona":"clara","execution_mode":"FAST","control_plane":"luna-direct","execution_plane":"luna","delegation_planned":false}
+    },
+    {
+      "id": "clara-material-decision",
+      "prompt": "Compare two treasury strategies for a company with material FX exposure and structure the decision after validating assumptions.",
+      "expect": {"selected_persona":"clara","execution_mode":"HIGH_RISK","control_plane":"sol","execution_plane":"luna"}
+    },
+    {
+      "id": "ana-campaign-execution",
+      "prompt": "The positioning and channel brief are approved. Produce the campaign variants and measurement checklist.",
+      "expect": {"selected_persona":"ana","execution_mode":"FAST","control_plane":"luna-direct","execution_plane":"luna"}
+    },
+    {
+      "id": "roberto-strategy",
+      "prompt": "Decide whether a B2B SaaS should move upmarket using customer, competitive, operating and distribution evidence.",
+      "expect": {"selected_persona":"roberto","execution_mode":"STANDARD","control_plane":"sol","execution_plane":"luna"}
+    },
+    {
+      "id": "laila-cross-functional",
+      "prompt": "Coordinate a product launch that requires pricing, UX, engineering, infrastructure and marketing with dependencies and acceptance gates.",
+      "expect": {"selected_persona":"laila","execution_mode":"STANDARD","control_plane":"sol","execution_plane":"luna","delegation_planned":true}
+    }
+  ]
+}
