@@ -1,13 +1,13 @@
 {
-  "suite": "3.7.0",
+  "suite": "4.0.0",
   "personas": {
-    "laila": "1.5.0",
-    "roberto": "1.5.0",
-    "clara": "1.5.0",
-    "ana": "1.5.0",
-    "ashley": "1.5.0",
-    "dave": "1.5.0",
-    "guto": "1.5.0"
+    "laila": "2.0.0",
+    "roberto": "2.0.0",
+    "clara": "2.0.0",
+    "ana": "2.0.0",
+    "ashley": "2.0.0",
+    "dave": "2.0.0",
+    "guto": "2.0.0"
   },
   "policy": {
     "scheme": "semver",
@@ -19,6 +19,7 @@
       "docs/ANTI_SLOP.md",
       "docs/EXECUTION_MODES.md",
       "docs/MODEL_ROUTING.md",
+      "docs/MUTATION_AUTHORITY.md",
       "docs/PROJECT_CONTEXT.md"
     ],
     "packaged_under": "references/_shared",
@@ -36,5 +37,12 @@
     "script": "scripts/project-context.py",
     "max_summary_bytes": 12288,
     "graphify_optional": true
+  },
+  "model_policy": {
+    "resident": "Luna",
+    "decision_advisor": "Sol",
+    "fast_sol_budget": 0,
+    "standard_sol_default": 0,
+    "persistent_laila_sol": false
   }
 }

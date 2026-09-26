@@ -9,7 +9,7 @@ python3 "$ROOT/scripts/test-project-context.py"
 python3 "$ROOT/scripts/audit-context.py"
 for f in "$ROOT"/scripts/*.sh "$ROOT"/scripts/lib/*.sh; do bash -n "$f"; done
 for f in "$ROOT"/skills/*/scripts/*.sh; do [[ -e "$f" ]] && bash -n "$f"; done
-for path in CHANGELOG.md PERSONAS.json docs/VERSIONING.md docs/ENGINEERING_STANDARDS.md docs/REVIEW_STANDARDS.md docs/ECC_INTEGRATION.md docs/ANTI_SLOP.md docs/EXECUTION_MODES.md docs/MODEL_ROUTING.md docs/PROJECT_CONTEXT.md scripts/project-context.py scripts/test-project-context.py scripts/install-context-tools.sh scripts/run-evals.sh scripts/eval-static.py scripts/audit-context.py scripts/lib/specialists.sh evals/model-routing.md evals/provider-local-routing.md evals/team-routing.md evals/team-evidence-hallucination.md evals/project-context-cache.md; do
+for path in CHANGELOG.md PERSONAS.json docs/ANTI_SLOP.md docs/EXECUTION_MODES.md docs/MODEL_ROUTING.md docs/MUTATION_AUTHORITY.md docs/PROJECT_CONTEXT.md scripts/project-context.py scripts/test-project-context.py scripts/run-evals.sh scripts/eval-static.py evals/model-routing.md evals/mutation-authority.md evals/sol-budget.md evals/team-routing.md; do
   [[ -f "$ROOT/$path" ]] || { echo "missing required file: $path" >&2; exit 1; }
 done
 echo "AI Personas repository validation passed."
