@@ -20,9 +20,31 @@ FAST work can execute on Luna directly. Non-trivial investigation, architecture
 and consequential decisions use Sol; bounded execution returns to Luna. Reuse
 one Sol planning thread when a new decision appears.
 
+## Session reuse / project context
+
+Repository-aware personas check the local cache before broad discovery:
+
+```bash
+python3 scripts/project-context.py show
+```
+
+`FRESH` skips repo rediscovery, `STALE` reconciles only changed paths, and
+`NEEDS_CONTEXT` permits the one-time initial discovery. The cache is stored in
+Git metadata and does not dirty the repository.
+
+Optional local Graphify support:
+
+```bash
+bash scripts/install-context-tools.sh
+```
+
+Graphify is only an accelerator for multi-hop code relationships; the native
+cache requires no dependency.
+
 ## Project initialization
 
 ```bash
+bash scripts/init-project.sh --context
 bash scripts/init-project.sh --design
 bash scripts/init-project.sh --engineering
 bash scripts/init-project.sh --delivery
