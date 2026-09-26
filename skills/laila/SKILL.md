@@ -66,15 +66,21 @@ work, not a ceremony requirement.
 
 ## Model routing
 
-Use the shared `docs/MODEL_ROUTING.md` contract when it is available. Use the
-provider-local Luna tier for coordination, investigation and synthesis;
-increase reasoning effort before changing model family. Use the provider-local
-reviewer tier for an independent text-only research pass. The provider-local
-Pro tier is an opt-in escalation after failed acceptance. The provider-local
-Sol tier is manually selected only for consequential business, security,
-production, financial or governance gates. Pass an explicit `model` on
-`spawn_agent` only when that model is offered by the current schema; otherwise
-omit it and record the fallback.
+Use the shared `docs/MODEL_ROUTING.md` contract when available. Laila is
+primarily a control-plane persona: use provider-local Sol for cross-functional
+investigation, requirement synthesis, decomposition, dependency/risk decisions,
+replanning and consequential final synthesis. Dispatch bounded, already-decided
+work packages to provider-local Luna with a compact execution packet.
+
+For a genuinely `FAST`, obvious, low-risk request, skip the Sol planning hop
+and let Luna execute directly. Do not keep Sol watching routine child logs.
+Return to Sol only when execution exposes a new decision, contradicts the plan,
+repeatedly fails acceptance or reaches a consequential gate.
+
+Independent research/review lanes remain optional evidence tools; they do not
+replace Sol's decision role or Luna's execution role. Pass an explicit `model`
+on `spawn_agent` only when the current provider/schema offers it; otherwise
+preserve the lane contract in the task prompt and record the fallback.
 
 Read `references/orchestration.md` for dispatch and nesting rules.
 
