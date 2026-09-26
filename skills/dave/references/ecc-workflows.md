@@ -135,5 +135,5 @@ This workflow layer does not:
 - make every task TDD-heavy or require an arbitrary coverage percentage;
 - let a reviewer edit the worktree or certify its own changes.
 
-The active provider/model contract in `docs/MODEL_ROUTING.md`, repository
+The active provider/model contract in `runtime-contracts.md`, repository
 instructions and Dave's security/UI gates remain authoritative.
