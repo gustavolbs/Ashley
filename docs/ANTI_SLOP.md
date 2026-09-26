@@ -47,14 +47,16 @@ changed-file/CI mode as an additional signal:
 aislop ci --changes --base origin/main
 ```
 
-For a one-off run without installation:
+For a one-off run without a project installation, use the repository helper so
+the reviewed version from `THIRD_PARTY.lock.json` is used:
 
 ```bash
-npx aislop@latest ci --changes --base origin/main
+AI_PERSONAS_USE_NPX=1 bash scripts/scan-project-quality.sh origin/main
 ```
 
-Do not install or download it silently during a normal task. If it is absent,
-apply the same rubric manually and report the skipped machine check. Do not
+Do not silently download a floating `latest` during a normal task. If the
+scanner is absent and the explicit one-off path was not requested, apply the
+same rubric manually and report the skipped machine check. Do not
 replace the repository's ESLint, Biome, TypeScript, Semgrep, CodeQL or tests
 with an anti-slop score.
 
