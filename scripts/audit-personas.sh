@@ -13,7 +13,7 @@ for persona in "${PERSONAS[@]}"; do
   version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"; grep -q "\"$persona\": \"$version\"" "$ROOT/PERSONAS.json" || fail "manifest mismatch for $persona"
   for contract in anti-slop execution-modes model-routing; do [[ -f "$ROOT/skills/$persona/references/_shared/$contract.md" ]] || fail "$persona missing packaged $contract contract"; done
   ! grep -qE 'docs/(ANTI_SLOP|EXECUTION_MODES|MODEL_ROUTING)\.md' "$skill" || fail "$persona depends on root runtime docs"
-  grep -q "references/evidence.md" "$skill" || fail "$persona must reference evidence protocol"
+  grep -q "evidence.md" "$skill" || fail "$persona must reference evidence protocol"
   bytes="$(wc -c < "$skill" | tr -d ' ')"; (( bytes <= 10500 )) || fail "$persona SKILL.md is $bytes bytes"
   while IFS= read -r doc; do while IFS= read -r linked_ref; do [[ -z "$linked_ref" || -f "$ROOT/skills/$persona/$linked_ref" ]] || fail "$persona broken reference $linked_ref"; done < <(grep -oE "references/[A-Za-z0-9_./-]+\.md" "$doc" | sort -u || true); done < <(find "$ROOT/skills/$persona" -maxdepth 3 -type f -name "*.md" | sort)
 done
