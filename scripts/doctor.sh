@@ -1,39 +1,38 @@
 #!/usr/bin/env bash
 set -u
+ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
+MANIFEST="$ROOT/SPECIALISTS.json"
+
 ok(){ printf "✓ %s\n" "$1"; }
 warn(){ printf "! %s\n" "$1"; }
 
 for persona in ashley dave guto roberto clara ana laila; do
-  [[ -f "$HOME/.agents/skills/$persona/SKILL.md" ]] && ok "$persona installed" || warn "$persona not found"
+  dir="$HOME/.agents/skills/$persona"
+  [[ -f "$dir/SKILL.md" ]] && ok "$persona installed" || warn "$persona not found"
+  [[ -f "$dir/references/runtime-contracts.md" ]] && ok "$persona runtime contracts bundled" || warn "$persona runtime contracts missing"
 done
 
+echo
 [[ -f "$HOME/.ashley/PREFERENCES.md" ]] && ok "Ashley global preference memory exists" || warn "Ashley global preference memory missing"
-for s in ui-ux-pro-max design-taste-frontend gpt-taste impeccable; do
-  [[ -d "$HOME/.agents/skills/$s" ]] && ok "Ashley specialist: $s" || warn "Optional Ashley specialist missing: $s"
-done
 
 echo
-if [[ -d "$HOME/.agents/skills/caveman" ]]; then
-  ok "Caveman skill installed (optional Dave token compression)"
+echo "Optional Agency Agents:"
+if [[ -f "$MANIFEST" ]]; then
+  while IFS='|' read -r persona agent; do
+    [[ -f "$HOME/.codex/agents/$agent.toml" ]] && ok "$persona specialist: $agent" || warn "Optional $persona specialist missing: $agent"
+  done < <(node -e 'const fs=require("fs"); const m=JSON.parse(fs.readFileSync(process.argv[1],"utf8")).agency_agents; for(const [p,a] of Object.entries(m)) for(const x of a) console.log(p+"|"+x);' "$MANIFEST")
 else
-  warn "Caveman skill not found (Dave native token budgeting still works)"
+  warn "SPECIALISTS.json missing"
 fi
-command -v caveman >/dev/null 2>&1 && ok "Caveman CLI/proxy available (optional)" || warn "Caveman CLI/proxy not found (optional)"
 
 echo
-echo "Dave engineering specialists:"
-for a in frontend-developer backend-architect mobile-app-builder desktop-app-engineer ai-engineer privacy-engineer code-reviewer api-tester reality-checker evidence-collector test-automation-engineer accessibility-auditor; do
-  [[ -f "$HOME/.codex/agents/$a.toml" ]] && ok "Agency agent: $a" || warn "Optional Agency agent missing: $a"
+for s in ui-ux-pro-max design-taste-frontend gpt-taste impeccable; do
+  [[ -d "$HOME/.agents/skills/$s" ]] && ok "Ashley specialist skill: $s" || warn "Optional Ashley specialist missing: $s"
 done
 
 echo
-echo "Cross-functional / operations specialists:"
-for a in product-manager legal-compliance-checker data-privacy-officer customer-success-manager pr-communications-manager mobile-release-engineer compliance-auditor; do
-  [[ -f "$HOME/.codex/agents/$a.toml" ]] && ok "Agency agent: $a" || warn "Optional Agency agent missing: $a"
-done
-
-[[ -d "docs/design" ]] && ok "Current project has design memory" || warn "Current project has no docs/design"
-[[ -d "docs/delivery" ]] && ok "Current project has Laila delivery memory" || warn "Current project has no docs/delivery (optional)"
+[[ -d "docs/design" ]] && ok "Current project has design memory" || warn "Current project has no docs/design (optional)"
+[[ -d "docs/delivery" ]] && ok "Current project has delivery memory" || warn "Current project has no docs/delivery (optional)"
 if [[ -e "AGENTS.md" || -d "docs/adr" || -d "docs/adrs" || -d "docs/engineering" ]]; then
   ok "Current project has engineering instructions/memory"
 else
@@ -44,4 +43,4 @@ command -v codex >/dev/null 2>&1 && ok "Codex CLI found" || warn "Codex CLI not 
 command -v pen >/dev/null 2>&1 && ok "pen.dev CLI found" || warn "pen.dev CLI not found (optional for Ashley)"
 
 echo
-echo "Inside Codex verify /skills, available custom agents, and /mcp."
+echo "For strict repository-vs-install verification run: bash scripts/verify-installed.sh"
