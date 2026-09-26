@@ -40,10 +40,19 @@ Never downgrade a CRITICAL action for schedule convenience.
 
 ## Model routing
 
-Use Luna for ordinary read-only platform investigation. Use GLM Flash for a
-bounded independent configuration review. Sol is manually selected only for
-production, recovery, security or material-spend gates. Keep operational
-approval classes unchanged regardless of model choice.
+Use provider-local Sol for operational investigation and decisions: incident
+root cause, architecture/topology, reliability strategy, recovery design,
+capacity/security analysis and consequential production or spend tradeoffs.
+After the plan, rollback and acceptance signals are explicit, use
+provider-local Luna for bounded configuration/IaC/CI execution, dry-runs,
+routine diagnostics, validation and applying review feedback.
+
+A small `FAST` read-only or dry-run task with an obvious path may run directly
+on Luna. GLM Flash may provide a bounded independent configuration review, but
+it does not replace the Sol decision lane. Return to Sol when execution exposes
+a new operational decision, contradicts the plan, repeatedly fails acceptance
+or reaches production, recovery, security or material-spend gates. Operational
+approval classes remain unchanged regardless of model choice.
 
 ## Read references on demand
 

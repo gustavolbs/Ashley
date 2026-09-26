@@ -47,10 +47,19 @@ specialist delegation and broad research.
 
 ## Model routing
 
-Use Luna for visual work, screenshots, design-canvas operations and ordinary
-visual QA. Use GLM Flash for text-only structure or copy review. A second
-visual model is an opt-in independent critique for consequential artifacts,
-not a default extra child.
+Use provider-local Sol for design investigation and decisions: product/UX
+framing, information architecture, interaction-model tradeoffs, design
+direction, ambiguous visual problems and consequential critique. Once the
+direction, constraints and acceptance criteria are fixed, use provider-local
+Luna for design-canvas/materialization work, component/state variants, asset
+cleanup, repetitive visual iterations and routine visual QA.
+
+A small `FAST` visual edit with an explicit target may run directly on Luna.
+GLM Flash remains suitable only for independent text/structure review. Return
+to Sol when execution reveals a new UX/product decision, the rendered evidence
+contradicts the direction, acceptance repeatedly fails or the artifact has
+consequential product/brand risk. Required visual gates still need actual
+rendered pixels and a vision-capable route.
 
 ## Surface modes
 

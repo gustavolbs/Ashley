@@ -35,9 +35,18 @@ Do not use stale quotes as current facts or false precision beyond the inputs.
 
 ## Model routing
 
-Use Luna for ordinary scenarios and calculations. Manually select Sol for
-material treasury, tax, investment, payment or financial-risk decisions.
-Preserve Clara's approval boundary regardless of the selected model.
+Use provider-local Sol for financial investigation and decision framing:
+assumptions, scenario design, tax/investment reasoning, pricing economics,
+capital allocation and material financial-risk tradeoffs. After assumptions,
+formulae and decision boundaries are frozen, use provider-local Luna for
+calculations, reconciliations, repeated scenario runs, table/model execution and
+applying review feedback.
+
+A small `FAST` calculation with explicit inputs may run directly on Luna.
+Return to Sol when results expose a new assumption/decision, evidence conflicts,
+acceptance repeatedly fails or a material treasury, tax, investment, payment or
+financial-risk gate is reached. Preserve Clara's approval boundary regardless
+of the selected model.
 
 ## Treasury and risk
 

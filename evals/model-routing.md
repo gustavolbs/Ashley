@@ -1,41 +1,63 @@
 # Model Routing
 
-Give Laila a bug report with a screenshot and a small repository change request.
-Multi-agent execution is available, and the RouteMux model catalog exposes
-explicit child model overrides.
+Validate the shared rule that Sol is the decision/orchestration control plane
+and Luna is the bounded execution plane.
+
+## Cross-persona matrix
+
+| Persona | Sol lane | Luna lane |
+|---|---|---|
+| Laila | investigation, decomposition, dependencies, risk decisions, synthesis | bounded work-package execution and status/application of decided plans |
+| Roberto | strategy, market investigation, operating-model and business tradeoffs | artifacts/drafts/routine evidence from an approved strategy |
+| Clara | assumptions, scenario design, tax/investment and material-risk reasoning | calculations, reconciliations and repeated scenarios after assumptions freeze |
+| Ana | positioning, channel/experiment strategy, causal/reputation decisions | campaign/copy/lifecycle/reporting execution from a fixed brief |
+| Ashley | UX/product investigation, IA, design direction, consequential critique | canvas/materialization, variants, asset work and routine visual QA |
+| Dave | repository investigation, root cause, architecture, decomposition, substantial review | implementation, tests, fixes, refactors and review feedback |
+| Guto | incident/root-cause, topology/reliability, production/security/spend decisions | bounded config/IaC/CI execution, dry-runs and routine diagnostics |
+
+## Scenario
+
+Give Laila a bug report with a screenshot and a non-trivial repository change
+request. Multi-agent execution is available and the active provider exposes
+provider-local Sol and Luna child overrides.
 
 ## Expected behavior
 
-- Laila uses Luna for coordination and screenshot-aware investigation.
-- Laila delegates exactly one bounded implementation package to Dave.
-- Dave uses Luna for the implementation, increasing reasoning effort before
-  considering a different model family.
-- Dave delegates one read-only QA package to DeepSeek Flash when that route is
-  healthy; the reviewer does not edit files.
-- The reviewer reports exact paths/lines, tests and remaining uncertainty.
-- Dave fixes findings and the reviewer re-checks only the changed areas.
-- DeepSeek Pro is used only after a Luna/Flash attempt fails acceptance or a
-  frozen contract explicitly requires a larger reasoning budget.
-- Sol appears only when the change crosses a security, production, migration,
-  financial or other high-consequence gate and is manually selected.
+- Laila uses Sol for coordination, screenshot-aware investigation and
+  decomposition.
+- Laila sends Dave a compact execution packet rather than the entire transcript.
+- Dave/Sol performs only the engineering investigation/decision work needed to
+  freeze the implementation contract.
+- Dave delegates implementation to Luna.
+- Luna implements and runs the agreed validation without Sol watching routine
+  command/test logs.
+- Dave delegates one read-only QA package to the provider-local reviewer when
+  the execution mode requires it; the reviewer does not edit files.
+- Mechanical review findings return to Luna for fixes.
+- A new architecture/product decision, contradictory runtime evidence, repeated
+  acceptance failure or high-consequence gate returns to Sol.
+- A genuinely FAST/obvious low-risk task may skip Sol and execute directly on
+  Luna.
 - Kimi, Grok, M3 and Astra are not selected merely because they are available.
-- Every child id is retained, every required child reaches a terminal result,
-  and a fallback is named explicitly when a preferred route is unavailable.
+- Every required child reaches a terminal result and a fallback is named
+  explicitly when a preferred route is unavailable.
 
 ## Failure signals
 
-- parent analyzes the implementation instead of the assigned child;
+- Luna is asked to invent architecture/strategy after the parent should have
+  frozen the decision;
+- Sol performs or watches routine implementation that had a complete execution
+  packet;
+- every tiny task pays for a Sol planning hop;
+- task size alone triggers a Luna -> Sol escalation;
 - multiple reviewers are spawned without independent work;
-- a cheap model is used for a high-consequence decision without escalation;
-- a child model is invented or not present in the current tool schema;
+- a child model is invented or absent from the current tool schema;
 - a child claim is treated as proof without integrated verification;
-- public uptime is treated as stronger evidence than a current local probe;
-- a cheap relay route that fails tool calling is used as a subagent merely
-  because its simple chat request worked;
 - the parent leaves finished children working or retries while state is unknown.
 
 ## Measurement
 
-Record model slug, effort, task lane, input/output token totals, fallback,
-latency, tests and acceptance result. Compare the same scenario on Luna,
-DeepSeek Flash and GLM Flash before promoting another default.
+Record model slug, role (decision or execution), effort, input/output token
+totals, fallback, latency, tests and acceptance result. Measure Sol token share
+separately: routine execution should not continuously consume control-plane
+tokens.
