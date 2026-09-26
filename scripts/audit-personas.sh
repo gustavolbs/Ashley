@@ -2,47 +2,22 @@
 set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PERSONAS=(ashley dave guto roberto clara ana laila)
-
 fail(){ printf 'persona audit failed: %s\n' "$1" >&2; exit 1; }
-
 [[ ! -f "$ROOT/SKILL.md" ]] || fail "root SKILL.md shadows multi-skill discovery"
-[[ -f "$ROOT/VERSION" ]] || fail "missing root VERSION"
-[[ -f "$ROOT/PERSONAS.json" ]] || fail "missing PERSONAS.json"
-suite_version="$(tr -d '[:space:]' < "$ROOT/VERSION")"
-[[ "$suite_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "root VERSION is not semver"
-grep -q "\"suite\": \"$suite_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json suite version does not match VERSION"
-
+[[ -f "$ROOT/VERSION" && -f "$ROOT/PERSONAS.json" ]] || fail "missing version manifest"
+suite_version="$(tr -d '[:space:]' < "$ROOT/VERSION")"; [[ "$suite_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "root VERSION is not semver"
+grep -q "\"suite\": \"$suite_version\"" "$ROOT/PERSONAS.json" || fail "suite version mismatch"
 for persona in "${PERSONAS[@]}"; do
-  skill="$ROOT/skills/$persona/SKILL.md"
-  [[ -f "$skill" ]] || fail "missing $skill"
-  grep -q "^name: $persona$" "$skill" || fail "$persona frontmatter name does not match directory"
-  [[ -f "$ROOT/skills/$persona/agents/openai.yaml" ]] || fail "missing agents/openai.yaml for $persona"
-  [[ -f "$ROOT/skills/$persona/VERSION" ]] || fail "missing VERSION for $persona"
-  persona_version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"
-  [[ "$persona_version" =~ ^[0-9]+\.[0-9]+\.[0-9]+$ ]] || fail "$persona VERSION is not semver"
-  grep -q "\"$persona\": \"$persona_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json version mismatch for $persona"
-  grep -q "evidence.md" "$skill" || fail "$persona SKILL.md must reference anti-hallucination evidence protocol"
-  grep -q "^## Anti-slop quality gate$" "$skill" || fail "$persona SKILL.md must contain anti-slop quality gate"
-  grep -q "^## Execution speed$" "$skill" || fail "$persona SKILL.md must contain execution speed triage"
-  grep -q "^## Delegated-child lifecycle$" "$skill" || fail "$persona SKILL.md must contain delegated-child lifecycle enforcement"
-  bytes="$(wc -c < "$skill" | tr -d " ")"
-  (( bytes <= 12000 )) || fail "$persona SKILL.md is ${bytes} bytes; move detail into references/"
-
-  while IFS= read -r doc; do
-    while IFS= read -r linked_ref; do
-      [[ -z "$linked_ref" || -f "$ROOT/skills/$persona/$linked_ref" ]] || fail "$persona has broken reference $linked_ref in ${doc#$ROOT/}"
-    done < <(grep -oE "references/[A-Za-z0-9._-]+\.md" "$doc" | sort -u || true)
-  done < <(find "$ROOT/skills/$persona" -maxdepth 2 -type f -name "*.md" | sort)
+  skill="$ROOT/skills/$persona/SKILL.md"; [[ -f "$skill" ]] || fail "missing $skill"; grep -q "^name: $persona$" "$skill" || fail "$persona frontmatter mismatch"
+  [[ -f "$ROOT/skills/$persona/agents/openai.yaml" && -f "$ROOT/skills/$persona/VERSION" ]] || fail "$persona package metadata missing"
+  version="$(tr -d '[:space:]' < "$ROOT/skills/$persona/VERSION")"; grep -q "\"$persona\": \"$version\"" "$ROOT/PERSONAS.json" || fail "manifest mismatch for $persona"
+  for contract in anti-slop execution-modes model-routing; do [[ -f "$ROOT/skills/$persona/references/_shared/$contract.md" ]] || fail "$persona missing packaged $contract contract"; done
+  ! grep -qE 'docs/(ANTI_SLOP|EXECUTION_MODES|MODEL_ROUTING)\.md' "$skill" || fail "$persona depends on root runtime docs"
+  grep -q "evidence.md" "$skill" || fail "$persona must reference evidence protocol"
+  bytes="$(wc -c < "$skill" | tr -d ' ')"; (( bytes <= 10500 )) || fail "$persona SKILL.md is $bytes bytes"
+  while IFS= read -r doc; do while IFS= read -r linked_ref; do [[ -z "$linked_ref" || -f "$ROOT/skills/$persona/$linked_ref" ]] || fail "$persona broken reference $linked_ref"; done < <(grep -oE "references/[A-Za-z0-9_./-]+\.md" "$doc" | sort -u || true); done < <(find "$ROOT/skills/$persona" -maxdepth 3 -type f -name "*.md" | sort)
 done
-
-for stale in parker victor nora maya; do
-  [[ ! -d "$ROOT/skills/$stale" ]] || fail "stale persona directory skills/$stale exists"
-done
-
-stale_names="$(grep -R -nE "(Parker|Victor|Nora|Maya)" "$ROOT/skills" "$ROOT/README.md" "$ROOT/THIRD_PARTY.md" 2>/dev/null || true)"
-[[ -z "$stale_names" ]] || { printf "%s\n" "$stale_names" >&2; fail "stale persona names remain"; }
-
-future_wording="$(grep -R -n "future persona" "$ROOT/skills" "$ROOT/README.md" 2>/dev/null || true)"
-[[ -z "$future_wording" ]] || { printf "%s\n" "$future_wording" >&2; fail "stale future-persona wording remains"; }
-
-echo "Persona structure audit passed."
+[[ ! -f "$ROOT/.DS_Store" && ! -f "$ROOT/skills/.DS_Store" ]] || fail ".DS_Store must not be tracked"
+latest_installs="$(grep -R -n '@latest' "$ROOT/scripts/install-specialists.sh" "$ROOT/scripts/install-dave-specialists.sh" "$ROOT/scripts/install-team-specialists.sh" 2>/dev/null || true)"
+[[ -z "$latest_installs" ]] || { printf '%s\n' "$latest_installs" >&2; fail "installer must not silently track @latest"; }
+echo "Persona package audit passed."

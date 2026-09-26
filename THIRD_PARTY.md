@@ -206,3 +206,14 @@ or add only the specialist roster needed by their work. Specialists remain
 bounded workers: they return evidence and recommendations to their persona
 owner, never replace the persona's authority, and never create a peer-persona
 mesh.
+
+## Reproducible installer pins
+
+The optional installers default to reviewed immutable versions instead of upstream HEAD/latest:
+
+- Agency Agents: `053ddbbf392a1688fc7043d81529f47ef2cf86c8`;
+- Taste: `37c8c376b92ebc02456f7c70776b514fddda88e1`;
+- UI/UX Pro Max CLI: `2.15.0`;
+- Impeccable: `4.1.0`.
+
+Environment-variable overrides are intentionally supported for controlled upgrades. Review the upstream change, scan when appropriate, run repository validation/evals, then update the recorded pin rather than tracking `latest` silently.

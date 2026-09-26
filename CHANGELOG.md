@@ -2,6 +2,27 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.6.0] — 2026-09-26
+
+### Changed
+- every installed persona now carries packaged shared routing, execution-mode and
+  anti-slop contracts instead of depending on repository-root docs;
+- SKILL files use stronger progressive disclosure and narrower discovery descriptions;
+- Sol/Luna routing defines parent-is-Sol, parent-is-Luna and reusable-planner transitions;
+- specialist installers use one canonical roster and a pinned Agency Agents commit;
+- installed verification compares the full persona package;
+- root architecture/usage docs describe the complete seven-persona suite;
+- root project initialization is explicit by domain.
+
+### Added
+- shared-contract synchronization/check script;
+- static behavior-contract eval and opt-in live Codex JSON-trace eval runner;
+- eval-trace summary and SKILL context-size audit;
+- CI checks for packaged contract drift, JSON validity and routing invariants.
+
+### Removed
+- tracked macOS .DS_Store artifacts.
+
 ## [3.5.0] — 2026-09-26
 
 ### Changed

@@ -1,54 +1,59 @@
 # AI Personas
 
-**AI Personas is a collection of opinionated Codex personas that own real work end-to-end.**
+Opinionated, self-contained Codex personas for real work with explicit domain
+ownership, evidence gates and cost-aware model routing.
 
-| Persona | Level | Primary ownership |
-|---|---|---|
-| **Roberto** | Executive | Business strategy, management and operations |
-| **Laila** | Principal | Product/program delivery, scope, requirements, dependencies and orchestration |
-| **Clara** | Executive / Principal | Finance, accounting, FP&A, pricing, tax and investments |
-| **Ana** | Executive / Principal | Marketing, growth, SEO, analytics, copy and paid media |
-| **Ashley** | Staff | Product, UX, visual design, brand and creative direction |
-| **Dave** | Staff / Principal | Software engineering, architecture, refactoring, testing and Git |
-| **Guto** | Principal | Platform, DevOps, SRE, infrastructure and production operations |
+| Persona | Owns |
+|---|---|
+| **Laila** | cross-functional product/program delivery and coordination |
+| **Roberto** | business strategy, management, operations, sales/customer success |
+| **Clara** | finance, accounting, FP&A, pricing, tax, treasury, investments |
+| **Ana** | marketing, growth, communications, SEO, paid, lifecycle, analytics |
+| **Ashley** | product UX, UI, visual design, brand and creative production |
+| **Dave** | application engineering, architecture, AI apps, testing and Git |
+| **Guto** | platform, DevOps, SRE, releases, infrastructure and production |
 
-Each persona is a self-contained skill under `skills/<name>/`. Laila routes to persona skills first; each persona may then use lower-level Agency Agents specialists.
+## Routing principle
 
-The suite also incorporates a small, provider-neutral subset of
-[ECC](https://github.com/affaan-m/ECC) workflows inside Dave and Laila. No ECC
-plugin, global hook, MCP server or extra installation step is required; see
-[`docs/ECC_INTEGRATION.md`](docs/ECC_INTEGRATION.md).
+Use the narrowest domain owner that can complete the request. Laila is the
+cross-functional coordinator, **not** a mandatory front door for single-domain
+work.
 
-The suite has an evidence-first anti-slop contract across every persona. It can
-use [AIslop](https://github.com/scanaislop/aislop) for deterministic changed-code
-checks, [NVIDIA SkillSpector](https://github.com/NVIDIA/skillspector) before
-external skill/MCP installation, [Reticle](https://github.com/reticlehq/reticle)
-for project-local runtime verification, and selected
-[UI Skills](https://github.com/ibelick/ui-skills) lenses for Ashley. These are
-optional integrations; absent tools are reported as skipped, never silently
-installed.
+```text
+Fix a React bug                -> Dave
+Redesign a mobile flow         -> Ashley
+Audit pricing economics        -> Clara
+Diagnose a production deploy   -> Guto
+Plan a GTM experiment          -> Ana
+Choose an operating model      -> Roberto
+Coordinate a product launch    -> Laila -> relevant owners
+```
 
-Execution is triaged automatically into `FAST`, `STANDARD` and `HIGH_RISK`
-modes. Small requests stay with one persona, one targeted check and no reviewer
-wait. Security, financial, production, migration, public-contract and critical
-user-flow changes still receive their full gates. See
-[`docs/EXECUTION_MODES.md`](docs/EXECUTION_MODES.md).
+## Model policy
+
+The shared runtime contract uses:
+
+- **Sol** for investigation, root cause, architecture, orchestration and
+  consequential decisions;
+- **Luna** for bounded execution from an approved decision packet;
+- **FAST** tasks can execute directly on Luna;
+- one Sol planning thread should normally be reused when execution discovers a
+  new decision instead of spawning a fresh planner repeatedly.
+
+Each installed skill carries its own copy of the shared routing, execution-mode
+and anti-slop contracts under `references/_shared/`, so it remains
+self-contained when installed independently.
 
 ## Install
 
-Install any persona:
+One persona:
 
 ```bash
-npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 npx skills add gustavolbs/ai-personas --skill dave -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill guto -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill roberto -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill clara -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill ana -g -a codex -y
-npx skills add gustavolbs/ai-personas --skill laila -g -a codex -y
+npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
 ```
 
-Or clone once and install the whole team:
+Whole team from a clone:
 
 ```bash
 git clone https://github.com/gustavolbs/ai-personas.git
@@ -56,477 +61,110 @@ cd ai-personas
 bash scripts/install-all.sh
 ```
 
-## Optional quality gates
-
-Run the deterministic changed-code scan when the target project has AIslop:
+Verify the installed package copies:
 
 ```bash
-bash scripts/scan-project-quality.sh origin/main
+bash scripts/verify-installed.sh
+bash scripts/doctor.sh
 ```
 
-Use `AI_PERSONAS_USE_NPX=1` for an explicit one-off `npx aislop@latest` run.
-For third-party skill/MCP bundles, install SkillSpector separately and scan
-before executing their installers:
+## Optional specialists
+
+Specialists are bounded workers/reviewers, never replacement authorities.
 
 ```bash
-bash scripts/scan-external-skill.sh /path/to/skill
-AI_PERSONAS_REQUIRE_SKILLSPECTOR=1 bash scripts/install-dave-specialists.sh
+bash scripts/install-specialists.sh       # Ashley design tools
+bash scripts/install-dave-specialists.sh  # engineering reviewers/workers
+bash scripts/install-team-specialists.sh  # product/business/finance/growth/SRE
 ```
 
-These gates are opt-in. Native linting, typechecking, tests, security review
-and runtime/UI evidence remain the actual acceptance gates.
+Installers use reviewed immutable pins by default. Controlled upgrades can
+override the pin/version through the documented environment variables and
+should be followed by validation/evals.
 
-## Team operating model
+## Project memory
 
-```text
-user / founder
-      │
-      ▼
-    Laila
- product/program delivery
- scope · requirements · dependencies · evidence
-      │
- ┌────┼────────┬────────┬────────┬───────┐
- ▼    ▼        ▼        ▼        ▼       ▼
-Roberto Clara  Ana    Ashley    Dave    Guto
-business finance growth design software platform
-```
-
-**Laila is the primary front door for cross-functional work.** Give her the outcome; she determines which personas are required, dispatches bounded work to them, tracks scope/dependencies/evidence, and returns one integrated result. Laila translates an approved outcome into scope, work packages, acceptance criteria, dependencies, owners and handoffs. Laila does not override domain authority: Dave owns the internal Dev→QA loop; Guto owns production risk; Ashley owns design decisions; Roberto/Clara/Ana own their respective business domains.
-
-
-## Evidence-first / anti-hallucination
-
-Every persona distinguishes what was **proposed**, **changed**, **built**, **run** and actually **verified**. A file diff is not proof that the running product changed; a green build is not proof that a user flow works; a child-agent claim is not independent evidence.
-
-For UI/Expo work Dave must verify the actual runtime when claiming a visual fix: correct screen/component, current bundle/build, platform, state and rendered pixels. If he cannot inspect the simulator/device/browser, the correct conclusion is **"implementation changed; visual fix unverified"**, not "fixed".
-
-Ashley likewise cannot claim the implementation matches a design until the real rendered implementation is inspected. Laila cannot mark a package complete merely because a worker says it is done.
-
-## Auditing an existing project
-
-The personas can be installed globally and used inside an already-active repository without rebuilding the project or initializing all persona memory.
-
-For example, to audit an existing financial flow:
-
-```text
-Laila, audit the existing financial flow in this repository.
-Do not redesign or modify anything initially.
-
-Have Clara define and validate the financial invariants and state transitions.
-Have Dave trace the actual implementation, persistence, transactions, webhooks,
-idempotency and runtime behavior.
-Use Ashley only for financial UX risks and Guto only for provider/webhook/
-queue/production reliability concerns.
-
-Return:
-- flow map
-- financial invariants
-- VERIFIED vs UNVERIFIED transitions
-- findings ranked by risk
-- concrete code/runtime evidence
-- missing tests
-- recommended fixes
-
-Do not call anything fixed/correct unless there is evidence at the appropriate level.
-```
-
-This is particularly useful for billing, wallets, transfers, refunds, subscriptions, credits and reconciliation flows.
-
-## Versioning
-
-The repository now has two version layers:
-
-- root `VERSION` — version of the complete persona suite;
-- `skills/<persona>/VERSION` — independent version of each persona.
-
-`PERSONAS.json` is the machine-readable manifest. See `docs/VERSIONING.md`.
-
-## Shared governance lanes
-
-Some work deliberately spans personas instead of inventing another "super persona":
-
-- **Product management:** Laila coordinates discovery, roadmap/release scope, requirements and outcome measurement; Roberto/Ashley/Dave/Clara/Ana/Guto retain their domain authority.
-- **Legal & privacy:** Roberto coordinates business/legal/privacy risk with specialist analysis; Dave implements application privacy/security controls; Guto owns operational controls/evidence. Material legal conclusions retain qualified-professional/user approval gates.
-- **Sales & customer success:** Roberto owns the commercial/customer operating model; Ana demand/lifecycle communications; Clara economics; Laila cross-functional rollout.
-- **Incidents:** Guto technical incident command; Dave application remediation; Ana communications; Roberto business decisions; Laila cross-functional coordination when needed.
-
-## Dave
-
-**Dave is a Staff/Principal Software Engineer and coding orchestrator. He owns outcomes, not lines of code.**
-
-Dave can also audit and incrementally refactor an existing codebase toward stronger architecture and engineering standards. He establishes a behavioral baseline, maps concrete structural pressure, defines target constraints, protects legacy behavior with tests, migrates in reviewable slices and only applies patterns where they solve a real problem.
-
-Dave has native token/context budgeting. Caveman is optional: if its skill is installed Dave can use it to compress prose; if its proxy is already active it may reduce noisy tool/context traffic. Installing Dave does **not** alter RouteMux/provider wiring or install a proxy automatically.
-
-Dave understands the repository before changing it, fills safe requirement gaps, applies engineering principles without pattern worship, delegates bounded work to the right specialists, implements and integrates the result, verifies it, removes unnecessary code, and leaves coherent semantic commits.
-
-His default operating loop is:
-
-```text
-understand → inspect → fill safe gaps → design → delegate selectively
-→ implement → integrate → test/QA → simplify → commit → report
-```
-
-Dave can use installed Agency Agents such as Frontend Developer, Backend Architect, Mobile App Builder, Desktop App Engineer, AI Engineer, Privacy Engineer, Code Reviewer, API Tester and Reality Checker as subagents. If delegation is unavailable, rate-limited or more expensive than doing the work directly, Dave owns the task himself.
-
-Deep DevOps/SRE ownership is intentionally outside Dave's scope and belongs to **Guto**. Dave still handles the minimum application-level configuration required to complete a software change.
-
-Install Dave from a clone:
+Initialize only the domains that need durable project memory:
 
 ```bash
-bash scripts/install-dave.sh
+bash scripts/init-project.sh --design
+bash scripts/init-project.sh --engineering
+bash scripts/init-project.sh --delivery
+bash scripts/init-project.sh --all
 ```
 
-Initialize optional engineering memory inside a project only when the repo does not already have an equivalent ADR/engineering-doc system:
+Existing ADRs, issue trackers, runbooks, design docs and executable repository
+truth remain authoritative; persona memory must not become a stale duplicate.
+
+## Evidence-first behavior
+
+Every persona distinguishes proposed/changed/built/run/verified states. A diff
+is not runtime proof, a green build is not proof a user flow works, and a child
+agent saying “done” is not completion evidence.
+
+Examples:
+
+- Dave must inspect runtime pixels before claiming a visual fix is verified.
+- Ashley must inspect rendered/exported pixels before passing high-fidelity QA.
+- Guto requires post-change operational evidence and credible rollback/recovery.
+- Clara keeps units, dates, assumptions and financial evidence explicit.
+- Laila closes work only from integrated acceptance evidence, not worker status.
+
+## Execution modes
+
+- **FAST** — bounded low-risk work, no committee, one targeted check.
+- **STANDARD** — moderate uncertainty/multi-file behavior with proportional QA.
+- **HIGH_RISK** — security/data/production/migration/material decisions with
+  explicit domain gates and approval where required.
+
+See the packaged `references/_shared/` contracts inside each skill.
+
+## Validation and evals
+
+Structural/reliability CI:
 
 ```bash
-~/.agents/skills/dave/scripts/init-project.sh
+bash scripts/validate.sh
 ```
 
-Dave prefers existing `AGENTS.md`, ADRs, architecture docs and executable repository truth over creating parallel memory.
-
-## Ashley
-
-**Ashley is a staff-level Creative Director, Product, UX, Visual & Brand Designer for Codex.**
-
-The goal is simple: Ashley should be the person you call for **anything visual or product-design related** — from understanding an existing codebase and designing a new flow to creating the brand, logo, social campaign, launch assets or visual system.
-
-```text
-Ashley, I want to build a SaaS for property managers.
-Here is the scope and business model.
-Understand the product, create the visual identity and logo, then start
-designing the main flows in the project design canvas. Do not write production code yet.
-```
-
-Ashley is one Codex **Agent Skill**. There is no Ashley server, daemon, database service, or second agent runtime.
-
-Her capability comes from:
-
-- repository/project understanding before design;
-- product/business reasoning;
-- UX research discipline and information architecture;
-- interaction design;
-- visual design and art direction;
-- brand identity and logo design;
-- graphic design, social-media art, campaign systems and marketing assets;
-- design systems and accessibility;
-- structured creative divergence (A/B/C directions);
-- visual critique and finish gates;
-- a canvas abstraction with pen.dev preferred, Penpot supported, and browser/code fallback;
-- proactive learning from approvals, rejections and corrections;
-- durable project + global design memory;
-- optional Codex subagent delegation for repository exploration, research and independent critique;
-- optional specialist skills such as UI/UX Pro Max, Taste and Impeccable.
-
-## What Ashley can own
-
-Ashley is intentionally broader than a SaaS UI skill.
-
-```text
-Product
-├── UX architecture
-├── web / desktop / mobile UI
-├── prototypes
-├── design systems
-└── experimentation
-
-Brand
-├── positioning → visual translation
-├── logo / wordmark / app icon
-├── typography / color / shape language
-├── iconography / imagery direction
-└── brand guidelines
-
-Creative production
-├── social posts / carousels / stories / thumbnails
-├── launch and campaign key visuals
-├── ad creatives
-├── email/blog/editorial graphics
-├── one-pagers / press kits / branded diagrams
-└── reusable creative templates
-```
-
-For existing projects, Ashley first inspects the repo and reconstructs enough product/design context to continue coherently rather than starting from generic defaults.
-
-## Ashley 1.0 quality loop
-
-Ashley 1.0 adds six production-grade layers:
-
-1. **Visual QA** — high-fidelity work must be exported/rendered and visually inspected, not merely validated from layers.
-2. **Taste Calibration** — a global but non-rigid taste profile accelerates learning of the user's preferences.
-3. **Creative Strategy & Messaging** — campaigns start from audience/message/idea, not decoration.
-4. **Asset Provenance & Licensing** — fonts, icons, stock, generated imagery and third-party assets carry explicit provenance status.
-5. **Design ↔ Code Sync** — Ashley chooses and documents source-of-truth rules instead of creating parallel design systems.
-6. **Artifact DoD** — logos, product screens, social assets, campaigns, systems and other artifacts have explicit finish gates.
-
-These layers still run inside the same single Codex skill.
-
-## Recommended design canvas
-
-Ashley is no longer tied to Penpot.
-
-The preferred workflow is now **pen.dev/Pencil + repo-owned `.pen` files**:
-
-```text
-project/
-├── src/
-├── docs/design/
-└── design/
-    ├── product.pen
-    ├── brand.pen
-    └── campaigns.pen
-```
-
-Why this is the preferred path:
-- `.pen` files are version-control friendly;
-- Codex can connect through the local `pencil` MCP;
-- the `pen` CLI can work headlessly;
-- screenshots/exports can be generated for Visual QA;
-- design stays physically associated with the product repo.
-
-Penpot remains fully supported as a fallback for projects already using it.
-
-See:
-- `docs/PEN_DEV_SETUP.md`
-- `docs/PENPOT_SETUP.md`
-- `skills/ashley/references/design-canvas.md`
-
-## Install Ashley
-
-The easiest installation is the standard Agent Skills CLI:
+Static routing/runtime-contract regression:
 
 ```bash
-npx skills add gustavolbs/ai-personas --skill ashley -g -a codex -y
+bash scripts/run-evals.sh
 ```
 
-Restart Codex after installation.
-
-Verify:
-
-```text
-/skills
-```
-
-You should see **ashley**.
-
-Alternatively, clone the repository and run:
+Optional live Codex traces:
 
 ```bash
-git clone https://github.com/gustavolbs/ai-personas.git
-cd ai-personas
-bash scripts/install.sh
+AI_PERSONAS_RUN_MODEL_EVALS=1 bash scripts/run-evals.sh
 ```
 
-## Recommended specialist skills
+Live results are stored in `.eval-results/` by default and summarized for
+Sol/Luna/tool activity. Trace counters are diagnostics; acceptance still comes
+from each eval's expected behavior and evidence.
 
-Ashley works by herself, but three optional skills materially expand her repertoire:
+Context footprint:
 
 ```bash
-bash scripts/install-specialists.sh
+python3 scripts/audit-context.py
 ```
 
-This installs:
-
-- **UI/UX Pro Max** — searchable style/product/color/type/UX intelligence.
-- **Taste** — visual differentiation and anti-generic exploration.
-- **Impeccable** — critique, polish and deterministic UI anti-pattern detection.
-
-They remain independent upstream skills so they can be updated normally.
-
-Ashley is the design director. Specialist instructions never override the active product brief, accessibility constraints, approved brand decisions, or Ashley's mode-specific rules.
-
-Dave has a separate optional engineering roster for bounded implementation and
-review work:
-
-```bash
-bash scripts/install-dave-specialists.sh
-```
-
-This installs AI Engineer, Frontend Developer, Application Security Engineer,
-API Tester, Accessibility Auditor, Reality Checker, Code Reviewer and Test
-Automation Engineer into Codex. Dave remains the owner and uses only the
-specialist relevant to the current stack and risk.
-
-The other personas have a similarly curated, optional roster:
-
-```bash
-bash scripts/install-team-specialists.sh
-```
-
-It adds bounded product, design, reliability, business, finance and marketing
-workers without installing the full Agency Agents catalog.
-
-## Initialize a product repository
-
-Inside the SaaS/product repo:
-
-```bash
-~/.agents/skills/ashley/scripts/init-project.sh
-```
-
-This creates:
+## Repository structure
 
 ```text
-docs/design/
-├── PRODUCT.md
-├── RESEARCH.md
-├── BRAND.md
-├── MESSAGING.md
-├── UX.md
-├── DESIGN_SYSTEM.md
-├── ASSETS.md
-├── HANDOFF.md
-├── DECISIONS.md
-└── LEARNINGS.md
+skills/<persona>/
+  SKILL.md
+  VERSION
+  agents/openai.yaml
+  references/
+    _shared/
+    ...domain references
+  scripts/ and templates/ when needed
+
+docs/       canonical suite contracts and architecture
+evals/      regression scenarios
+scripts/    validation, installation, synchronization and eval tooling
 ```
 
-Commit these files. They become the durable design memory for the product.
-
-Ashley also uses global preferences under:
-
-```text
-~/.ashley/
-├── PREFERENCES.md
-├── HEURISTICS.md
-└── TASTE_PROFILE.md
-```
-
-The installer creates them if missing.
-
-## Penpot
-
-Ashley is designed to use Penpot Cloud via the official Penpot MCP server.
-
-You do not install Penpot into the SaaS repo.
-
-1. Open Penpot Cloud.
-2. In your Penpot account, enable the MCP integration and generate its MCP URL/token.
-3. Add the remote MCP server to Codex as `penpot`.
-4. Open the desired Penpot file/page.
-5. In Penpot, connect the active file/page to MCP.
-6. Ask Ashley to inspect or edit the current canvas.
-
-See [references/penpot.md](skills/ashley/references/penpot.md).
-
-## RouteMux
-
-Ashley is model-provider agnostic. RouteMux can provide the model as long as the selected model is strong at:
-
-- tool/function calling;
-- vision;
-- long instruction following;
-- spatial/visual reasoning;
-- multi-step reasoning.
-
-The main failure mode is a model that describes an MCP action instead of calling the MCP tool correctly.
-
-For consequential product/brand work, prefer your strongest reliable vision + tool-calling reasoning model. Use cheaper models for repetitive token/component work.
-
-## How Ashley creates rather than merely follows rules
-
-Ashley uses a structured creative loop:
-
-```text
-understand the job
-      ↓
-map constraints
-      ↓
-search/retrieve repertoire
-      ↓
-diverge into genuinely different concepts
-      ↓
-materialize A/B/C
-      ↓
-critique against product + craft
-      ↓
-compare tradeoffs
-      ↓
-human preference signal
-      ↓
-converge
-      ↓
-record what was learned
-```
-
-A/B/C means different **design hypotheses**, not the same layout with three colors.
-
-Ashley can vary:
-
-- interaction model;
-- hierarchy;
-- information density;
-- navigation;
-- typography;
-- shape language;
-- composition;
-- brand expression;
-- imagery/iconography;
-- motion.
-
-## Example workflow
-
-```text
-Ashley, we're building an accounts-receivable SaaS for small property managers.
-The landlord is the buyer, but property managers operate it every day.
-Here is the business model and scope.
-
-First understand the business and users. Then give me three distinct product +
-brand directions. Materialize the strongest alternatives in Penpot so I can compare.
-```
-
-Then:
-
-```text
-Ashley, A has the best product structure. B has a better personality.
-C feels too experimental. Create A2 preserving A's architecture but exploring
-a warmer visual language without becoming playful. Learn from this feedback.
-```
-
-Then:
-
-```text
-Ashley, direction A2 is approved. Establish the design system and design the
-highest-frequency operational flow, including loading, empty, error and
-permission states.
-```
-
-## Repository
-
-- `skills/ashley/` — product/design/brand.
-- `skills/dave/` — software engineering.
-- `skills/guto/` — platform/DevOps/SRE.
-- `skills/roberto/` — business strategy/management.
-- `skills/clara/` — finance/accounting/capital.
-- `skills/ana/` — marketing/growth.
-- `skills/laila/` — primary manager: program/project/delivery orchestration.
-- each persona keeps detailed knowledge in its own `references/`.
-- `templates/` — project design-memory templates.
-- `scripts/` — installer and project initializer.
-- `evals/` — regression briefs for testing Ashley after changes.
-- `docs/ARCHITECTURE.md` — architecture and design rationale.
-
-Ashley deliberately stays a **skill**, not a new framework.
-
-
-## Component-library materialization
-
-Ashley treats requests like "recreate our shadcn library in design" as deterministic system work rather than free-form generation.
-
-For shadcn/ui she:
-- reads the project's `components.json` and actual component source;
-- queries current shadcn registry/docs when upstream coverage is requested;
-- builds a manifest;
-- maps real project tokens into design variables;
-- creates a reusable `.lib.pen` library;
-- works in small dependency-ordered batches;
-- visually QA's every batch before continuing.
-
-This avoids hallucinating component names, variants or Pencil operations.
-
-
-### Design-first shadcn
-
-Ashley can prepare a shadcn-oriented design system **before shadcn is installed**.
-
-In that mode she derives the required component set from product flows, checks the current official shadcn catalog for implementation feasibility, builds product-specific semantic tokens and creates the reusable design library first. When shadcn is installed later, implementation mirrors the approved design contract rather than defining the visual system from scratch.
+The suite deliberately remains a set of Codex Agent Skills rather than a new
+agent runtime.
