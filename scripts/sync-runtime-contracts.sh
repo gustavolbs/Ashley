@@ -4,6 +4,10 @@ set -euo pipefail
 ROOT="$(cd "$(dirname "${BASH_SOURCE[0]}")/.." && pwd)"
 PERSONAS=(ashley dave guto roberto clara ana laila)
 MODE="${1:---write}"
+case "$MODE" in
+  --write|--check) ;;
+  *) echo "Usage: bash scripts/sync-runtime-contracts.sh [--write|--check]" >&2; exit 2 ;;
+esac
 
 render() {
   cat <<'EOF'
