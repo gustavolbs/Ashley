@@ -1,13 +1,13 @@
 {
-  "suite": "3.6.0",
+  "suite": "3.7.0",
   "personas": {
-    "laila": "1.4.0",
-    "roberto": "1.4.0",
-    "clara": "1.4.0",
-    "ana": "1.4.0",
-    "ashley": "1.4.0",
-    "dave": "1.4.0",
-    "guto": "1.4.0"
+    "laila": "1.5.0",
+    "roberto": "1.5.0",
+    "clara": "1.5.0",
+    "ana": "1.5.0",
+    "ashley": "1.5.0",
+    "dave": "1.5.0",
+    "guto": "1.5.0"
   },
   "policy": {
     "scheme": "semver",
@@ -18,7 +18,8 @@
     "source": [
       "docs/ANTI_SLOP.md",
       "docs/EXECUTION_MODES.md",
-      "docs/MODEL_ROUTING.md"
+      "docs/MODEL_ROUTING.md",
+      "docs/PROJECT_CONTEXT.md"
     ],
     "packaged_under": "references/_shared",
     "sync_script": "scripts/sync-shared-contracts.sh"
@@ -27,6 +28,13 @@
     "agency_agents_ref": "053ddbbf392a1688fc7043d81529f47ef2cf86c8",
     "taste_ref": "37c8c376b92ebc02456f7c70776b514fddda88e1",
     "ui_ux_pro_max_cli": "2.15.0",
-    "impeccable": "4.1.0"
+    "impeccable": "4.1.0",
+    "graphifyy": "0.9.68"
+  },
+  "project_context": {
+    "storage": "<git-dir>/ai-personas",
+    "script": "scripts/project-context.py",
+    "max_summary_bytes": 12288,
+    "graphify_optional": true
   }
 }
