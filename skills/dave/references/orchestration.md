@@ -34,7 +34,7 @@ Do not route to a specialist merely because it exists. Match actual stack/proble
 
 ## Spawn gate
 
-Classify the request with `docs/EXECUTION_MODES.md` first. `FAST` tasks do not
+Classify the request with `runtime-contracts.md` first. `FAST` tasks do not
 spawn children. `STANDARD` tasks earn at most one focused child when it
 materially changes quality; `HIGH_RISK` tasks may use the required specialist
 and independent reviewer.
