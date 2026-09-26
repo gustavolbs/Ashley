@@ -5,6 +5,9 @@ reviewer apply the sections matching the detected stack; they do not impose
 Next.js conventions on an Expo app or rewrite a coherent repository merely to
 match a preferred architecture.
 
+Use [`EXECUTION_MODES.md`](EXECUTION_MODES.md) to avoid running the full
+verification matrix for low-risk, narrow changes.
+
 The contract is intentionally opinionated at boundaries where defects are
 expensive: types, trust boundaries, server/client separation, async work,
 component composition, accessibility, visual runtime evidence and tests.

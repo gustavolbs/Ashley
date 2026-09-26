@@ -28,6 +28,12 @@ for project-local runtime verification, and selected
 optional integrations; absent tools are reported as skipped, never silently
 installed.
 
+Execution is triaged automatically into `FAST`, `STANDARD` and `HIGH_RISK`
+modes. Small requests stay with one persona, one targeted check and no reviewer
+wait. Security, financial, production, migration, public-contract and critical
+user-flow changes still receive their full gates. See
+[`docs/EXECUTION_MODES.md`](docs/EXECUTION_MODES.md).
+
 ## Install
 
 Install any persona:

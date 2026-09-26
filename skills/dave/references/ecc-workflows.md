@@ -6,12 +6,16 @@ MIT. This is a behavior contract, not an ECC runtime or a second installer.
 
 ## Workflow selector
 
+Classify with `docs/EXECUTION_MODES.md` first. The fast path is the default:
+one owner, one targeted check, no child/research/reviewer unless a risk trigger
+appears. Use the workflows below only when the selected mode requires them.
+
 Choose the smallest workflow set that matches the change:
 
 | Situation | Required workflow |
 | --- | --- |
 | feature, bug fix, refactor or API change | TDD loop |
-| any non-trivial change before closeout | verification loop |
+| standard/high-risk change before closeout | verification loop |
 | browser-visible critical path | E2E workflow and rendered UI evidence |
 | AI persona, prompt, routing or evaluator change | eval-driven development |
 | repeated tool failure, drift or retry loop | agent introspection |
@@ -19,8 +23,8 @@ Choose the smallest workflow set that matches the change:
 | framework/API/version question | documentation lookup |
 | broad current-state investigation | cited deep research |
 
-Do not activate every workflow by habit. A one-line documentation change may
-need only diff review and the repository's own checks.
+Do not activate every workflow by habit. A one-line documentation change needs
+only the diff and a relevant syntax/link check.
 
 ## TDD loop
 

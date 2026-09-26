@@ -2,6 +2,28 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.4.0] — 2026-09-26
+
+### Added
+- explicit `FAST`, `STANDARD` and `HIGH_RISK` execution modes;
+- fast-path budgets and escalation rules to prevent unnecessary delegation,
+  research, full-matrix checks and reviewer waits;
+- regression eval for low-risk task latency and over-orchestration.
+
+### Changed
+- external review is now conditional on shared/public behavior or risk, not
+  mandatory for every small change;
+- visual QA is targeted to visual/layout/interaction changes;
+- all personas classify execution speed before building a child graph.
+
+## [3.3.1] — 2026-09-25
+
+### Fixed
+- Dave 1.1.1 documents the version-scoped NativeWind style-callback regression,
+  the className boundary for native-only bypasses, and the Jest interop blind spot.
+- Adds a mobile regression eval requiring rendered-style assertions and native
+  visual evidence instead of cache assumptions or helper-only tests.
+
 ## [3.3.0] — 2026-09-25
 
 ### Added

@@ -49,6 +49,32 @@ When touching native capability:
 4. define dev/build profile implications;
 5. preserve upgradeability.
 
+## NativeWind style interop guard
+
+When a NativeWind app loses button borders, padding, dimensions or icon backgrounds,
+inspect the native JSX/style interop before assuming stale Metro cache. In a
+reproduced stack (NativeWind 4.2.7, react-native-css-interop 0.2.7, RN 0.86.3,
+Expo 57.0.24), `Pressable` style callbacks were discarded by interop even without
+`className`. This is version-scoped evidence, not a general React Native rule.
+
+- For controls styled entirely through native `style`, `cssInterop={false}` on
+  the element preserves the native callback. Do not apply it blindly to elements
+  that depend on `className`; they would lose class processing. Use compatible
+  object/array styles and preserve interaction states when retaining interop.
+- Check the installed runtime: its JSX wrapper skips automatic core-component
+  registration under `NODE_ENV === 'test'`. Tests can therefore pass while the
+  native app drops styles. For that version, focused tests explicitly import
+  `react-native-css-interop/dist/runtime/components`. Recheck this internal path
+  on upgrades; it does not itself load compiled Tailwind classes.
+- Assert resolved styles on rendered controls, not only a style helper or icon
+  presence: dimensions, padding, borders, background, disabled state and actions.
+  Include empty/text composer states when affected.
+- Inspect pixels in Expo Go or a native build. Web screenshots and isolated
+  component previews do not prove every authenticated route or both platforms.
+- Revalidate the workaround on dependency upgrades; do not patch dependencies or
+  disable NativeWind globally. Verify project/entrypoint/bundle identity separately
+  when changes appear not to reach the device.
+
 ## Security
 
 Never embed long-lived secrets in a mobile binary. Treat device storage, logs, clipboard, screenshots, WebViews, deep links and exported Android components as trust-boundary concerns.

@@ -19,6 +19,9 @@ Do not use a product/project specialist to override Roberto/Ashley/Dave/Clara/An
 
 ## Dispatch protocol
 
+Classify execution mode before dispatch. `FAST` requests stay with one persona
+owner and do not create a child graph.
+
 1. Choose the persona owner.
 2. Build a compact handoff capsule.
 3. Spawn a focused child when multi-agent execution materially helps.

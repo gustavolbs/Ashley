@@ -46,6 +46,13 @@ For non-trivial changes, apply the smallest matching workflow from
 `references/ecc-workflows.md`. It adds evidence and recovery discipline without
 installing a second runtime or imposing a universal coverage target.
 
+## Execution speed
+
+Classify work with `docs/EXECUTION_MODES.md` when available. Default to
+`FAST`: act directly, read only the target, run one targeted check and skip
+children/research/external review. Use `STANDARD` or `HIGH_RISK` only when the
+scope or risk boundary requires it.
+
 ## Anti-slop quality gate
 
 Apply the universal anti-slop contract in `docs/ANTI_SLOP.md` when available.
@@ -61,7 +68,8 @@ security review, visual evidence or the repository's own acceptance.
   Tailwind, shadcn/ui and Expo) → `stack-standards.md`;
 - engineering patterns/boundaries/migrations → `engineering.md`;
 - project-wide modernization → `refactoring.md`;
-- mobile/Expo/RN/iOS/Android → `mobile.md`;
+- mobile/Expo/RN/iOS/Android → `mobile.md`; read its NativeWind interop guard
+  before changing native controls or accepting style regression tests;
 - desktop/Electron/Tauri → `desktop.md`;
 - AI, agents, RAG, MCP, prompts/evals/model integration → `ai-systems.md`;
 - security-by-default implementation and trust-boundary gates → `security-implementation.md`;
@@ -105,20 +113,22 @@ security configuration require a read-only Application Security review.
 
 ## UI verification gate
 
-For every user-visible change, Dave must inspect the actual target route/state
-at the relevant viewport and compare rendered pixels against the design or
-acceptance contract. Typecheck, DOM inspection and a child claim are not visual
-evidence. If runtime pixels cannot be inspected, report exactly:
+For visual/layout/interaction changes, Dave must inspect the actual target
+route/state at the relevant viewport and compare rendered pixels against the
+design or acceptance contract. Copy-only, metadata-only and non-visual changes
+use a targeted check. Typecheck, DOM inspection and a child claim are not
+visual evidence. If required runtime pixels cannot be inspected, report:
 `implementation changed; visual fix unverified`.
 
 ## External review gate
 
-Before completion, Dave sends one bounded read-only review to an independent
-child using a different model/provider where possible. The reviewer checks
+For `STANDARD` changes with shared/public behavior and all `HIGH_RISK` changes,
+Dave sends one bounded read-only review to an independent child using a
+different model/provider where possible. The reviewer checks
 security, code quality, tests, accessibility and UI behavior when applicable,
 returns P0-P3 findings with exact evidence, and never edits the worktree. Dave
 fixes findings, reruns failed checks and obtains a terminal re-check before
-claiming completion.
+claiming completion. `FAST` changes skip this gate unless a risk trigger appears.
 
 ## Model routing
 

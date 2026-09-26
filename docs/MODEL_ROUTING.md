@@ -12,6 +12,11 @@ only exposes a model/fallback detail when it materially affects risk, cost or
 acceptance. Personas must never ask the user to copy a model slug for normal
 work.
 
+For `FAST` work, the child graph is empty by default: keep the active parent on
+the lowest capable effort and do the task directly. `STANDARD` work may use one
+focused child; `HIGH_RISK` work may add the required independent reviewer or
+specialist.
+
 ## Provider-local routing
 
 Model selection is local to the active parent session:
@@ -79,7 +84,8 @@ not a certified default.
 9. Never cross provider families for a child override, even when the model is
    visible in the picker.
 10. Do not create a second reviewer merely to use another model. One bounded
-   independent reviewer is the default.
+   independent reviewer is the default for `STANDARD` shared/public work and
+   `HIGH_RISK` work, not for every small task.
 11. Keep the model override explicit on `spawn_agent` when the selected model is
    visible in the current tool schema. If it is unavailable, omit the override
    and report the fallback.
@@ -96,12 +102,16 @@ not a certified default.
 ## Dave QA loop
 
 ```text
-Dave/provider-local orchestrator implements
-  -> provider-local reviewer runs tests and reports findings
-  -> Dave/provider-local orchestrator fixes
-  -> the same reviewer re-checks changed areas
-  -> Luna validates the integrated result
-  -> manually select Sol only when the risk gate is high
+FAST:
+  provider-local orchestrator implements -> targeted check -> return
+
+STANDARD / HIGH_RISK:
+  provider-local orchestrator implements
+    -> provider-local reviewer runs tests and reports findings
+    -> Dave/provider-local orchestrator fixes
+    -> the same reviewer re-checks changed areas
+    -> Luna validates the integrated result
+    -> manually select Sol only when the risk gate is high
 ```
 
 The reviewer is evidence-producing and read-only by default. A child claim is

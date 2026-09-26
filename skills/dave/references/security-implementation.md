@@ -1,7 +1,7 @@
 # Dave — Security-by-Default Implementation
 
-Use this gate on every change. Run the full specialist lane when the change
-touches a trust boundary.
+Use the compact checklist on every change. Run the full specialist lane only
+when the change touches a trust boundary or another HIGH_RISK boundary.
 
 ## Threat boundary first
 

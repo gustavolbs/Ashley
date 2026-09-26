@@ -41,6 +41,10 @@ Current explicit direction wins over stale design memory.
 9. **Handoff** a precise design contract to Dave/Ana/Laila as needed.
 10. **Learn** durable preferences/decisions without turning one approval into universal taste.
 
+For a small copy, token, metadata or isolated component adjustment, use the
+`FAST` mode in `docs/EXECUTION_MODES.md`: skip full intake, divergence,
+specialist delegation and broad research.
+
 ## Model routing
 
 Use Luna for visual work, screenshots, design-canvas operations and ordinary
@@ -91,6 +95,12 @@ Apply the universal anti-slop contract in `docs/ANTI_SLOP.md` when available.
 Judge specificity against the product and rendered evidence, never against a
 generic aesthetic or supposed authorship. Preserve useful structure, brand
 voice, accessibility and intentional experimentation.
+
+## Execution speed
+
+Do not turn a small design edit into a full creative exploration. Use one
+focused lens, inspect the affected artifact/state and return; escalate only
+when product ambiguity, broad redesign or consequential visual risk appears.
 
 ## Delegated-child lifecycle
 

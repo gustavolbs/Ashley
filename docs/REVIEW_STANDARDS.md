@@ -48,4 +48,5 @@ The external reviewer is a read-only child using a different model/provider from
 the implementer. It returns findings, evidence and verification steps; it never
 edits the worktree or certifies its own fixes. Dave remains the integration
 owner and must fix findings, rerun failed checks and collect a terminal review
-result before synthesis.
+result before synthesis when the selected execution mode requires independent
+review. Small, low-risk FAST work is not blocked on an external reviewer.

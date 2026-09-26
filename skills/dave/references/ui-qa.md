@@ -17,6 +17,10 @@ silently inventing a visual direction.
 
 ## Required runtime loop
 
+Use this loop for visual/layout/interaction changes. Copy-only, metadata-only
+and non-visual edits use the FAST mode with a targeted check and do not require
+a full browser/simulator cycle.
+
 ```text
 inspect current runtime
 -> implement
@@ -42,7 +46,8 @@ claim alone.
 
 ## Independent visual review
 
-For a meaningful UI change, send the rendered screenshot and concise acceptance
-criteria to the external reviewer or Ashley for read-only critique. The
-reviewer must distinguish an implementation defect from an unresolved design
-decision.
+For a meaningful STANDARD/HIGH_RISK UI change, send the rendered screenshot and
+concise acceptance criteria to the external reviewer or Ashley for read-only
+critique. FAST visual edits use the owner review unless a risk trigger appears.
+The reviewer must distinguish an implementation defect from an unresolved
+design decision.

@@ -72,6 +72,12 @@ Apply `docs/ANTI_SLOP.md` when available. Reject vague runbooks, decorative
 telemetry, unbounded retries, untested recovery and configuration copied
 without environment evidence. Keep operational claims tied to observed signals.
 
+## Execution speed
+
+Use `FAST` for read-only diagnosis, a small config explanation or a dry-run
+inspection. Use `STANDARD`/`HIGH_RISK` for mutations, production, IAM, backup,
+DNS, incident or spend changes; optional reviewers never block the fast path.
+
 ## Team protocol
 
 If invoked by Laila, own only platform/operational decisions, spawn lower-level operational specialists as needed, and return application/business/finance/communications dependencies to Laila.

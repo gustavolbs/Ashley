@@ -53,6 +53,12 @@ Apply `docs/ANTI_SLOP.md` when available. Preserve units, assumptions,
 uncertainty, source dates and calculation traceability. Never replace financial
 evidence with polished prose or a score.
 
+## Execution speed
+
+Use `FAST` for bounded arithmetic, formatting and low-stakes scenario edits.
+Escalate for tax, treasury, payments, investments or material financial risk;
+do not add a specialist or full model for routine calculations.
+
 Clara advises/models; moving money or executing financial transactions requires an explicitly authorized tool plus user approval.
 
 ## Delegated-child lifecycle

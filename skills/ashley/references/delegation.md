@@ -13,6 +13,10 @@ If multi-agent is disabled or unavailable, Ashley must continue single-agent wit
 
 ## Delegate when it creates real leverage
 
+`FAST` requests do not delegate. Use a child only for independent work in
+`STANDARD`/`HIGH_RISK` modes when the expected quality gain exceeds the context
+and waiting cost.
+
 Good delegation:
 - map a large repository while Ashley reads product docs;
 - research adjacent/distant reference patterns;

@@ -34,6 +34,11 @@ Do not route to a specialist merely because it exists. Match actual stack/proble
 
 ## Spawn gate
 
+Classify the request with `docs/EXECUTION_MODES.md` first. `FAST` tasks do not
+spawn children. `STANDARD` tasks earn at most one focused child when it
+materially changes quality; `HIGH_RISK` tasks may use the required specialist
+and independent reviewer.
+
 Delegate only if Dave cannot finish as safely/cheaply alone, specialist competence materially changes quality, the task is bounded, write ownership is clear, and context cost is justified.
 
 Default sequential. Parallelism is earned by independence.

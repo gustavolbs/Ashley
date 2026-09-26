@@ -23,6 +23,7 @@ for persona in "${PERSONAS[@]}"; do
   grep -q "\"$persona\": \"$persona_version\"" "$ROOT/PERSONAS.json" || fail "PERSONAS.json version mismatch for $persona"
   grep -q "evidence.md" "$skill" || fail "$persona SKILL.md must reference anti-hallucination evidence protocol"
   grep -q "^## Anti-slop quality gate$" "$skill" || fail "$persona SKILL.md must contain anti-slop quality gate"
+  grep -q "^## Execution speed$" "$skill" || fail "$persona SKILL.md must contain execution speed triage"
   grep -q "^## Delegated-child lifecycle$" "$skill" || fail "$persona SKILL.md must contain delegated-child lifecycle enforcement"
   bytes="$(wc -c < "$skill" | tr -d " ")"
   (( bytes <= 12000 )) || fail "$persona SKILL.md is ${bytes} bytes; move detail into references/"
