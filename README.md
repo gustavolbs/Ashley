@@ -82,11 +82,38 @@ Installers use reviewed immutable pins by default. Controlled upgrades can
 override the pin/version through the documented environment variables and
 should be followed by validation/evals.
 
+## Project context reuse
+
+A new chat should not rediscover an unchanged repository.
+
+Each persona first checks a local cache stored under the clone/worktree Git
+metadata:
+
+```bash
+python3 scripts/project-context.py show
+```
+
+- `FRESH` → reuse the compact project map and open only task-relevant source;
+- `STALE` → reconcile the reported commit/working-tree delta;
+- `NEEDS_CONTEXT` → do one proportional discovery, then checkpoint it.
+
+The cache never outranks current code/tests/config and never dirties the repo.
+
+For optional large-repo dependency/impact navigation:
+
+```bash
+bash scripts/install-context-tools.sh
+```
+
+This installs pinned Graphify locally. Graphify is optional; no server, MCP
+service, vector database or deployment is required.
+
 ## Project memory
 
 Initialize only the domains that need durable project memory:
 
 ```bash
+bash scripts/init-project.sh --context
 bash scripts/init-project.sh --design
 bash scripts/init-project.sh --engineering
 bash scripts/init-project.sh --delivery
