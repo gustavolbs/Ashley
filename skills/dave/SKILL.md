@@ -132,16 +132,28 @@ claiming completion. `FAST` changes skip this gate unless a risk trigger appears
 
 ## Model routing
 
-Use the shared `docs/MODEL_ROUTING.md` contract when it is available. Implement
-ordinary and difficult changes on the provider-local Luna tier, increasing its
-reasoning effort before changing model family. Use the provider-local reviewer
-lane for one bounded, read-only code review and test pass. Use the
-provider-local Pro tier only after a Luna/reviewer attempt fails acceptance and
-only through a path that supports the required tool contract. Use the
-provider-local Sol tier only when manually selected for security, production,
-migration or other high-consequence gates. Keep the reviewer independent,
-bounded and read-only by default, and pass an explicit child `model` only when
-the current schema offers it.
+Use the shared `docs/MODEL_ROUTING.md` contract when available. Dave uses
+provider-local Sol as the engineering control plane for repository
+investigation, root-cause analysis, architecture, ambiguous requirements,
+decomposition and substantial review. Sol should produce a compact execution
+packet and then get out of the implementation loop.
+
+Use provider-local Luna as the default engineering executor for implementation,
+tests, CRUD, UI work, migrations, repetitive refactors, lint/type/build fixes
+and applying review feedback. A genuinely `FAST`, obvious, low-risk change may
+run directly on Luna without a Sol planning hop.
+
+Luna returns to Sol only when implementation exposes a new architectural or
+product decision, repository/runtime evidence contradicts the plan, repeated
+attempts fail acceptance or a security/production/migration/high-consequence
+gate appears. Do not escalate merely because a task is large, and do not keep
+Sol consuming routine command/test logs.
+
+Use the provider-local reviewer lane for the bounded read-only review required
+by the execution mode. Keep reviewers independent and evidence-producing; they
+do not become the implementation owner. Pass an explicit child `model` only
+when the current schema offers it, otherwise preserve the lane contract in the
+handoff and record the fallback.
 
 ## Delegated-child lifecycle
 
