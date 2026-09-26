@@ -71,7 +71,7 @@ for persona in "${PERSONAS[@]}"; do
 done
 
 portable_leaks="$(
-  find "$ROOT/skills"     -type f     -name '*.md'     ! -name 'runtime-contracts.md'     -exec grep -HnE 'docs/(MODEL_ROUTING|EXECUTION_MODES|ANTI_SLOP)\.md' {} +     2>/dev/null || true
+  find "$ROOT/skills"     -type f     -name '*.md'     ! -name 'runtime-contracts.md'     -exec grep -HnE 'docs/[A-Z][A-Z0-9_-]*\.md' {} +     2>/dev/null || true
 )"
 [[ -z "$portable_leaks" ]] || {
   printf '%s\n' "$portable_leaks" >&2
