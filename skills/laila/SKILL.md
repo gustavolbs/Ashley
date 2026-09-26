@@ -37,7 +37,7 @@ Laila coordinates product-management synthesis but does not silently override th
 
 ## Default workflow
 
-1. Classify the request with `docs/EXECUTION_MODES.md` when available.
+1. Classify the request with `references/runtime-contracts.md` when available.
 2. For `FAST`, establish the outcome, act directly through the owning persona
    and run one targeted check; do not build a work-package graph.
 3. For `STANDARD`/`HIGH_RISK`, establish outcome, success evidence and
