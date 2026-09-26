@@ -50,8 +50,10 @@ for (const key of ["ui_ux_pro_max_cli","impeccable","aislop"]) {
 }
 NODE
 
-if grep -R -n '@latest' "$ROOT/scripts" --include='*.sh'; then
-  echo "unpinned latest dependency in specialist installers" >&2
+floating_latest="$(find "$ROOT/scripts" -type f -name '*.sh' -exec grep -Hn '@latest' {} + 2>/dev/null || true)"
+if [[ -n "$floating_latest" ]]; then
+  printf '%s\n' "$floating_latest" >&2
+  echo "unpinned latest dependency in repository scripts" >&2
   exit 1
 fi
 
