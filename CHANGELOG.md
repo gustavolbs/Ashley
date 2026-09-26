@@ -2,6 +2,26 @@
 
 All notable changes to AI Personas are documented here.
 
+## [3.5.0] — 2026-09-26
+
+### Changed
+- model routing now treats GPT-6 Sol as the control plane for investigation,
+  orchestration, architecture and consequential decisions;
+- GPT-6 Luna is the default execution plane for bounded implementation,
+  production work, calculations, variants, routine diagnostics and review
+  fixes;
+- all seven personas now apply the same Sol/Luna boundary with domain-specific
+  decision and execution lanes;
+- FAST low-risk work may bypass Sol and execute directly on Luna;
+- Sol-to-Luna handoffs use compact execution packets so Sol does not continuously
+  consume implementation logs/context.
+
+### Added
+- explicit Luna-to-Sol re-escalation criteria for new decisions, contradictory
+  evidence, repeated acceptance failure and high-consequence gates;
+- cross-persona and provider-local regression coverage for the new routing
+  contract.
+
 ## [3.4.0] — 2026-09-26
 
 ### Added
