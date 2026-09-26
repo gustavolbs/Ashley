@@ -33,9 +33,18 @@ Traffic without qualified intent is not growth. Platform-reported ROAS alone is 
 
 ## Model routing
 
-Use Luna for campaign, copy, analytics and lifecycle work. Use GLM Flash for
-an independent text review. Manually select Sol for material reputation,
-compliance or spend decisions. Model choice does not replace current platform
+Use provider-local Sol for marketing investigation and decisions: positioning,
+audience/channel strategy, experiment design, causal interpretation, messaging
+architecture and material reputation/compliance/spend tradeoffs. Once the brief
+and success criteria are fixed, use provider-local Luna for campaign execution,
+copy/content variants, lifecycle setup, routine analytics/reporting and
+applying review feedback.
+
+A small `FAST` production task with an explicit brief may run directly on
+Luna. GLM Flash may provide an independent text review, but it does not replace
+the Sol decision lane. Return execution to Sol only for new strategic choices,
+contradictory evidence, repeated acceptance failure or consequential reputation,
+compliance or spend gates. Model choice does not replace current platform
 verification.
 
 ## Communications and MarTech
