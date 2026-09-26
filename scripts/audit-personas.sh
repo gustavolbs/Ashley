@@ -43,7 +43,7 @@ for persona in "${PERSONAS[@]}"; do
   done < <(find "$ROOT/skills/$persona" -maxdepth 2 -type f -name "*.md" | sort)
 done
 
-portable_leaks="$(grep -R -nE 'docs/(MODEL_ROUTING|EXECUTION_MODES|ANTI_SLOP)\.md' "$ROOT/skills" --exclude=runtime-contracts.md 2>/dev/null || true)"
+portable_leaks="$(find "$ROOT/skills" -type f -name '*.md' ! -name 'runtime-contracts.md' -exec grep -HnE 'docs/(MODEL_ROUTING|EXECUTION_MODES|ANTI_SLOP)\.md' {} + 2>/dev/null || true)"
 [[ -z "$portable_leaks" ]] || { printf "%s\n" "$portable_leaks" >&2; fail "installed skills reference repository-only runtime docs"; }
 
 ds_store="$(find "$ROOT" -name .DS_Store -print)"
